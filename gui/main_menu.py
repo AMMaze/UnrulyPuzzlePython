@@ -10,11 +10,7 @@ main_menu.columnconfigure((0, 2),  weight=1)
 # Main Frame
 
 root_frame = tk.Frame(main_menu)
-# highlightbackground="red",
-# highlightcolor="green", highlightthickness=100)
 root_frame.grid(row=1, column=1, padx=20, pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
-# root_frame.rowconfigure(0, weight=1)
-# root_frame.columnconfigure(0, weight=1)
 
 # Define and Put Label
 
