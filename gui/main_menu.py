@@ -1,4 +1,7 @@
 import tkinter as tk
+import tkinter.ttk as ttk
+from styles.CustomButton import CustomButton
+from styles.Custom_Button import Round_Button
 
 # Main Window
 
@@ -9,26 +12,42 @@ main_menu.columnconfigure((0, 2),  weight=1)
 
 # Main Frame
 
-root_frame = tk.Frame(main_menu)
+root_frame = ttk.Frame(main_menu)
 root_frame.grid(row=1, column=1, padx=20, pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
 
 # Define and Put Label
 
-title = tk.Label(root_frame, text="Unruly Puzzle", font=("Lucida Grande", 18))
+title = ttk.Label(root_frame, text="Unruly Puzzle", font=("Lucida Grande", 18))
 title.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N+tk.E+tk.W+tk.S)
 
 # Buttons Definitions
 
-btn_new_game = tk.Button(root_frame,
-                         text="New Game", padx=15, pady=15,  command=None)
-btn_restart = tk.Button(root_frame,
-                        text="Restart", padx=15, pady=15,  command=None)
-btn_options = tk.Button(root_frame,
-                        text="Options", padx=15, pady=15,  command=None)
-btn_help = tk.Button(root_frame,
-                     text="Help", padx=15, pady=15,  command=None)
-btn_exit = tk.Button(root_frame,
-                     text="Exit", padx=15, pady=15,  command=None)
+btn_default_style = {
+    'size': 5,
+    'static_colour': (149, 213, 255),
+    'static_t_colour': (0, 0, 0),
+    'transformation_colour': (74, 184, 255),
+    'transformation_t_colour': (0, 0, 0),
+    'background': ttk.Style().lookup('TFrame', 'background')
+}
+
+btn_new_game = Round_Button(root_frame, **btn_default_style,
+                            text="New Game")
+# btn_new_game = ttk.Button(root_frame,
+# text="New Game", command=None)
+btn_restart = Round_Button(root_frame, **btn_default_style,
+                           text="Restart")
+btn_options = Round_Button(root_frame, **btn_default_style,
+                           text="Options")
+btn_help = Round_Button(root_frame, **btn_default_style,
+                        text="Help")
+btn_exit = Round_Button(root_frame, **btn_default_style,
+                        text="Exit")
+
+# Style Definitions
+
+btn_style = ttk.Style()
+btn_style.configure('TButton', padding=15, background='#95D5FF', relief="flat")
 
 # Buttons Placement
 
