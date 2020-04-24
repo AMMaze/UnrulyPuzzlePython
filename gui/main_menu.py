@@ -1,6 +1,5 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from styles.CustomButton import CustomButton
 from styles.Custom_Button import Round_Button
 
 # Main Window
