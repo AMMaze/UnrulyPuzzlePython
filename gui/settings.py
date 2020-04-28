@@ -3,62 +3,84 @@ import tkinter.ttk as ttk
 from styles.Custom_Button import Round_Button
 from styles.btn_styles import btn_small_style
 
-# Main Window
+# Settings
 
-settings = tk.Tk()
-settings.title("Settings")
-settings.rowconfigure((0, 1), weight=1)
-settings.columnconfigure((0, 1),  weight=1)
 
-# Main Frame
+class Settings:
 
-root_frame = ttk.Frame(settings)
-root_frame.grid(row=1, column=1, padx=20, pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
+    def __init__(self, master):
 
-# Frame Grid Configuration
+        self.settings = master
+        self.settings.title("Settings")
+        self.settings.rowconfigure((0, 1), weight=1)
+        self.settings.columnconfigure((0, 1),  weight=1)
 
-root_frame.grid_rowconfigure(3, minsize=100)
+        # Main Frame
 
-# Define and Put Labels
+        self.root_frame = ttk.Frame(self.settings)
+        self.root_frame.grid(row=1, column=1, padx=20,
+                             pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
 
-lbl_width = ttk.Label(root_frame, text='Width:', font=("Lucida Grande", 12))
-lbl_width.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N+tk.W)
+        # Frame Grid Configuration
 
-lbl_height = ttk.Label(root_frame, text='Height:', font=("Lucida Grande", 12))
-lbl_height.grid(row=1, column=0, padx=5, pady=5, sticky=tk.W)
+        self.root_frame.grid_rowconfigure(3, minsize=100)
 
-lbl_colors = ttk.Label(root_frame, text='Colors:', font=("Lucida Grande", 12))
-lbl_colors.grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
+        # Define and Put Labels
 
-# Textvariables for Textboxes
+        self.lbl_width = ttk.Label(
+            self.root_frame, text='Width:', font=("Lucida Grande", 12))
+        self.lbl_width.grid(row=0, column=0, padx=5,
+                            pady=5, sticky=tk.N+tk.W)
 
-width_str = tk.StringVar()
-height_str = tk.StringVar()
-colors_str = tk.StringVar()
+        self.lbl_height = ttk.Label(
+            self.root_frame, text='Height:', font=("Lucida Grande", 12))
+        self.lbl_height.grid(row=1, column=0, padx=5,
+                             pady=5, sticky=tk.W)
 
-# Define and Put Textboxes
+        self.lbl_colors = ttk.Label(
+            self.root_frame, text='Colors:', font=("Lucida Grande", 12))
+        self.lbl_colors.grid(row=2, column=0, padx=5,
+                             pady=5, sticky=tk.W)
 
-tb_width = ttk.Entry(root_frame, width=10, textvariable=width_str)
-tb_height = ttk.Entry(root_frame, width=10, textvariable=height_str)
-tb_colors = ttk.Entry(root_frame, width=10, textvariable=colors_str)
+        # Textvariables for Textboxes
 
-tb_width.grid(row=0, column=1, padx=5, pady=5, sticky=tk.N+tk.E)
-tb_height.grid(row=1, column=1, padx=5, pady=5, sticky=tk.E)
-tb_colors.grid(row=2, column=1, padx=5, pady=5, sticky=tk.E)
+        self.width_str = tk.StringVar()
+        self.height_str = tk.StringVar()
+        self.colors_str = tk.StringVar()
 
-# Buttons
+        # Define and Put Textboxes
 
-btn_ok = Round_Button(root_frame, **btn_small_style,
-                      text="Ok")
-btn_back = Round_Button(root_frame, **btn_small_style,
-                        text="Back")
+        self.tb_width = ttk.Entry(
+            self.root_frame, width=10, textvariable=self.width_str)
+        self.tb_height = ttk.Entry(
+            self.root_frame, width=10, textvariable=self.height_str)
+        self.tb_colors = ttk.Entry(
+            self.root_frame, width=10, textvariable=self.colors_str)
 
-btn_ok.grid(row=4, column=1, padx=5, pady=5, sticky=tk.S+tk.E)
-btn_back.grid(row=4, column=0, padx=5, pady=5, sticky=tk.S+tk.W)
+        self.tb_width.grid(row=0, column=1, padx=5,
+                           pady=5, sticky=tk.N+tk.E)
+        self.tb_height.grid(row=1, column=1, padx=5,
+                            pady=5, sticky=tk.E)
+        self.tb_colors.grid(row=2, column=1, padx=5,
+                            pady=5, sticky=tk.E)
 
-btn_small_style['background'] = ttk.Style().lookup('TFrame', 'background')
+        # Buttons
 
-settings.update()
-settings.minsize(settings.winfo_width(), settings.winfo_height())
+        self.btn_ok = Round_Button(self.root_frame, **btn_small_style,
+                                   text="Ok")
+        self.btn_back = Round_Button(self.root_frame, **btn_small_style,
+                                     text="Back")
 
-settings.mainloop()
+        self.btn_ok.grid(row=4, column=1, padx=5,
+                         pady=5, sticky=tk.S+tk.E)
+        self.btn_back.grid(row=4, column=0, padx=5,
+                           pady=5, sticky=tk.S+tk.W)
+
+        btn_small_style['background'] = ttk.Style().lookup(
+            'TFrame', 'background')
+
+        self.settings.update()
+        self.settings.minsize(self.settings.winfo_width(),
+                              self.settings.winfo_height())
+
+# settings.mainloop()
