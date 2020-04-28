@@ -1,6 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
 from styles.Custom_Button import Round_Button
+from styles.btn_styles import btn_default_style
+# import styles.default_btn as btn_default_style
 
 # Main Window
 
@@ -21,32 +23,15 @@ title.grid(row=0, column=0, padx=5, pady=5, sticky=tk.N+tk.E+tk.W+tk.S)
 
 # Buttons Definitions
 
-btn_default_style = {
-    'size': 5,
-    'static_colour': (149, 213, 255),
-    'static_t_colour': (0, 0, 0),
-    'transformation_colour': (74, 184, 255),
-    'transformation_t_colour': (0, 0, 0),
-    'background': ttk.Style().lookup('TFrame', 'background')
-}
-
-btn_new_game = Round_Button(root_frame, **btn_default_style,
-                            text="New Game")
-# btn_new_game = ttk.Button(root_frame,
-# text="New Game", command=None)
-btn_restart = Round_Button(root_frame, **btn_default_style,
-                           text="Restart")
-btn_options = Round_Button(root_frame, **btn_default_style,
-                           text="Options")
-btn_help = Round_Button(root_frame, **btn_default_style,
-                        text="Help")
-btn_exit = Round_Button(root_frame, **btn_default_style,
-                        text="Exit")
+btn_new_game = Round_Button(root_frame, **btn_default_style, text="New Game")
+btn_restart = Round_Button(root_frame, **btn_default_style, text="Restart")
+btn_options = Round_Button(root_frame, **btn_default_style, text="Options")
+btn_help = Round_Button(root_frame, **btn_default_style, text="Help")
+btn_exit = Round_Button(root_frame, **btn_default_style, text="Exit")
 
 # Style Definitions
 
-btn_style = ttk.Style()
-btn_style.configure('TButton', padding=15, background='#95D5FF', relief="flat")
+btn_default_style['background'] = ttk.Style().lookup('TFrame', 'background')
 
 # Buttons Placement
 
