@@ -245,17 +245,22 @@ class Round_Button(tk.Label):
 
         # Perfects the size for pasting.
         self.lower_button = self.lower_button.resize(
-            size=(self.resolution[0] - delta_x*2, self.resolution[1] - delta_y*2))
+            size=(self.resolution[0] - delta_x*2,
+                  self.resolution[1] - delta_y*2))
 
         # Pasting Image ontop of transparent image with original resolution.
         self.Button = Image.new('RGBA', (self.resolution))
         self.Button.paste(self.lower_button, (delta_x, delta_y,
-                                              self.resolution[0] - delta_x, self.resolution[1] - delta_y), self.lower_button)
+                                              self.resolution[0] - delta_x,
+                                              self.resolution[1] - delta_y),
+                          self.lower_button)
 
         self.lower_button = ImageTk.PhotoImage(self.Button)
 
-    def draw_multiple_line_text(self, text, font, text_start_width, text_start_height, Line_Width):
-        # Used for creating multi-line text. Splits the text across multiple lines if the text crosses the line width.
+    def draw_multiple_line_text(self, text, font, text_start_width,
+                                text_start_height, Line_Width):
+        # Used for creating multi-line text. Splits the text across
+        # multiple lines if the text crosses the line width.
 
         y_text = text_start_height
         x_text = text_start_width
@@ -299,7 +304,7 @@ class Round_Button(tk.Label):
     def change_sc(self, si: int = 9):
         self.change_to_static = True
         for i in range(si, 0, -1):
-            if self.change_to_trans == True:
+            if self.change_to_trans is True:
                 self.change_to_static = False
                 self.change_tsc(i)
                 break
@@ -313,7 +318,7 @@ class Round_Button(tk.Label):
 
         self.change_to_trans = True
         for i in range(si, 10):
-            if self.change_to_static == True:
+            if self.change_to_static is True:
                 self.change_to_trans = False
                 self.change_sc(i)
                 break
