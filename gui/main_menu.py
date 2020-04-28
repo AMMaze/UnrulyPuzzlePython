@@ -2,7 +2,6 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from styles.Custom_Button import Round_Button
 from styles.btn_styles import btn_default_style
-# import styles.default_btn as btn_default_style
 
 # Main Window
 
