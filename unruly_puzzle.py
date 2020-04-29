@@ -64,6 +64,10 @@ class UnrulyPuzzle(tk.Tk):
         self.minsize(self._frame.winfo_width() + 50,
                      self._frame.winfo_height() + 50)
 
+    def get_settings(self, getter):
+        self.width, self.height, self.colors = getter()
+        print(self.width, self.height, self.colors)
+
 
 if __name__ == "__main__":
     app = UnrulyPuzzle()
