@@ -10,8 +10,8 @@ class Settings(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
-        self.controller = controller
-        self.master = master
+        # self.controller = controller
+        # self.master = master
 
         # Main Frame Configuration
 
@@ -38,9 +38,9 @@ class Settings(tk.Frame):
 
         # Textvariables for Textboxes
 
-        self.width_str = tk.StringVar()
-        self.height_str = tk.StringVar()
-        self.colors_str = tk.StringVar()
+        self.width_str = tk.IntVar()
+        self.height_str = tk.IntVar()
+        self.colors_str = tk.IntVar()
 
         # Define and Put Textboxes
 
@@ -61,7 +61,8 @@ class Settings(tk.Frame):
         # Buttons Configuration and Placement
 
         self.btn_ok = Round_Button(
-            self, **btn_small_style, text="Ok")
+            self, **btn_small_style,
+            text="Ok", command=lambda: self.ok_click(controller))
         self.btn_back = Round_Button(
             self, **btn_small_style,
             text="Back", command=lambda: controller.show_frame("Main Menu"))
@@ -73,3 +74,10 @@ class Settings(tk.Frame):
 
         btn_small_style['background'] = ttk.Style().lookup(
             'TFrame', 'background')
+
+    def get_values(self):
+        return self.width_str.get(), self.height_str.get(), self.colors_str.get()
+
+    def ok_click(self, controller):
+        controller.get_settings(self.get_values)
+        controller.show_frame("Main Menu")
