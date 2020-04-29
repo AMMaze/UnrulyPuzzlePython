@@ -1,44 +1,39 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from styles.Custom_Button import Round_Button
-from styles.btn_styles import btn_default_style
+from gui.styles.Custom_Button import Round_Button
+from gui.styles.btn_styles import btn_default_style
+# from help import Help
+# from settings import Settings
 
 # Main Window
 
 
-class MainMenu:
+class MainMenu(tk.Frame):
 
-    def __init__(self, master):
+    def __init__(self, master, controller=None):
+        tk.Frame.__init__(self, master)
+        self.controller = controller
         self.main_menu = master
-        self.main_menu.title("Main Menu")
-        self.main_menu.rowconfigure((0, 2), weight=1)
-        self.main_menu.columnconfigure((0, 2),  weight=1)
-
-        # Main Frame
-
-        self.root_frame = ttk.Frame(self.main_menu)
-        self.root_frame.grid(row=1, column=1, padx=20,
-                             pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
 
         # Define and Put Label
 
         self.title = ttk.Label(
-            self.root_frame, text="Unruly Puzzle", font=("Lucida Grande", 18))
+            self, text="Unruly Puzzle", font=("Lucida Grande", 18))
         self.title.grid(row=0, column=0, padx=5, pady=5,
-                        sticky=tk.N+tk.E+tk.W+tk.S)
+                        sticky=tk.N+tk.E+tk.W)
 
         # Buttons Definitions
 
         self.btn_new_game = Round_Button(
-            self.root_frame, **btn_default_style, text="New Game")
+            self, **btn_default_style, text="New Game")
         self.btn_restart = Round_Button(
-            self.root_frame, **btn_default_style, text="Restart")
+            self, **btn_default_style, text="Restart")
         self.btn_options = Round_Button(
-            self.root_frame, **btn_default_style, text="Options")
+            self, **btn_default_style, text="Settings", command=lambda: self.controller.show_frame("Settings"))
         self.btn_help = Round_Button(
-            self.root_frame, **btn_default_style, text="Help")
+            self, **btn_default_style, text="Help", command=lambda: self.controller.show_frame("Help"))
         self.btn_exit = Round_Button(
-            self.root_frame, **btn_default_style, text="Exit")
+            self, **btn_default_style, text="Exit", command=master.destroy)
 
         # Style Definitions
 
@@ -52,10 +47,6 @@ class MainMenu:
         self.btn_options.grid(row=3, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_help.grid(row=4, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_exit.grid(row=5, column=0, pady=10, sticky=tk.W+tk.E)
-
-        self.main_menu.update()
-        self.main_menu.minsize(
-            self.main_menu.winfo_width(), self.main_menu.winfo_height())
 
 
 if __name__ == "__main__":
