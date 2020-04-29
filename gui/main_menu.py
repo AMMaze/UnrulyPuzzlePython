@@ -29,7 +29,7 @@ class MainMenu(tk.Frame):
             self, **btn_default_style, text="Help",
             command=lambda: controller.show_frame("Help"))
         self.btn_exit = Round_Button(
-            self, **btn_default_style, text="Exit", command=master.destroy)
+            self, **btn_default_style, text="Exit", command=master.winfo_toplevel().destroy)
 
         # Style Definitions
 
