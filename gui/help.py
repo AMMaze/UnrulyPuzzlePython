@@ -18,8 +18,6 @@ class Help(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
-        self.controller = controller
-        self.master = master
 
         # Define and Put LabelFrame
 
@@ -44,7 +42,7 @@ class Help(tk.Frame):
         self.btn_back = Round_Button(
             self, **btn_small_style,
             text="Back",
-            command=lambda: self.controller.show_frame("Main Menu")
+            command=lambda: controller.show_frame("Main Menu")
         )
 
         self.btn_back.grid(row=1, column=0, padx=5,
