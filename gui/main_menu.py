@@ -8,8 +8,6 @@ class MainMenu(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
-        self.controller = controller
-        self.master = master
 
         # Define and Put Label
 
@@ -26,10 +24,10 @@ class MainMenu(tk.Frame):
             self, **btn_default_style, text="Restart")
         self.btn_options = Round_Button(
             self, **btn_default_style, text="Settings",
-            command=lambda: self.controller.show_frame("Settings"))
+            command=lambda: controller.show_frame("Settings"))
         self.btn_help = Round_Button(
             self, **btn_default_style, text="Help",
-            command=lambda: self.controller.show_frame("Help"))
+            command=lambda: controller.show_frame("Help"))
         self.btn_exit = Round_Button(
             self, **btn_default_style, text="Exit", command=master.destroy)
 

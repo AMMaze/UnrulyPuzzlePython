@@ -66,7 +66,6 @@ class UnrulyPuzzle(tk.Tk):
 
     def get_settings(self, getter):
         self.width, self.height, self.colors = getter()
-        print(self.width, self.height, self.colors)
 
 
 if __name__ == "__main__":
