@@ -67,6 +67,7 @@ class Round_Button(tk.Label):
         self.queue = Queue()
         self.Animator = Thread(target=self.Manage_Animation)
         self.Animator.start()
+        super().bind('<Destroy>', self.__finish)
 
     def create_custom_image(self):
 
@@ -296,6 +297,8 @@ class Round_Button(tk.Label):
     def Manage_Animation(self):
         while True:
             Factor = self.queue.get()
+            if Factor is None:
+                return
             if Factor == 'E':
                 self.change_sc()
             elif Factor == "L":
@@ -340,3 +343,7 @@ class Round_Button(tk.Label):
 
         self.bind("<ButtonPress-1>", connector)
         self.bind("<ButtonRelease-1>", disconnector)
+
+    def __finish(self, *arg):
+        self.queue.put(None)
+        self.Animator.join()
