@@ -43,6 +43,10 @@ class Help:
         self.text.insert(tk.END, self.RULES)
         self.text.grid()
 
+        # Make Text Uneditable
+
+        self.text.config(state=tk.DISABLED)
+
         # Buttons
 
         self.btn_back = Round_Button(self.root_frame, **btn_small_style,
@@ -55,6 +59,10 @@ class Help:
             'TFrame', 'background')
 
         self.help.update()
-        self.help.minsize(help.winfo_width(), help.winfo_height())
+        self.help.minsize(self.help.winfo_width(), self.help.winfo_height())
 
-# help.mainloop()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    main_menu = Help(root)
+    root.mainloop()
