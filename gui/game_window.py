@@ -1,5 +1,6 @@
 import random
 import tkinter
+from PIL import ImageTk, Image
 
 
 class GameWindow(tkinter.Frame):
@@ -12,10 +13,13 @@ class GameWindow(tkinter.Frame):
     colorNumber = 0
     buttons = []
 
-    def __init__(self, parent, controller, lockPhoto, returnPhoto, resetPhoto,
-                 hintPhoto):
+    def __init__(self, parent, controller):
         tkinter.Frame.__init__(self, parent)
         self.controller = controller
+        resetPhoto = tkinter.PhotoImage(file='images/reset.png')
+        lockPhoto = tkinter.PhotoImage(file='images/lock.png')
+        hintPhoto = tkinter.PhotoImage(file='images/light_bulb.png')
+        returnPhoto = tkinter.PhotoImage(file='images/back_arrow.png')
         # colorArray = ['#FF6633', '#FFB399', '#FF33FF',
         #               '#FFFF99', '#00B3E6', '#E6B333',
         #               '#3366E6', '#999966', '#99FF99',
@@ -72,20 +76,24 @@ class GameWindow(tkinter.Frame):
                 if initialBoard[i][j] == 0:
                     self.buttons[i][j].config(state=tkinter.DISABLED,
                                               image=lockPhoto)
+                    self.buttons[i][j].image = lockPhoto
                 # buttons[i][j].bind('<Motion>', dump)
 
         returnToMenuButton = tkinter.Button(menuFrame, bg='white',
                                             activebackground='white',
                                             image=returnPhoto,
                                             command=self.returnToMenu)
+        returnToMenuButton.image = returnPhoto
         returnToMenuButton.pack(side='left', fill='both', expand=False)
         resetButton = tkinter.Button(menuFrame, bg='white',
                                      activebackground='white',
                                      image=resetPhoto, command=self.resetCells)
+        resetButton.image = resetPhoto
         resetButton.pack(side='left', fill='both', expand=False)
         hintButton = tkinter.Button(menuFrame, bg='white',
                                     activebackground='white',
                                     image=hintPhoto, command=self.getHint)
+        hintButton.image = hintPhoto
         hintButton.pack(side='left', fill='both', expand=False)
         # resetButton.grid(row=0, column=2, columnspan=2, sticky="NSEW")
         # returnToMenuButton.grid(row=0, column=0, columnspan=2, sticky="NSEW")
@@ -115,18 +123,17 @@ class GameWindow(tkinter.Frame):
         return
 
 
-# if __name__ == "__main__":
-#     root = tkinter.Tk()
-#     container = tkinter.Frame(root)
-#     container.pack(side='top', fill='both', expand=True)
-#     container.grid_rowconfigure(0, weight=1)
-#     container.grid_columnconfigure(0, weight=1)
-#     resetPhoto = tkinter.PhotoImage(file='../images/reset.png')
-#     lockPhoto = tkinter.PhotoImage(file='../images/lock.png')
-#     hintPhoto = tkinter.PhotoImage(file='../images/light_bulb.png')
-#     returnPhoto = tkinter.PhotoImage(file='../images/back_arrow.png')
-#     print(lockPhoto.width())
-#     frame = GameWindow(parent=container, controller=root, lockPhoto=lockPhoto,
-#                        returnPhoto=returnPhoto, resetPhoto=resetPhoto, hintPhoto=hintPhoto)
-#     frame.grid(row=0, column=0, sticky='NSEW')
-#     root.mainloop()
+if __name__ == "__main__":
+    root = tkinter.Tk()
+    container = tkinter.Frame(root)
+    container.pack(side='top', fill='both', expand=True)
+    container.grid_rowconfigure(0, weight=1)
+    container.grid_columnconfigure(0, weight=1)
+    # resetPhoto = tkinter.PhotoImage(file='images/reset.png')
+    # lockPhoto = tkinter.PhotoImage(file='images/lock.png')
+    # hintPhoto = tkinter.PhotoImage(file='images/light_bulb.png')
+    # returnPhoto = tkinter.PhotoImage(file='images/back_arrow.png')
+    # print(lockPhoto.width())
+    frame = GameWindow(parent=container, controller=root)
+    frame.grid(row=0, column=0, sticky='NSEW')
+    root.mainloop()
