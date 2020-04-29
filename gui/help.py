@@ -3,8 +3,6 @@ import tkinter.ttk as ttk
 from gui.styles.Custom_Button import Round_Button
 from gui.styles.btn_styles import btn_small_style
 
-# Help Window
-
 
 class Help(tk.Frame):
 
@@ -21,7 +19,7 @@ class Help(tk.Frame):
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
         self.controller = controller
-        self.help = master
+        self.master = master
 
         # Define and Put LabelFrame
 
@@ -29,6 +27,8 @@ class Help(tk.Frame):
             self, text="Rules", font=("Lucida Grande", 18))
         self.rules_frame.grid(row=0, column=0, padx=5,
                               pady=5, sticky=tk.N+tk.E+tk.W+tk.S)
+
+        # Define, Fill and Put Text Widget
 
         self.text = tk.Text(self.rules_frame, width=35,
                             wrap=tk.WORD, padx=10, pady=10)
@@ -39,13 +39,18 @@ class Help(tk.Frame):
 
         self.text.config(state=tk.DISABLED)
 
-        # Buttons
+        # Buttons Configuraton and Placement
 
-        self.btn_back = Round_Button(self, **btn_small_style,
-                                     text="Back", command=lambda: self.controller.show_frame("Main Menu"))
+        self.btn_back = Round_Button(
+            self, **btn_small_style,
+            text="Back",
+            command=lambda: self.controller.show_frame("Main Menu")
+        )
 
         self.btn_back.grid(row=1, column=0, padx=5,
                            pady=5, sticky=tk.S+tk.W+tk.E)
+
+        # Style Configuration
 
         btn_small_style['background'] = ttk.Style().lookup(
             'TFrame', 'background')
