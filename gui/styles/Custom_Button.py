@@ -12,7 +12,7 @@ class Round_Button(tk.Label):
     def __init__(self, top, text, size, static_colour, static_t_colour,
                  transformation_colour, transformation_t_colour,
                  background: str = '#FFFFFF', static_outline=None,
-                 trans_outline=None):
+                 trans_outline=None, command=None):
         '''
         :param top: Top level / root. The window in which the button
             is going to be placed. [Tkinter Object]
@@ -68,6 +68,11 @@ class Round_Button(tk.Label):
         self.Animator = Thread(target=self.Manage_Animation)
         self.Animator.start()
         super().bind('<Destroy>', self.__finish)
+        self.function = command
+
+        if command is not None:
+            self.bind("<ButtonPress-1>", self.connector)
+            self.bind("<ButtonRelease-1>", self.disconnector)
 
     def create_custom_image(self):
 
@@ -331,18 +336,19 @@ class Round_Button(tk.Label):
         if self.change_to_trans:
             self.change_to_trans = False
 
+    def connector(self, *args):
+        self.configure(image=self.lower_button)
+        self.function()
+
+    def disconnector(self, *args):
+        self.configure(image=self.Images[0])
+
     def connect_function(self, function=lambda: None):
         # Binds the button to a function.
+        self.function = function
 
-        def connector(*args):
-            self.configure(image=self.lower_button)
-            function()
-
-        def disconnector(*args):
-            self.configure(image=self.Images[0])
-
-        self.bind("<ButtonPress-1>", connector)
-        self.bind("<ButtonRelease-1>", disconnector)
+        self.bind("<ButtonPress-1>", self.connector)
+        self.bind("<ButtonRelease-1>", self.disconnector)
 
     def __finish(self, *arg):
         self.queue.put(None)
