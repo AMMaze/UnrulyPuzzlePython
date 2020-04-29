@@ -10,8 +10,6 @@ class Settings(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
-        # self.controller = controller
-        # self.master = master
 
         # Main Frame Configuration
 
