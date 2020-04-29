@@ -32,7 +32,7 @@ class UnrulyPuzzle(tk.Tk):
 
         self.frames['Main Menu'] = MainMenu
         self.frames['Help'] = Help
-        # self.frames['Settings'] = Settings(super(), self)
+        self.frames['Settings'] = Settings
 
         self.show_frame("Main Menu")
 
