@@ -6,6 +6,8 @@ from gui.styles.btn_styles import btn_small_style
 
 class Help(tk.Frame):
 
+    title = "Help"
+
     RULES = """The player is given a grid of cells with size N x M. The color of \
     the cell can be changed by clicking on it. Each square can take one \
     of C possible colors. The player has to repaint the grid so that it \
