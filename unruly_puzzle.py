@@ -34,9 +34,9 @@ class UnrulyPuzzle(tk.Tk):
 
         # Frames Dictionary Initialization
 
-        self.frames['Main Menu'] = MainMenu
-        self.frames['Help'] = Help
-        self.frames['Settings'] = Settings
+        self.frames[MainMenu.title] = MainMenu
+        self.frames[Help.title] = Help
+        self.frames[Settings.title] = Settings
         self.frames['Game Window'] = GameWindow
 
         self.show_frame("Main Menu")
@@ -67,8 +67,8 @@ class UnrulyPuzzle(tk.Tk):
 
         # Window Resizing
 
-        self.geometry("{}x{}".format(self._frame.winfo_width() +
-                                     50, self._frame.winfo_height() + 50))
+        self.geometry("{}x{}".format(self._frame.winfo_width() + 50,
+                                     self._frame.winfo_height() + 50))
         self.minsize(self._frame.winfo_width() + 50,
                      self._frame.winfo_height() + 50)
 

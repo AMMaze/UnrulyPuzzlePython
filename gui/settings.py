@@ -8,6 +8,8 @@ from gui.styles.btn_styles import btn_small_style
 
 class Settings(tk.Frame):
 
+    title = "Settings"
+
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
 

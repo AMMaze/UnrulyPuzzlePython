@@ -6,6 +6,8 @@ from gui.styles.btn_styles import btn_default_style
 
 class MainMenu(tk.Frame):
 
+    title = "Main Menu"
+
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
 
@@ -22,7 +24,7 @@ class MainMenu(tk.Frame):
             self, **btn_default_style, text="New Game",
             command=lambda: controller.show_frame("Game Window"))
         self.btn_restart = Round_Button(
-            self, **btn_default_style, text="Restart")
+            self, **btn_default_style, text="Continue")
         self.btn_options = Round_Button(
             self, **btn_default_style, text="Settings",
             command=lambda: controller.show_frame("Settings"))
