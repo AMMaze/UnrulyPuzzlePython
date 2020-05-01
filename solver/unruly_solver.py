@@ -482,7 +482,7 @@ class Solver:
         # Conjunctions for every row demanding equal number of cells per colour
         row_eq = pd.And(*[
             #        pd.Or(*[
-            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.rows //
+            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.columns //
                                                          self.grid_inst.colors) for r in range(0, self.rows)])
             #            for size in range(0, columns + 1)])
             for v in range(0, self.colors)])
@@ -490,7 +490,7 @@ class Solver:
         # Conjunctions for every column demanding equal number of cells per colour
         col_eq = pd.And(*[
             # pd.Or(*[
-            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.columns //
+            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.rows //
                                                          self.grid_inst.colors) for c in range(0, self.columns)])
             # for size in range(0, rows + 1)])
             for v in range(0, self.colors)])
@@ -610,7 +610,7 @@ class Solver:
         # Conjunctions for every row demanding equal number of cells per colour
         row_eq = pd.And(*[
             #        pd.Or(*[
-            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.rows //
+            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.columns //
                                                          self.grid_inst.colors) for r in range(0, self.rows)])
             #            for size in range(0, columns + 1)])
             for v in range(0, self.colors)])
@@ -618,7 +618,7 @@ class Solver:
         # Conjunctions for every column demanding equal number of cells per colour
         col_eq = pd.And(*[
             # pd.Or(*[
-            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.columns //
+            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.rows //
                                                          self.grid_inst.colors) for c in range(0, self.columns)])
             # for size in range(0, rows + 1)])
             for v in range(0, self.colors)])
