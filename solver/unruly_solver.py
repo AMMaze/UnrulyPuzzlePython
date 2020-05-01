@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-from pyeda.inter import *
+import pyeda.inter as pd
 from itertools import combinations
 
 
@@ -28,7 +28,7 @@ class Grid:
         self.columns = columns
         self.colors = colors
         # Create 3d array of boolean variables per each color/cell
-        self.vars = exprvars('x', rows, columns, colors)
+        self.vars = pd.exprvars('x', rows, columns, colors)
         self.f_list = []
 
     def color_form(self, rule):
@@ -41,82 +41,82 @@ class Grid:
         self.f_list.append(~self.vars[rule.c.y, rule.c.x, rule.color])
 
     # def balanced_form(self, rule):
-        # self.f_list.append(And(*[
-        # Or(*[
-        # And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
+        # self.f_list.append(pd.And(*[
+        # pd.Or(*[
+        # pd.And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
         #       for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
         # for size in range(0, rule.c.x * rule.c.y + 1)])
         # for v in range(0, self.colors)]))
 
     def balanced_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
-                  for v in range(0, self.colors)])
+        self.f_list.append(pd.And(*[
+            pd.And(*[self.in_rect_combinations(r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
+                     for v in range(0, self.colors)])
             for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)]))
 
     # def nbalanced_form(self, rule):
-        # self.f_list.append(~And(*[
-        # Or(*[
-        # And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, size)
+        # self.f_list.append(~pd.And(*[
+        # pd.Or(*[
+        # pd.And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, size)
         # for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
         # for size in range(0, rule.c.x * rule.c.y + 1)])
         # for v in range(0, self.colors)]))
 
     def nbalanced_form(self, rule):
-        self.f_list.append(And(*[
-            Or(*[~in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.y * rule.c.x // self.colors)
-                 for v in range(0, self.colors)])
+        self.f_list.append(pd.And(*[
+            pd.Or(*[~self.in_rect_combinations(r, c, rule.c.y, rule.c.x, v, rule.c.y * rule.c.x // self.colors)
+                    for v in range(0, self.colors)])
             for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
         )
 
     def mixed_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[
-                And(*[
-                    Or(*[~self.vars[r + cell // rule.c.x, c + cell % rule.c.x, v]
-                         for cell in range(0, rule.c.x * rule.c.y)])
+        self.f_list.append(pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.vars[r + cell // rule.c.x, c + cell % rule.c.x, v]
+                            for cell in range(0, rule.c.x * rule.c.y)])
                     for v in range(0, self.colors)])
                 for c in range(0, self.columns - rule.c.x + 1)])
             for r in range(0, self.rows - rule.c.y + 1)]))
 
     def rich_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[
-                And(*[
-                    Or(*[self.vars[r + cell // rule.c.x, c + cell % rule.c.x, v] for cell in
-                         range(0, rule.c.x * rule.c.y)])
+        self.f_list.append(pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[self.vars[r + cell // rule.c.x, c + cell % rule.c.x, v] for cell in
+                            range(0, rule.c.x * rule.c.y)])
                     for v in range(0, self.colors)])
                 for c in range(0, self.columns - rule.c.x + 1)])
             for r in range(0, self.rows - rule.c.y + 1)]))
 
     def ebalanced_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[in_figure_combinations(self, r, c, rule.vc, v, len(rule.vc) // self.colors)
-                  for r in range(0, self.rows - rule.c.y) for c in range(0, self.columns - rule.c.x)])
+        self.f_list.append(pd.And(*[
+            pd.And(*[self.in_figure_combinations(r, c, rule.vc, v, len(rule.vc) // self.colors)
+                     for r in range(0, self.rows - rule.c.y) for c in range(0, self.columns - rule.c.x)])
             for v in range(0, self.colors)]))
 
     def enbalanced_form(self, rule):
-        self.f_list.append(And(*[
-            Or(*[~in_figure_combinations(self, r, c, rule.vc, v, len(rule.vc) // self.colors)
-                 for v in range(0, self.colors)])
+        self.f_list.append(pd.And(*[
+            pd.Or(*[~self.in_figure_combinations(r, c, rule.vc, v, len(rule.vc) // self.colors)
+                    for v in range(0, self.colors)])
             for r in range(0, self.rows - rule.c.y) for c in range(0, self.columns - rule.c.x)]))
 
     def emixed_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[
-                And(*[
-                    Or(*[~self.vars[r + cell.y, c + cell.x, v]
-                         for cell in rule.vc])
+        self.f_list.append(pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.vars[r + cell.y, c + cell.x, v]
+                            for cell in rule.vc])
                     for v in range(0, self.colors)])
                 for c in range(0, self.columns - rule.c.x)])
             for r in range(0, self.rows - rule.c.y)]))
 
     def erich_form(self, rule):
-        self.f_list.append(And(*[
-            And(*[
-                And(*[
-                    Or(*[self.vars[r + cell.y, c + cell.x, v]
-                         for cell in rule.vc])
+        self.f_list.append(pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[self.vars[r + cell.y, c + cell.x, v]
+                            for cell in rule.vc])
                     for v in range(0, self.colors)])
                 for c in range(0, self.columns - rule.c.x)])
             for r in range(0, self.rows - rule.c.y)]))
@@ -144,114 +144,106 @@ class Grid:
             elif r.type == RType.ERICH:
                 self.erich_form(r)
 
+    def get_val(self, point, r, c):
+        for v in range(0, self.colors):
+            if point[self.vars[r, c, v]]:
+                return str(v)
+        return "X"
 
-def in_figure_combinations(grid, r0, c0, coord_list, v, size):
-    """
-    Generates DNF from conjunction per every combination from
-    cells in coord_list of specified size and colour
+    def display(self, point):
+        chars = [[0] * self.columns for i in range(self.rows)]
+        for r in range(0, self.rows):
+            for c in range(0, self.columns):
+                chars[r][c] = self.get_val(point, r, c)
+        return chars
 
-    :param r0: start row
-    :param c0: start column
-    :param coord_list: list of cells
-    :param v: colour
-    :param size: number of cells in subset
-    """
-    # coord_list.append(Coord(0, 0))
-    # coord_list = list(set(coord_list))
-    comb = combinations(coord_list, size)
-    conj = []
-    all_conj = []
-    if size == 0:
-        return And(*[~grid.vars[r0 + it.y, c0 + it.x, v] for it in coord_list])
-    for it in comb:
-        for cell in coord_list:
-            if cell in it:
-                conj.append(grid.vars[r0 + cell.y, c0 + cell.x, v])
-            # else:
-            #    conj.append(~grid.vars[r0 + cell.y, c0 + cell.x, v])
-        all_conj.append(And(*conj))
+    def in_figure_combinations(self, r0, c0, coord_list, v, size):
+        """
+        Generates DNF from conjunction per every combination from
+        cells in coord_list of specified size and colour
+
+        :param r0: start row
+        :param c0: start column
+        :param coord_list: list of cells
+        :param v: colour
+        :param size: number of cells in subset
+        """
+        # coord_list.append(Coord(0, 0))
+        # coord_list = list(set(coord_list))
+        comb = combinations(coord_list, size)
         conj = []
-    return Or(*all_conj)
+        all_conj = []
+        if size == 0:
+            return pd.And(*[~self.vars[r0 + it.y, c0 + it.x, v] for it in coord_list])
+        for it in comb:
+            for cell in coord_list:
+                if cell in it:
+                    conj.append(self.vars[r0 + cell.y, c0 + cell.x, v])
+                # else:
+                #    conj.append(~grid.vars[r0 + cell.y, c0 + cell.x, v])
+            all_conj.append(pd.And(*conj))
+            conj = []
+        return pd.Or(*all_conj)
 
+    def in_rect_combinations(self, r0, c0, y, x, v, size):
+        """
+        Generates DNF from conjunction per every combination from
+        cells in rectangle defined by top-left cell, length and heigh
+        of specified size and colour
 
-def in_rect_combinations(grid, r0, c0, y, x, v, size):
-    """
-    Generates DNF from conjunction per every combination from
-    cells in rectangle defined by top-left cell, length and heigh
-    of specified size and colour
-
-    :param r0: top row of a rectangle
-    :param c0: the leftmost column of a rectangle
-    :param y: height
-    :param x: length
-    :param v: colour
-    :param size: size of rectangle
-    """
-    comb = combinations(range(0, y*x), size)
-    conj = []
-    all_conj = []
-    if size == 0:
-        return And(*[~grid.vars[r0+i, c0+j, v] for i in range(0, y) for j in range(0, x)])
-    for it in comb:
-        for cell in range(0, x*y):
-            if cell in it:
-                conj.append(grid.vars[r0 + cell // x, c0 + cell % x, v])
-            # else:
-            #    conj.append(~grid.vars[r0 + cell // x, c0 + cell % x, v])
-        all_conj.append(And(*conj))
+        :param r0: top row of a rectangle
+        :param c0: the leftmost column of a rectangle
+        :param y: height
+        :param x: length
+        :param v: colour
+        :param size: size of rectangle
+        """
+        comb = combinations(range(0, y*x), size)
         conj = []
-    return Or(*all_conj)
+        all_conj = []
+        if size == 0:
+            return pd.And(*[~self.vars[r0+i, c0+j, v] for i in range(0, y) for j in range(0, x)])
+        for it in comb:
+            for cell in range(0, x*y):
+                if cell in it:
+                    conj.append(self.vars[r0 + cell // x, c0 + cell % x, v])
+                # else:
+                #    conj.append(~grid.vars[r0 + cell // x, c0 + cell % x, v])
+            all_conj.append(pd.And(*conj))
+            conj = []
+        return pd.Or(*all_conj)
 
+    def in_rows_combinations(self, r, v, size):
+        comb = combinations(range(0, self.columns), size)
+        conj = list()
+        all_conj = list()
+        if size == 0:
+            return pd.And(*[~self.vars[r, c, v] for c in range(0, self.columns)])
+        for it in comb:
+            for c in range(0, self.columns):
+                if c in it:
+                    conj.append(self.vars[r, c, v])
+                # else:
+                #    conj.append(~grid.vars[r, c, v])
+            all_conj.append(pd.And(*conj))
+            conj = []
+        return pd.Or(*all_conj)
 
-def get_val(point, grid, r, c):
-    for v in range(0, grid.colors):
-        if point[grid.vars[r, c, v]]:
-            return str(v)
-    return "X"
-
-
-def display(point, grid):
-    chars = list()
-    for r in range(0, grid.rows):
-        for c in range(0, grid.columns):
-            chars.append(get_val(point, grid, r, c))
-        if r != grid.rows - 1:
-            chars.append("\n")
-    print("".join(chars))
-
-
-def in_rows_combinations(grid, r, v, size):
-    comb = combinations(range(0, grid.columns), size)
-    conj = list()
-    all_conj = list()
-    if size == 0:
-        return And(*[~grid.vars[r, c, v] for c in range(0, grid.columns)])
-    for it in comb:
-        for c in range(0, grid.columns):
-            if c in it:
-                conj.append(grid.vars[r, c, v])
-            # else:
-            #    conj.append(~grid.vars[r, c, v])
-        all_conj.append(And(*conj))
-        conj = []
-    return Or(*all_conj)
-
-
-def in_cols_combinations(grid, c, v, size):
-    comb = combinations(range(0, grid.rows), size)
-    conj = list()
-    all_conj = list()
-    if size == 0:
-        return And(*[~grid.vars[r, c, v] for r in range(0, grid.rows)])
-    for it in comb:
-        for r in range(0, grid.rows):
-            if r in it:
-                conj.append(grid.vars[r, c, v])
-            # else:
-            #    conj.append(~grid.vars[r, c, v])
-        all_conj.append(And(*conj))
-        conj = []
-    return Or(*all_conj)
+    def in_cols_combinations(self, c, v, size):
+        comb = combinations(range(0, self.rows), size)
+        conj = list()
+        all_conj = list()
+        if size == 0:
+            return pd.And(*[~self.vars[r, c, v] for r in range(0, self.rows)])
+        for it in comb:
+            for r in range(0, self.rows):
+                if r in it:
+                    conj.append(self.vars[r, c, v])
+                # else:
+                #    conj.append(~grid.vars[r, c, v])
+            all_conj.append(pd.And(*conj))
+            conj = []
+        return pd.Or(*all_conj)
 
 
 class Coord:
@@ -424,132 +416,221 @@ class Commands:
             del self.c_list[-1]
 
 
-def parse_arg(argv):
+class Solver:
     """
-    Function for parsing input.
-
-    :param argv: input string
+    Main class in unruly solver. It uses pyeda to transform
+    grid of colored cells into boolean equation and solves it with
+    PicoSAT solver
     """
-    if len(argv) != 4:
-        print('InvalidArgument : wrong number of arguments')
-        return 1
-    try:
-        r = int(argv[1])
-        c = int(argv[2])
-        v = int(argv[3])
-    except ValueError:
-        print('InvalidType : arguments must be integers')
-        return 1
-    if not((r >= 2) and (c >= 2) and (v >= 2)):
-        print('InvalidValue : some arguments are less than 2')
-        return 1
-    if not (r % v == 0) or not (c % v == 0):
-        print('InvalidValue : both arguments must divisible by number of colors')
-        return 1
-    return 0
+
+    def __init__(self, rows, columns, colors, fixed_cells=[]):
+        """
+        :param rows: number of rows
+        :param columns: number of comlumns
+        :param colors: number of colors
+        :param fixed_cells: list of cells with fixed colors formatted
+            as list of tuples: (row, column, color)
+
+        :Example:
+
+        >>Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
+        """
+        self.rows = rows
+        self.columns = columns
+        self.colors = colors
+        self.grid_inst = Grid(self.rows, self.columns, self.colors)
+        self.commands = Commands(self.rows, self.columns, self.colors)
+        for cell in fixed_cells:
+            self.commands.c_list.append(Rule(RType.COLOR, *cell))
+
+    def solve(self):
+        self.grid_inst.rules_to_formulas(self.commands.c_list)
+
+        # Conjunction of all boolean variables representing the grid
+        v_f = pd.And(*[
+            pd.And(*[
+                pd.OneHot(*[self.grid_inst.vars[r, c, v]
+                            for v in range(0, self.colors)])
+                for c in range(0, self.columns)])
+            for r in range(0, self.rows)])
+
+        r_diff = 3
+        c_diff = 3
+
+        # Conjunctions of disjunctions for every row demanding that there no
+        # three consective cells with the same colour
+        r_d_f = pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.grid_inst.vars[r, c, v]
+                            for c in range(it, it + r_diff)])
+                    for v in range(0, self.colors)])
+                for it in range(0, self.columns - r_diff + 1)])
+            for r in range(0, self.rows)])
+
+        # Conjunctions of disjunctions for every column demanding that there no
+        # three consective cells with the same colour
+        c_d_f = pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.grid_inst.vars[r, c, v]
+                            for r in range(it, it + c_diff)])
+                    for v in range(0, self.colors)])
+                for it in range(0, self.rows - c_diff + 1)])
+            for c in range(0, self.columns)])
+
+        # Conjunctions for every row demanding equal number of cells per colour
+        row_eq = pd.And(*[
+            #        pd.Or(*[
+            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.rows //
+                                                         self.grid_inst.colors) for r in range(0, self.rows)])
+            #            for size in range(0, columns + 1)])
+            for v in range(0, self.colors)])
+
+        # Conjunctions for every column demanding equal number of cells per colour
+        col_eq = pd.And(*[
+            # pd.Or(*[
+            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.columns //
+                                                         self.grid_inst.colors) for c in range(0, self.columns)])
+            # for size in range(0, rows + 1)])
+            for v in range(0, self.colors)])
+
+        # Conjunction of stated above formulas + formulas from additional rules
+        s_f = pd.And(v_f, r_d_f, c_d_f, row_eq, col_eq,
+                     *self.grid_inst.f_list).tseitin()
+
+        return self.grid_inst.display(s_f.satisfy_one())
+
+    def _parse_arg(self, argv):
+        """
+        Function for parsing input.
+
+        :param argv: input string
+        """
+        if len(argv) != 4:
+            print('InvalidArgument : wrong number of arguments')
+            return 1
+        try:
+            r = int(argv[1])
+            c = int(argv[2])
+            v = int(argv[3])
+        except ValueError:
+            print('InvalidType : arguments must be integers')
+            return 1
+        if not((r >= 2) and (c >= 2) and (v >= 2)):
+            print('InvalidValue : some arguments are less than 2')
+            return 1
+        if not (r % v == 0) or not (c % v == 0):
+            print('InvalidValue : both arguments must divisible by number of colors')
+            return 1
+        return 0
+
+    def main(self, argv):
+        """
+        Main function that parses input and executes solver
+
+        Input format: python3 solver.py $rows $columns $colors
+        Script executed in interactive mode.
+        Possible commands:
+
+            colors x y c -- cell x y should be coloured with colour c;
+            ncolor x y c -- cell x y shouldn't be coloured with colour c;
+            balanced r c -- every submatrix with dimensions rxc should have
+                same number of cells per colour;
+            nbalanced r c -- no submatrix with dimensions rxc should have
+                same number of cells per colour;
+            mixed r c -- every submatrix with dimensions rxc should have cells
+                with at least two colors;
+            rich r c -- every submatrix with dimensions rxc should have at least
+                one cell per every colour;
+            ebalanced x1 y1 ... xk yk -- every subset of cells that contains
+                arbitrary cell x y and cells in row xi and yi should have
+                same number of cells per colour;
+            enbalanced x1 y1 ... xk yk -- same option as ebalanced but
+                for nbalanced;
+            emixed x1 y1 ... xk yk -- same option as ebalanced but for mixed;
+            erich x1 y1 ... xk yk -- same option as ebalanced but for rich;
+            back -- cancel last command.
+
+        :param argv: input string
+        """
+        if self._parse_arg(argv):
+            return
+        self.rows = int(argv[1])
+        self.columns = int(argv[2])
+        self.colors = int(argv[3])
+        self.grid_inst = Grid(self.rows, self.columns, self.colors)
+        self.commands = Commands(self.rows, self.columns, self.colors)
+        # Interactive loop for additional commands
+        while True:
+            line = input("Enter command: ")
+            if not self.commands.parse_str(line):
+                if self.commands.com.type == RType.EXIT:
+                    return
+                elif self.commands.com.type == RType.BACK:
+                    self.commands.remove_last()
+                elif self.commands.com.type == RType.SOLVE:
+                    self.grid_inst.rules_to_formulas(self.commands.c_list)
+                    break
+                else:
+                    self.commands.push_rule()
+        # Conjunction of all boolean variables representing the grid
+        v_f = pd.And(*[
+            pd.And(*[
+                pd.OneHot(*[self.grid_inst.vars[r, c, v]
+                            for v in range(0, self.colors)])
+                for c in range(0, self.columns)])
+            for r in range(0, self.rows)])
+
+        r_diff = 3
+        c_diff = 3
+
+        # Conjunctions of disjunctions for every row demanding that there no
+        # three consective cells with the same colour
+        r_d_f = pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.grid_inst.vars[r, c, v]
+                            for c in range(it, it + r_diff)])
+                    for v in range(0, self.colors)])
+                for it in range(0, self.columns - r_diff + 1)])
+            for r in range(0, self.rows)])
+
+        # Conjunctions of disjunctions for every column demanding that there no
+        # three consective cells with the same colour
+        c_d_f = pd.And(*[
+            pd.And(*[
+                pd.And(*[
+                    pd.Or(*[~self.grid_inst.vars[r, c, v]
+                            for r in range(it, it + c_diff)])
+                    for v in range(0, self.colors)])
+                for it in range(0, self.rows - c_diff + 1)])
+            for c in range(0, self.columns)])
+
+        # Conjunctions for every row demanding equal number of cells per colour
+        row_eq = pd.And(*[
+            #        pd.Or(*[
+            pd.And(*[self.grid_inst.in_rows_combinations(r, v, self.grid_inst.rows //
+                                                         self.grid_inst.colors) for r in range(0, self.rows)])
+            #            for size in range(0, columns + 1)])
+            for v in range(0, self.colors)])
+
+        # Conjunctions for every column demanding equal number of cells per colour
+        col_eq = pd.And(*[
+            # pd.Or(*[
+            pd.And(*[self.grid_inst.in_cols_combinations(c, v, self.grid_inst.columns //
+                                                         self.grid_inst.colors) for c in range(0, self.columns)])
+            # for size in range(0, rows + 1)])
+            for v in range(0, self.colors)])
+
+        # Conjunction of stated above formulas + formulas from additional rules
+        s_f = pd.And(v_f, r_d_f, c_d_f, row_eq, col_eq,
+                     *self.grid_inst.f_list).tseitin()
+        try:
+            self.grid_inst.display(s_f.satisfy_one())
+        except TypeError:
+            print(
+                'It seems that there is no solution to this puzzle with such constraints.')
 
 
-def main(argv):
-    """
-    Main function that parses input and executes solver
-
-    Input format: python3 solver.py $rows $columns $colors
-    Script executed in interactive mode.
-    Possible commands:
-
-        colors x y c -- cell x y should be coloured with colour c;
-        ncolor x y c -- cell x y shouldn't be coloured with colour c;
-        balanced r c -- every submatrix with dimensions rxc should have
-            same number of cells per colour;
-        nbalanced r c -- no submatrix with dimensions rxc should have
-            same number of cells per colour;
-        mixed r c -- every submatrix with dimensions rxc should have cells
-            with at least two colours;
-        rich r c -- every submatrix with dimensions rxc should have at least
-            one cell per every colour;
-        ebalanced x1 y1 ... xk yk -- every subset of cells that contains
-            arbitrary cell x y and cells in row xi and yi should have
-            same number of cells per colour;
-        enbalanced x1 y1 ... xk yk -- same option as ebalanced but
-            for nbalanced;
-        emixed x1 y1 ... xk yk -- same option as ebalanced but for mixed;
-        erich x1 y1 ... xk yk -- same option as ebalanced but for rich;
-        back -- cancel last command.
-
-    :param argv: input string
-    """
-    if parse_arg(argv):
-        return
-    rows = int(argv[1])
-    columns = int(argv[2])
-    colors = int(argv[3])
-    grid_inst = Grid(rows, columns, colors)
-    comm = Commands(rows, columns, colors)
-    # Interactive loop for additional commands
-    while True:
-        line = input("Enter command: ")
-        if not comm.parse_str(line):
-            if comm.com.type == RType.EXIT:
-                return
-            elif comm.com.type == RType.BACK:
-                comm.remove_last()
-            elif comm.com.type == RType.SOLVE:
-                grid_inst.rules_to_formulas(comm.c_list)
-                break
-            else:
-                comm.push_rule()
-    # Conjunction of all boolean variables representing the grid
-    v_f = And(*[
-        And(*[
-            OneHot(*[grid_inst.vars[r, c, v] for v in range(0, colors)])
-            for c in range(0, columns)])
-        for r in range(0, rows)])
-
-    r_diff = 3
-    c_diff = 3
-
-    # Conjunctions of disjunctions for every row demanding that there no
-    # three consective cells with the same colour
-    r_d_f = And(*[
-        And(*[
-            And(*[
-                Or(*[~grid_inst.vars[r, c, v] for c in range(it, it + r_diff)])
-                for v in range(0, colors)])
-            for it in range(0, columns - r_diff + 1)])
-        for r in range(0, rows)])
-
-    # Conjunctions of disjunctions for every column demanding that there no
-    # three consective cells with the same colour
-    c_d_f = And(*[
-        And(*[
-            And(*[
-                Or(*[~grid_inst.vars[r, c, v] for r in range(it, it + c_diff)])
-                for v in range(0, colors)])
-            for it in range(0, rows - c_diff + 1)])
-        for c in range(0, columns)])
-
-    # Conjunctions for every row demanding equal number of cells per colour
-    row_eq = And(*[
-        #        Or(*[
-        And(*[in_rows_combinations(grid_inst, r, v, grid_inst.rows //
-                                   grid_inst.colors) for r in range(0, rows)])
-        #            for size in range(0, columns + 1)])
-        for v in range(0, colors)])
-
-    # Conjunctions for every column demanding equal number of cells per colour
-    col_eq = And(*[
-        # Or(*[
-        And(*[in_cols_combinations(grid_inst, c, v, grid_inst.columns //
-                                   grid_inst.colors) for c in range(0, columns)])
-        # for size in range(0, rows + 1)])
-        for v in range(0, colors)])
-
-    # Conjunction of stated above formulas + formulas from additional rules
-    s_f = And(v_f, r_d_f, c_d_f, row_eq, col_eq, *grid_inst.f_list).tseitin()
-    try:
-        display(s_f.satisfy_one(), grid_inst)
-    except TypeError:
-        print('It seems that there is no solution to this puzzle with such constraints.')
-
-
-main(sys.argv)
+# print(Solver(6, 6, 3, [(0, 0, 2)]).solve())
