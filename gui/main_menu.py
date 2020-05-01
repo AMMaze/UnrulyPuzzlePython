@@ -21,7 +21,8 @@ class MainMenu(tk.Frame):
         # Buttons Definitions
 
         self.btn_new_game = Round_Button(
-            self, **btn_default_style, text="New Game")
+            self, **btn_default_style, text="New Game",
+            command=lambda: controller.show_frame("Game Window"))
         self.btn_restart = Round_Button(
             self, **btn_default_style, text="Continue")
         self.btn_options = Round_Button(
@@ -31,7 +32,8 @@ class MainMenu(tk.Frame):
             self, **btn_default_style, text="Help",
             command=lambda: controller.show_frame("Help"))
         self.btn_exit = Round_Button(
-            self, **btn_default_style, text="Exit", command=master.winfo_toplevel().destroy)
+            self, **btn_default_style, text="Exit",
+            command=master.winfo_toplevel().destroy)
 
         # Style Definitions
 
