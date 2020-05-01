@@ -37,7 +37,7 @@ class UnrulyPuzzle(tk.Tk):
         self.frames[MainMenu.title] = MainMenu
         self.frames[Help.title] = Help
         self.frames[Settings.title] = Settings
-        self.frames['Game Window'] = GameWindow
+        self.frames[GameWindow.title] = GameWindow
 
         self.show_frame("Main Menu")
 

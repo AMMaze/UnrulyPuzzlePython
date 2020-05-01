@@ -6,6 +6,8 @@ import tkinter
 
 class GameWindow(tkinter.Frame):
 
+    title = "Unruly Puzzle"
+
     colorArray = ['white', 'black', 'red', 'green', 'blue', 'cyan',
                   'yellow', 'magenta']
     colors = []
