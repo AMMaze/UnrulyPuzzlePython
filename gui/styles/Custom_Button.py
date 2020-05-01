@@ -82,7 +82,7 @@ class Round_Button(tk.Label):
             #   text doesn't go off the screen.
             decrement += 1
             font = ImageFont.truetype(
-                'gui/styles/Assets/roboto/Roboto-Regular.ttf',
+                'FreeMono.ttf',
                 int(4 * self.multi) - decrement,
                 encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(
@@ -338,10 +338,10 @@ class Round_Button(tk.Label):
 
     def connector(self, *args):
         self.configure(image=self.lower_button)
-        self.function()
 
     def disconnector(self, *args):
         self.configure(image=self.Images[0])
+        self.function()
 
     def connect_function(self, function=lambda: None):
         # Binds the button to a function.
