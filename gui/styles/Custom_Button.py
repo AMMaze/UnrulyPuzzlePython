@@ -177,7 +177,7 @@ class Round_Button(tk.Label):
             # < decrement > : Used for lowering the font size so
             # that the text doesn't go off the screen.
             decrement += 1
-            font = ImageFont.truetype('gui/styles/Assets/Roboto-Regular.ttf',
+            font = ImageFont.truetype('FreeMono.ttf',
                                       int(4 * multi) - decrement,
                                       encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(

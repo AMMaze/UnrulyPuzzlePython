@@ -4,9 +4,13 @@ from gui.game_window import GameWindow
 from gui.main_menu import MainMenu
 from gui.help import Help
 from gui.settings import Settings
+from gui.game_window import GameWindow
 
 
 class UnrulyPuzzle(tk.Tk):
+    width = 8
+    height = 8
+    colors = 2
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -33,6 +37,7 @@ class UnrulyPuzzle(tk.Tk):
         self.frames['Main Menu'] = MainMenu
         self.frames['Help'] = Help
         self.frames['Settings'] = Settings
+        self.frames['Game Window'] = GameWindow
 
         self.show_frame("Main Menu")
 
@@ -44,10 +49,13 @@ class UnrulyPuzzle(tk.Tk):
 
         :param page_name: name from self.frames dictionary
         """
-
         frame_class = self.frames[page_name]
         if self._frame is not None:
-            self._frame.destroy()
+            # Using destroy causes freezes, so I replaced it with grid_forget
+            # It may cause memory leaks,
+            # but in most cases it won't because of garbage collector
+            self._frame.grid_forget()
+            # self._frame.destroy()
         self.title(page_name)
 
         # Creating and Configuring New Frame
