@@ -8,6 +8,8 @@ from gui.styles.btn_styles import btn_small_style
 
 class Settings(tk.Frame):
 
+    title = "Settings"
+
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
 
@@ -36,9 +38,9 @@ class Settings(tk.Frame):
 
         # Textvariables for Textboxes
 
-        self.width_str = tk.IntVar()
-        self.height_str = tk.IntVar()
-        self.colors_str = tk.IntVar()
+        self.width_str = tk.IntVar(value=controller.width)
+        self.height_str = tk.IntVar(value=controller.height)
+        self.colors_str = tk.IntVar(value=controller.colors)
 
         # Define and Put Textboxes
 

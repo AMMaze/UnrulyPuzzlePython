@@ -1,9 +1,12 @@
 import random
 import tkinter
-from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
+# from solver.unruly_solver import Grid, Commands
 
 
 class GameWindow(tkinter.Frame):
+
+    title = "Unruly Puzzle"
 
     colorArray = ['white', 'black', 'red', 'green', 'blue', 'cyan',
                   'yellow', 'magenta']
@@ -13,13 +16,14 @@ class GameWindow(tkinter.Frame):
     colorNumber = 0
     buttons = []
 
-    def __init__(self, parent, controller):
-        tkinter.Frame.__init__(self, parent)
-        self.controller = controller
-        resetPhoto = tkinter.PhotoImage(file='images/reset.png')
-        lockPhoto = tkinter.PhotoImage(file='images/lock.png')
-        hintPhoto = tkinter.PhotoImage(file='images/light_bulb.png')
-        returnPhoto = tkinter.PhotoImage(file='images/back_arrow.png')
+    def __init__(self, master, controller=None):
+        tkinter.Frame.__init__(self, master)
+        # self.minsize(600, 600)
+        resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset.png')
+        lockPhoto = tkinter.PhotoImage(file='gui/Assets/images/lock.png')
+        hintPhoto = tkinter.PhotoImage(file='gui/Assets/images/light_bulb.png')
+        returnPhoto = tkinter.PhotoImage(
+            file='gui/Assets/images/back_arrow.png')
         # colorArray = ['#FF6633', '#FFB399', '#FF33FF',
         #               '#FFFF99', '#00B3E6', '#E6B333',
         #               '#3366E6', '#999966', '#99FF99',
@@ -38,27 +42,29 @@ class GameWindow(tkinter.Frame):
         #               '#E64D66', '#4DB380', '#FF4D4D',
         #               '#99E6E6', '#6666FF']
 
-        # This variables should be given as parameters
-        self.cols = 4
-        self.rows = 5
-        self.colorNumber = 8
-        initialBoard = [[random.randint(0, 1) for j in range(self.cols)]
-                        for i in range(self.rows)]
-        tkinter.Grid.rowconfigure(self, 0, weight=1)
-        tkinter.Grid.columnconfigure(self, 0, weight=1)
+        self.cols = controller.width
+        self.rows = controller.height
+        self.colorNumber = controller.colors
         F = tkinter.Frame(self, borderwidth=3, relief=tkinter.GROOVE)
-        # F.master.columnconfigure(0, weight=1)
-        # F.master.rowconfigure(1, weight=1)
         F.grid(row=0, column=0, sticky="NSEW")
         menuFrame = tkinter.Frame(self, relief=tkinter.GROOVE,
                                   bg='#4EB8FF')
-        # menuFrame.master.columnconfigure(0, weight=1)
-        # menuFrame.master.rowconfigure(0, weight=1)
         menuFrame.grid(row=1, column=0, sticky="NSEW")
 
-        colors = [[0 if initialBoard[i][j] == 1 else
-                   random.randint(0, self.colorNumber - 1)
-                   for j in range(self.cols)] for i in range(self.rows)]
+        # F.master.columnconfigure(0, weight=1)
+        # F.master.rowconfigure(1, weight=1)
+        # menuFrame.master.columnconfigure(0, weight=1)
+        # menuFrame.master.rowconfigure(0, weight=1)
+
+        while True:
+            initialBoard = [[random.randint(0, 1) for j in range(self.cols)]
+                            for i in range(self.rows)]
+            colors = [[0 if initialBoard[i][j] == 1 else
+                       random.randint(0, self.colorNumber - 1)
+                       for j in range(self.cols)] for i in range(self.rows)]
+            # Check if this configuration is valid using solver
+            break
+
         self.colors = colors
         self.buttons = [[tkinter.Button(F,
                                         bg=self.colorArray[self.colors[i][j]],
@@ -66,33 +72,36 @@ class GameWindow(tkinter.Frame):
                                         self.buttonClicked(i, j))
                          for j in range(self.cols)] for i in range(self.rows)]
         for i in range(self.rows):
+            tkinter.Grid.rowconfigure(F, i, weight=1, minsize=64)
+        for i in range(self.cols):
+            tkinter.Grid.columnconfigure(F, i, weight=1, minsize=64)
+        for i in range(self.rows):
             for j in range(self.cols):
-                tkinter.Grid.rowconfigure(F, i + 1, weight=1)
-                tkinter.Grid.columnconfigure(F, j, weight=1)
-                self.buttons[i][j].grid(row=i + 1, column=j, sticky="NSEW")
+                self.buttons[i][j].grid(row=i, column=j, sticky="NSEW")
                 self.buttons[i][j].config(activebackground=self.buttons[i][j].
-                                          cget('background'),
-                                          width=64, height=64)
+                                          cget('background'))
                 if initialBoard[i][j] == 0:
                     self.buttons[i][j].config(state=tkinter.DISABLED,
-                                              image=lockPhoto)
+                                              image=lockPhoto
+                                              )
                     self.buttons[i][j].image = lockPhoto
-                # buttons[i][j].bind('<Motion>', dump)
-
         returnToMenuButton = tkinter.Button(menuFrame, bg='white',
                                             activebackground='white',
                                             image=returnPhoto,
-                                            command=self.returnToMenu)
+                                            command=lambda:
+                                            controller.show_frame("Main Menu"))
         returnToMenuButton.image = returnPhoto
         returnToMenuButton.pack(side='left', fill='both', expand=False)
         resetButton = tkinter.Button(menuFrame, bg='white',
                                      activebackground='white',
-                                     image=resetPhoto, command=self.resetCells)
+                                     image=resetPhoto,
+                                     command=self.resetCells)
         resetButton.image = resetPhoto
         resetButton.pack(side='left', fill='both', expand=False)
         hintButton = tkinter.Button(menuFrame, bg='white',
                                     activebackground='white',
-                                    image=hintPhoto, command=self.getHint)
+                                    image=hintPhoto,
+                                    command=self.getHint)
         hintButton.image = hintPhoto
         hintButton.pack(side='left', fill='both', expand=False)
         # resetButton.grid(row=0, column=2, columnspan=2, sticky="NSEW")
@@ -106,18 +115,44 @@ class GameWindow(tkinter.Frame):
         self.buttons[x][y]['bg'] = self.colorArray[self.colors[x][y]]
         self.buttons[x][y].config(activebackground=self.buttons[x][y].
                                   cget('background'))
+        if self.checkIfSolved():
+            # Do something here
+            return
+
+    def checkIfSolved(self):
+        for i in range(self.rows):
+            colorCount = [0 for j in range(self.colorNumber)]
+            for j in range(self.cols):
+                colorCount[self.colors[i][j]] += 1
+                if j >= 2 \
+                        and self.colors[i][j] == self.colors[i][j - 1] \
+                        and self.colors[i][j] == self.colors[i][j - 2]:
+                    return False
+            for j in range(self.colorNumber):
+                if colorCount[j] != self.cols/self.colorNumber:
+                    return False
+
+        for j in range(self.cols):
+            colorCount = [0 for j in range(self.colorNumber)]
+            for i in range(self.rows):
+                colorCount[self.colors[i][j]] += 1
+                if i >= 2 \
+                        and self.colors[i][j] == self.colors[i - 1][j] \
+                        and self.colors[i][j] == self.colors[i - 2][j]:
+                    return False
+            for i in range(self.colorNumber):
+                if colorCount[i] != self.cols/self.colorNumber:
+                    return False
 
     def resetCells(self):
         for i in range(self.rows):
             for j in range(self.cols):
                 if self.buttons[i][j]['state'] != tkinter.DISABLED:
                     self.colors[i][j] = 0
-                    self.buttons[i][j]['bg'] = self.colorArray[self.colors[i][j]]
-                    self.buttons[i][j].config(activebackground=self.buttons[i][j].
-                                              cget('background'))
-
-    def returnToMenu(self):
-        return
+                    self.buttons[i][j]['bg'] = \
+                        self.colorArray[self.colors[i][j]]
+                    self.buttons[i][j].config(
+                        activebackground=self.buttons[i][j].cget('background'))
 
     def getHint(self):
         return
@@ -134,6 +169,6 @@ if __name__ == "__main__":
     # hintPhoto = tkinter.PhotoImage(file='images/light_bulb.png')
     # returnPhoto = tkinter.PhotoImage(file='images/back_arrow.png')
     # print(lockPhoto.width())
-    frame = GameWindow(parent=container, controller=root)
+    frame = GameWindow(master=container, controller=root)
     frame.grid(row=0, column=0, sticky='NSEW')
     root.mainloop()
