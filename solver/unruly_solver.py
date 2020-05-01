@@ -19,14 +19,22 @@ class ErrorMsg(Error):
 
 
 class Grid:
+    """
+    Class for grid of cells.
+    """
+
     def __init__(self, rows, columns, colors):
         self.rows = rows
         self.columns = columns
         self.colors = colors
+        # Create 3d array of boolean variables per each color/cell
         self.vars = exprvars('x', rows, columns, colors)
         self.f_list = []
 
     def color_form(self, rule):
+        """
+        Generate constrant for cell's colour
+        """
         self.f_list.append(self.vars[rule.c.y, rule.c.x, rule.color])
 
     def ncolor_form(self, rule):
@@ -34,11 +42,11 @@ class Grid:
 
     # def balanced_form(self, rule):
         # self.f_list.append(And(*[
-            # Or(*[
-            # And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
-            #       for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
-            # for size in range(0, rule.c.x * rule.c.y + 1)])
-            # for v in range(0, self.colors)]))
+        # Or(*[
+        # And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.x * rule.c.y // self.colors)
+        #       for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
+        # for size in range(0, rule.c.x * rule.c.y + 1)])
+        # for v in range(0, self.colors)]))
 
     def balanced_form(self, rule):
         self.f_list.append(And(*[
@@ -46,20 +54,20 @@ class Grid:
                   for v in range(0, self.colors)])
             for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)]))
 
-    #def nbalanced_form(self, rule):
-        #self.f_list.append(~And(*[
-            #Or(*[
-                #And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, size)
-                      #for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
-                #for size in range(0, rule.c.x * rule.c.y + 1)])
-            #for v in range(0, self.colors)]))
+    # def nbalanced_form(self, rule):
+        # self.f_list.append(~And(*[
+        # Or(*[
+        # And(*[in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, size)
+        # for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
+        # for size in range(0, rule.c.x * rule.c.y + 1)])
+        # for v in range(0, self.colors)]))
 
     def nbalanced_form(self, rule):
         self.f_list.append(And(*[
             Or(*[~in_rect_combinations(self, r, c, rule.c.y, rule.c.x, v, rule.c.y * rule.c.x // self.colors)
                  for v in range(0, self.colors)])
             for r in range(0, self.rows - rule.c.y + 1) for c in range(0, self.columns - rule.c.x + 1)])
-                           )
+        )
 
     def mixed_form(self, rule):
         self.f_list.append(And(*[
@@ -138,6 +146,16 @@ class Grid:
 
 
 def in_figure_combinations(grid, r0, c0, coord_list, v, size):
+    """
+    Generates DNF from conjunction per every combination from
+    cells in coord_list of specified size and colour
+
+    :param r0: start row
+    :param c0: start column
+    :param coord_list: list of cells
+    :param v: colour
+    :param size: number of cells in subset
+    """
     # coord_list.append(Coord(0, 0))
     # coord_list = list(set(coord_list))
     comb = combinations(coord_list, size)
@@ -149,7 +167,7 @@ def in_figure_combinations(grid, r0, c0, coord_list, v, size):
         for cell in coord_list:
             if cell in it:
                 conj.append(grid.vars[r0 + cell.y, c0 + cell.x, v])
-            #else:
+            # else:
             #    conj.append(~grid.vars[r0 + cell.y, c0 + cell.x, v])
         all_conj.append(And(*conj))
         conj = []
@@ -157,6 +175,18 @@ def in_figure_combinations(grid, r0, c0, coord_list, v, size):
 
 
 def in_rect_combinations(grid, r0, c0, y, x, v, size):
+    """
+    Generates DNF from conjunction per every combination from
+    cells in rectangle defined by top-left cell, length and heigh
+    of specified size and colour
+
+    :param r0: top row of a rectangle
+    :param c0: the leftmost column of a rectangle
+    :param y: height
+    :param x: length
+    :param v: colour
+    :param size: size of rectangle
+    """
     comb = combinations(range(0, y*x), size)
     conj = []
     all_conj = []
@@ -166,7 +196,7 @@ def in_rect_combinations(grid, r0, c0, y, x, v, size):
         for cell in range(0, x*y):
             if cell in it:
                 conj.append(grid.vars[r0 + cell // x, c0 + cell % x, v])
-            #else:
+            # else:
             #    conj.append(~grid.vars[r0 + cell // x, c0 + cell % x, v])
         all_conj.append(And(*conj))
         conj = []
@@ -260,7 +290,8 @@ rule_type = {
 
 
 class RType:
-    BAD, EXIT, SOLVE, BACK, COLOR, NCOLOR, BALANCED, NBALANCED, MIXED, RICH, EBALANCED, ENBALANCED, EMIXED, ERICH = range(14)
+    BAD, EXIT, SOLVE, BACK, COLOR, NCOLOR, BALANCED, NBALANCED, MIXED, RICH, EBALANCED, ENBALANCED, EMIXED, ERICH = range(
+        14)
 
 
 class Commands:
@@ -272,25 +303,40 @@ class Commands:
         self.com = Rule()
 
     def check_type(self, rtype):
-        if rtype == 'exit': return RType.EXIT
-        elif rtype == 'solve': return RType.SOLVE
-        elif rtype == 'back': return RType.BACK
-        elif rtype == 'color': return RType.COLOR
-        elif rtype == 'ncolor': return RType.NCOLOR
-        elif rtype == 'balanced': return RType.BALANCED
-        elif rtype == 'nbalanced': return RType.NBALANCED
-        elif rtype == 'mixed': return RType.MIXED
-        elif rtype == 'rich': return RType.RICH
-        elif rtype == 'ebalanced': return RType.EBALANCED
-        elif rtype == 'enbalanced': return RType.ENBALANCED
-        elif rtype == 'emixed': return RType.EMIXED
-        elif rtype == 'erich': return RType.ERICH
-        else: return RType.BAD
+        if rtype == 'exit':
+            return RType.EXIT
+        elif rtype == 'solve':
+            return RType.SOLVE
+        elif rtype == 'back':
+            return RType.BACK
+        elif rtype == 'color':
+            return RType.COLOR
+        elif rtype == 'ncolor':
+            return RType.NCOLOR
+        elif rtype == 'balanced':
+            return RType.BALANCED
+        elif rtype == 'nbalanced':
+            return RType.NBALANCED
+        elif rtype == 'mixed':
+            return RType.MIXED
+        elif rtype == 'rich':
+            return RType.RICH
+        elif rtype == 'ebalanced':
+            return RType.EBALANCED
+        elif rtype == 'enbalanced':
+            return RType.ENBALANCED
+        elif rtype == 'emixed':
+            return RType.EMIXED
+        elif rtype == 'erich':
+            return RType.ERICH
+        else:
+            return RType.BAD
 
     def check_arg(self, com):
         if (self.com.type == RType.EXIT) or (self.com.type == RType.SOLVE) or (self.com.type == RType.BACK):
             if len(com) > 1:
-                print('InvalidArguments : ', com[0], 'does not have any arguments')
+                print('InvalidArguments : ',
+                      com[0], 'does not have any arguments')
                 return 1
         elif (self.com.type == RType.COLOR) or (self.com.type == RType.NCOLOR):
             if len(com) != 4:
@@ -304,10 +350,11 @@ class Commands:
                 print('InvalidArguments : arguments must be integers')
                 return 1
             if not (0 <= self.com.c.x < self.columns) or not (0 <= self.com.c.y < self.rows) or not (0 <= self.com.color < self.colors):
-                print('InvalidArguments : x in [0, ', self.rows, '), y in [0, ', self.columns, '), color in [0, ', self.colors, ')')
+                print('InvalidArguments : x in [0, ', self.rows, '), y in [0, ',
+                      self.columns, '), color in [0, ', self.colors, ')')
                 return 1
         elif ((self.com.type == RType.BALANCED) or (self.com.type == RType.NBALANCED) or
-                  (self.com.type == RType.MIXED) or (self.com.type == RType.RICH)):
+              (self.com.type == RType.MIXED) or (self.com.type == RType.RICH)):
             if len(com) != 3:
                 print('InvalidArguments : ', com[0], 'must have 2 arguments')
                 return 1
@@ -318,27 +365,32 @@ class Commands:
                 print('InvalidArguments : argument must be integers')
                 return 1
             if not (0 < self.com.c.x <= self.columns) or not (0 < self.com.c.y <= self.rows):
-                print('InvalidArguments : x in (0, ', self.rows, '], y in (0, ', self.columns, ']')
+                print('InvalidArguments : x in (0, ', self.rows,
+                      '], y in (0, ', self.columns, ']')
                 return 1
             if (not (self.com.c.x * self.com.c.y % self.colors == 0) and
                     not (self.com.type == RType.MIXED) and not (self.com.type == RType.RICH)):
-                print('InvalidValue : number of cells must divisible by number of colors')
+                print(
+                    'InvalidValue : number of cells must divisible by number of colors')
                 return 1
         elif ((self.com.type == RType.EBALANCED) or (self.com.type == RType.ENBALANCED) or
-                  (self.com.type == RType.EMIXED) or (self.com.type == RType.ERICH)):
+              (self.com.type == RType.EMIXED) or (self.com.type == RType.ERICH)):
             if ((len(com) - 1) % 2 != 0) or (len(com) < 3):
-                print('InvalidArguments : ', com[0], 'must have even number of arguments')
+                print('InvalidArguments : ',
+                      com[0], 'must have even number of arguments')
                 return 1
             if (((len(com) + 1) % self.colors * 2 != 0) and not (
-                (self.com.type == RType.EMIXED) or (self.com.type == RType.ERICH))):
-                print('InvalidArguments : number of cells plus one must be divisible by number of colors')
+                    (self.com.type == RType.EMIXED) or (self.com.type == RType.ERICH))):
+                print(
+                    'InvalidArguments : number of cells plus one must be divisible by number of colors')
                 return 1
             try:
                 for i in range(1, len(com), 2):
                     x = int(com[i + 1])
                     y = int(com[i])
                     if not (0 <= x < self.columns) or not (0 <= y < self.rows):
-                        print('InvalidArguments : x in [0, ', self.rows, '), y in [0, ', self.columns, ')')
+                        print(
+                            'InvalidArguments : x in [0, ', self.rows, '), y in [0, ', self.columns, ')')
                         return 1
                     self.com.vc.append(Coord(x, y))
                     if self.com.c.x < x:
@@ -373,6 +425,11 @@ class Commands:
 
 
 def parse_arg(argv):
+    """
+    Function for parsing input.
+
+    :param argv: input string
+    """
     if len(argv) != 4:
         print('InvalidArgument : wrong number of arguments')
         return 1
@@ -393,6 +450,34 @@ def parse_arg(argv):
 
 
 def main(argv):
+    """
+    Main function that parses input and executes solver
+
+    Input format: python3 solver.py $rows $columns $colors
+    Script executed in interactive mode.
+    Possible commands:
+
+        colors x y c -- cell x y should be coloured with colour c;
+        ncolor x y c -- cell x y shouldn't be coloured with colour c;
+        balanced r c -- every submatrix with dimensions rxc should have
+            same number of cells per colour;
+        nbalanced r c -- no submatrix with dimensions rxc should have
+            same number of cells per colour;
+        mixed r c -- every submatrix with dimensions rxc should have cells
+            with at least two colours;
+        rich r c -- every submatrix with dimensions rxc should have at least
+            one cell per every colour;
+        ebalanced x1 y1 ... xk yk -- every subset of cells that contains
+            arbitrary cell x y and cells in row xi and yi should have
+            same number of cells per colour;
+        enbalanced x1 y1 ... xk yk -- same option as ebalanced but
+            for nbalanced;
+        emixed x1 y1 ... xk yk -- same option as ebalanced but for mixed;
+        erich x1 y1 ... xk yk -- same option as ebalanced but for rich;
+        back -- cancel last command.
+
+    :param argv: input string
+    """
     if parse_arg(argv):
         return
     rows = int(argv[1])
@@ -400,6 +485,7 @@ def main(argv):
     colors = int(argv[3])
     grid_inst = Grid(rows, columns, colors)
     comm = Commands(rows, columns, colors)
+    # Interactive loop for additional commands
     while True:
         line = input("Enter command: ")
         if not comm.parse_str(line):
@@ -412,6 +498,7 @@ def main(argv):
                 break
             else:
                 comm.push_rule()
+    # Conjunction of all boolean variables representing the grid
     v_f = And(*[
         And(*[
             OneHot(*[grid_inst.vars[r, c, v] for v in range(0, colors)])
@@ -421,6 +508,8 @@ def main(argv):
     r_diff = 3
     c_diff = 3
 
+    # Conjunctions of disjunctions for every row demanding that there no
+    # three consective cells with the same colour
     r_d_f = And(*[
         And(*[
             And(*[
@@ -429,6 +518,8 @@ def main(argv):
             for it in range(0, columns - r_diff + 1)])
         for r in range(0, rows)])
 
+    # Conjunctions of disjunctions for every column demanding that there no
+    # three consective cells with the same colour
     c_d_f = And(*[
         And(*[
             And(*[
@@ -437,18 +528,23 @@ def main(argv):
             for it in range(0, rows - c_diff + 1)])
         for c in range(0, columns)])
 
+    # Conjunctions for every row demanding equal number of cells per colour
     row_eq = And(*[
         #        Or(*[
-        And(*[in_rows_combinations(grid_inst, r, v, grid_inst.rows // grid_inst.colors) for r in range(0, rows)])
+        And(*[in_rows_combinations(grid_inst, r, v, grid_inst.rows //
+                                   grid_inst.colors) for r in range(0, rows)])
         #            for size in range(0, columns + 1)])
         for v in range(0, colors)])
 
+    # Conjunctions for every column demanding equal number of cells per colour
     col_eq = And(*[
         # Or(*[
-        And(*[in_cols_combinations(grid_inst, c, v, grid_inst.columns // grid_inst.colors) for c in range(0, columns)])
+        And(*[in_cols_combinations(grid_inst, c, v, grid_inst.columns //
+                                   grid_inst.colors) for c in range(0, columns)])
         # for size in range(0, rows + 1)])
         for v in range(0, colors)])
 
+    # Conjunction of stated above formulas + formulas from additional rules
     s_f = And(v_f, r_d_f, c_d_f, row_eq, col_eq, *grid_inst.f_list).tseitin()
     try:
         display(s_f.satisfy_one(), grid_inst)
