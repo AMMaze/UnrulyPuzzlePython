@@ -38,9 +38,9 @@ class Settings(tk.Frame):
 
         # Textvariables for Textboxes
 
-        self.width_str = tk.IntVar()
-        self.height_str = tk.IntVar()
-        self.colors_str = tk.IntVar()
+        self.width_str = tk.IntVar(value=controller.width)
+        self.height_str = tk.IntVar(value=controller.height)
+        self.colors_str = tk.IntVar(value=controller.colors)
 
         # Define and Put Textboxes
 
