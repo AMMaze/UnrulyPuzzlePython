@@ -6,6 +6,8 @@ import tkinter
 
 class GameWindow(tkinter.Frame):
 
+    title = "Unruly Puzzle"
+
     colorArray = ['white', 'black', 'red', 'green', 'blue', 'cyan',
                   'yellow', 'magenta']
     colors = []
@@ -17,10 +19,11 @@ class GameWindow(tkinter.Frame):
     def __init__(self, master, controller=None):
         tkinter.Frame.__init__(self, master)
         # self.minsize(600, 600)
-        resetPhoto = tkinter.PhotoImage(file='images/reset.png')
-        lockPhoto = tkinter.PhotoImage(file='images/lock.png')
-        hintPhoto = tkinter.PhotoImage(file='images/light_bulb.png')
-        returnPhoto = tkinter.PhotoImage(file='images/back_arrow.png')
+        resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset.png')
+        lockPhoto = tkinter.PhotoImage(file='gui/Assets/images/lock.png')
+        hintPhoto = tkinter.PhotoImage(file='gui/Assets/images/light_bulb.png')
+        returnPhoto = tkinter.PhotoImage(
+            file='gui/Assets/images/back_arrow.png')
         # colorArray = ['#FF6633', '#FFB399', '#FF33FF',
         #               '#FFFF99', '#00B3E6', '#E6B333',
         #               '#3366E6', '#999966', '#99FF99',

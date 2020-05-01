@@ -22,7 +22,7 @@ class MainMenu(tk.Frame):
 
         self.btn_new_game = Round_Button(
             self, **btn_default_style, text="New Game",
-            command=lambda: controller.show_frame("Game Window"))
+            command=lambda: controller.show_frame("Unruly Puzzle"))
         self.btn_restart = Round_Button(
             self, **btn_default_style, text="Continue")
         self.btn_options = Round_Button(
