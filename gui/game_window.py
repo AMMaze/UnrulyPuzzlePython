@@ -160,6 +160,7 @@ class GameWindow(tkinter.Frame):
     def check(self):
         if self.checkIfSolved():
             self.controller.show_frame("Congratulations")
+            self.controller.forget_game()
         else:
             tkinter.messagebox.showinfo(title='Oops',
                                         message='Seems like the puzzle' +
