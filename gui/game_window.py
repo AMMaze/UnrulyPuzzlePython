@@ -1,7 +1,7 @@
 import random
 import tkinter
 # from PIL import ImageTk, Image
-# from solver.unruly_solver import Grid, Commands
+from solver.unruly_solver import Solver
 
 
 class GameWindow(tkinter.Frame):
@@ -15,6 +15,7 @@ class GameWindow(tkinter.Frame):
     cols = 0
     colorNumber = 0
     buttons = []
+    solution = []
 
     def __init__(self, master, controller=None):
         tkinter.Frame.__init__(self, master)
@@ -55,16 +56,52 @@ class GameWindow(tkinter.Frame):
         # F.master.rowconfigure(1, weight=1)
         # menuFrame.master.columnconfigure(0, weight=1)
         # menuFrame.master.rowconfigure(0, weight=1)
-
+        iterationNum = 0
         while True:
-            initialBoard = [[random.randint(0, 1) for j in range(self.cols)]
+            iterationNum += 1
+            inititallyBlockedCellNumber = round(self.rows*self.cols/6)
+            initialBoard = [[1 for j in range(self.cols)]
                             for i in range(self.rows)]
+            while inititallyBlockedCellNumber > 0:
+                randomRow = random.randint(0, self.rows - 1)
+                randomCol = random.randint(0, self.cols - 1)
+                if initialBoard[randomRow][randomCol] == 1:
+                    initialBoard[randomRow][randomCol] = 0
+                    inititallyBlockedCellNumber -= 1
             colors = [[0 if initialBoard[i][j] == 1 else
                        random.randint(0, self.colorNumber - 1)
                        for j in range(self.cols)] for i in range(self.rows)]
+            fixed_cells = []
+            for i in range(self.rows):
+                for j in range(self.cols):
+                    if initialBoard[i][j] == 0:
+                        fixed_cells.append((i, j, colors[i][j]))
             # Check if this configuration is valid using solver
-            break
-
+            solver = Solver(rows=self.rows, columns=self.cols,
+                            colors=self.colorNumber, fixed_cells=fixed_cells)
+            try:
+                self.solution = solver.solve()
+                for i in range(self.rows):
+                    for j in range(self.cols):
+                        self.solution[i][j] = int(self.solution[i][j])
+                blockedCellNumber = random.randint(
+                    round(self.rows*self.cols/5),
+                    round(self.rows*self.cols/3))
+                initialBoard = [[1 for j in range(self.cols)]
+                                for i in range(self.rows)]
+                while blockedCellNumber > 0:
+                    randomRow = random.randint(0, self.rows - 1)
+                    randomCol = random.randint(0, self.cols - 1)
+                    if initialBoard[randomRow][randomCol] == 1:
+                        initialBoard[randomRow][randomCol] = 0
+                        blockedCellNumber -= 1
+                colors = [[0 if initialBoard[i][j] == 1 else
+                           self.solution[i][j]
+                           for j in range(self.cols)]
+                          for i in range(self.rows)]
+                break
+            except TypeError:
+                continue
         self.colors = colors
         self.buttons = [[tkinter.Button(F,
                                         bg=self.colorArray[self.colors[i][j]],
@@ -115,9 +152,6 @@ class GameWindow(tkinter.Frame):
         self.buttons[x][y]['bg'] = self.colorArray[self.colors[x][y]]
         self.buttons[x][y].config(activebackground=self.buttons[x][y].
                                   cget('background'))
-        if self.checkIfSolved():
-            # Do something here
-            return
 
     def checkIfSolved(self):
         for i in range(self.rows):
@@ -155,7 +189,12 @@ class GameWindow(tkinter.Frame):
                         activebackground=self.buttons[i][j].cget('background'))
 
     def getHint(self):
-        return
+        for i in range(self.rows):
+            for j in range(self.cols):
+                self.colors[i][j] = int(self.solution[i][j])
+                self.buttons[i][j]['bg'] = self.colorArray[self.colors[i][j]]
+                self.buttons[i][j].config(activebackground=self.buttons[i][j].
+                                          cget('background'))
 
 
 if __name__ == "__main__":
