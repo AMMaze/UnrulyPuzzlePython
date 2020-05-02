@@ -46,6 +46,7 @@ class GameWindow(tkinter.Frame):
         self.cols = controller.width
         self.rows = controller.height
         self.colorNumber = controller.colors
+        self.controller = controller
         F = tkinter.Frame(self, borderwidth=3, relief=tkinter.GROOVE)
         F.grid(row=0, column=0, sticky="NSEW")
         menuFrame = tkinter.Frame(self, relief=tkinter.GROOVE,
@@ -56,9 +57,7 @@ class GameWindow(tkinter.Frame):
         # F.master.rowconfigure(1, weight=1)
         # menuFrame.master.columnconfigure(0, weight=1)
         # menuFrame.master.rowconfigure(0, weight=1)
-        iterationNum = 0
         while True:
-            iterationNum += 1
             inititallyBlockedCellNumber = round(self.rows*self.cols/6)
             initialBoard = [[1 for j in range(self.cols)]
                             for i in range(self.rows)]
@@ -76,7 +75,6 @@ class GameWindow(tkinter.Frame):
                 for j in range(self.cols):
                     if initialBoard[i][j] == 0:
                         fixed_cells.append((i, j, colors[i][j]))
-            # Check if this configuration is valid using solver
             solver = Solver(rows=self.rows, columns=self.cols,
                             colors=self.colorNumber, fixed_cells=fixed_cells)
             try:
@@ -141,6 +139,12 @@ class GameWindow(tkinter.Frame):
                                     command=self.getHint)
         hintButton.image = hintPhoto
         hintButton.pack(side='left', fill='both', expand=False)
+        checkButton = tkinter.Button(menuFrame, bg='#4EB8FF',
+                                     activebackground='#4EB8FF',
+                                     text='Check',
+                                     font='Arial 20',
+                                     command=self.check)
+        checkButton.pack(side='left', fill='both', expand=True)
         # resetButton.grid(row=0, column=2, columnspan=2, sticky="NSEW")
         # returnToMenuButton.grid(row=0, column=0, columnspan=2, sticky="NSEW")
 
@@ -177,6 +181,13 @@ class GameWindow(tkinter.Frame):
             for i in range(self.colorNumber):
                 if colorCount[i] != self.cols/self.colorNumber:
                     return False
+        return True
+
+    def check(self):
+        if self.checkIfSolved():
+            self.controller.show_frame("Congratulations")
+        else:
+            print("Not Done Yet")
 
     def resetCells(self):
         for i in range(self.rows):

@@ -5,6 +5,7 @@ from gui.main_menu import MainMenu
 from gui.help import Help
 from gui.settings import Settings
 from gui.game_window import GameWindow
+from gui.congratulations_window import CongratulationsWindow
 
 
 class UnrulyPuzzle(tk.Tk):
@@ -38,6 +39,7 @@ class UnrulyPuzzle(tk.Tk):
         self.frames[Help.title] = Help
         self.frames[Settings.title] = Settings
         self.frames[GameWindow.title] = GameWindow
+        self.frames[CongratulationsWindow.title] = CongratulationsWindow
 
         self.show_frame("Main Menu")
 
