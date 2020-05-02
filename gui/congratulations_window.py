@@ -18,10 +18,6 @@ class CongratulationsWindow(tkinter.Frame):
         menuPhoto = tkinter.PhotoImage(
             file='gui/Assets/images/home_big.png')
         resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset_big.png')
-        print(resetPhoto.width(), resetPhoto.height())
-        # menuFrame = tkinter.Frame(self, relief=tkinter.GROOVE,
-        #                           bg='#4EB8FF')
-        # menuFrame.grid(row=1, column=0, columnspan=2, sticky="NSEW")
         returnToMenuButton = tkinter.Button(self, bg='#4EB8FF',
                                             activebackground='#4EB8FF',
                                             image=menuPhoto,
