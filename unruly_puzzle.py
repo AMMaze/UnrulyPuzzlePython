@@ -5,6 +5,7 @@ from gui.main_menu import MainMenu
 from gui.help import Help
 from gui.settings import Settings
 from gui.game_window import GameWindow
+from gui.congratulations_window import CongratulationsWindow
 
 
 class UnrulyPuzzle(tk.Tk):
@@ -25,6 +26,10 @@ class UnrulyPuzzle(tk.Tk):
         self._frame = None
         self.frames = {}
 
+        #Current puzzle frame
+
+        self.puzzle_frame = None
+
         # Root Frame Configuration and Placement
 
         self.container = tk.Frame(self)
@@ -38,6 +43,7 @@ class UnrulyPuzzle(tk.Tk):
         self.frames[Help.title] = Help
         self.frames[Settings.title] = Settings
         self.frames[GameWindow.title] = GameWindow
+        self.frames[CongratulationsWindow.title] = CongratulationsWindow
 
         self.show_frame("Main Menu")
 
@@ -71,6 +77,29 @@ class UnrulyPuzzle(tk.Tk):
                                      self._frame.winfo_height() + 50))
         self.minsize(self._frame.winfo_width() + 50,
                      self._frame.winfo_height() + 50)
+
+        # Saving puzzle frame
+        if page_name == GameWindow.title:
+            self.puzzle_frame = self._frame
+
+    def continue_game(self):
+        if self._frame is not None:
+            self._frame.grid_forget()
+        self.title(self.puzzle_frame.title)
+        self._frame = self.puzzle_frame
+        self._frame.grid(row=1, column=1, padx=20, pady=20,
+                         sticky=tk.N + tk.E + tk.W + tk.S)
+        self._frame.update()
+
+        # Window Resizing
+
+        self.geometry("{}x{}".format(self._frame.winfo_width() + 50,
+                                     self._frame.winfo_height() + 50))
+        self.minsize(self._frame.winfo_width() + 50,
+                     self._frame.winfo_height() + 50)
+
+    def forget_game(self):
+        self.puzzle_frame = None
 
     def get_settings(self, getter):
         self.width, self.height, self.colors = getter()
