@@ -17,7 +17,7 @@ class TestClass_Solver:
                     return False
 
         for j in range(columns):
-            colorCount = [0 for j in range(colors)]
+            colorCount = [0 for c in range(colors)]
             for i in range(rows):
                 colorCount[board[i][j]] += 1
                 if i >= 2 \
@@ -25,7 +25,7 @@ class TestClass_Solver:
                         and board[i][j] == board[i - 2][j]:
                     return False
             for i in range(colors):
-                if colorCount[i] != columns / colors:
+                if colorCount[i] != rows / colors:
                     return False
         return True
 

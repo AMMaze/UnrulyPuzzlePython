@@ -2,41 +2,33 @@ import random
 
 
 def pytest_addoption(parser):
-    parser.addoption("--rows", action="store", default="8",
-                     help="set number of rows in generated board")
-    parser.addoption("--columns", action="store", default="8",
-                     help="set number of columns in generated board")
-    parser.addoption("--colors", action="store", default="2",
-                     help="set number of colors in generated board")
-    parser.addoption("--all", action="store_true", default=False,
-                     help="run tests for all generators")
-    parser.addoption("--runs", action="store", default="3",
+    parser.addoption("--rows", action="store", type=int, default=8,
+                     help="fix number of rows in generated board")
+    parser.addoption("--columns", action="store", type=int, default=8,
+                     help="fix number of columns in generated board")
+    parser.addoption("--colors", action="store", type=int, default=2,
+                     help="fix number of colors in generated board")
+    parser.addoption("--spec", action="store_true", default=False,
+                     help="run tests with special generator")
+    parser.addoption("--runs", action="store", type=int, default=3,
                      help="number of runs for each generator")
-    parser.addoption("--rules", action="store", default="00",
-                     help="choose active rules for generator \
-                     in form of binary string")
 
 
 def pytest_generate_tests(metafunc):
     if "params" in metafunc.fixturenames:
-        n = eval(metafunc.config.getoption("rows"))
-        m = eval(metafunc.config.getoption("columns"))
-        c = eval(metafunc.config.getoption("colors"))
-        r = eval(metafunc.config.getoption("runs"))
+        n = metafunc.config.getoption("rows")
+        m = metafunc.config.getoption("columns")
+        c = metafunc.config.getoption("colors")
+        r = metafunc.config.getoption("runs")
         params = ()
-        if metafunc.config.getoption("all"):
-            active_rules = "11"
-        else:
-            active_rules = metafunc.config.getoption("rules")
 
         for i in range(r):
-            if active_rules[0] == '1':
+            list_for_solver = _Rule2(n, m, c)
+            params += (True, n, m, c, list_for_solver),
+            if (metafunc.config.getoption("spec")):
                 list_for_solver = _Rule1(n, m, c)
-                params += (m, n, c, list_for_solver),
-            if active_rules[1] == '1':
-                list_for_solver = _Rule2(n, m, c)
-                params += (m, n, c, list_for_solver),
-
+                params += (True, n, m, c, list_for_solver),
+                
         metafunc.parametrize("params", params)
 
 
@@ -91,6 +83,6 @@ def _Rule2(n, m, c):
     result = list()
     for i in range(n):
         for j in range(m):
-            if not random.randint(0, 2):
+            if not random.randint(0, 7):
                 result.append((i, j, (i % c + j % c) % c))
     return result
