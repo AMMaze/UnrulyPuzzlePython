@@ -10,7 +10,7 @@ def pytest_addoption(parser):
                      help="set number of colors in generated board")
     parser.addoption("--all", action="store_true", default=False,
                      help="run tests for all generators")
-    parser.addoption("--runs", action="store", default="1",
+    parser.addoption("--runs", action="store", default="3",
                      help="number of runs for each generator")
     parser.addoption("--rules", action="store", default="00",
                      help="choose active rules for generator \
@@ -42,8 +42,8 @@ def pytest_generate_tests(metafunc):
 
 def _Rule1(n, m, c):
     result = list()
-    row_c = [[n / c for i in range(c)] for j in range(n)]
-    col_c = [[m / c for i in range(c)] for j in range(m)]
+    row_c = [[2 * n // c // 3 for i in range(c)] for j in range(n)]
+    col_c = [[2 * m // c // 3 for i in range(c)] for j in range(m)]
     n += 4
     m += 4
     board = [[-1 for j in range(m)] for i in range(n)]
@@ -61,10 +61,12 @@ def _Rule1(n, m, c):
                     for color in range(c):
                         if row_c[i - 2][color] > 0 and col_c[j - 2][color] > 0:
                             poss = poss | {color}
-                    board[i][j] = random.choice(tuple(poss))
-                    row_c[i - 2][board[i][j]] -= 1
-                    col_c[j - 2][board[i][j]] -= 1
-                    result.append((i - 2, j - 2, board[i][j]))
+                    if len(poss):
+                        board[i][j] = random.choice(tuple(poss))
+                        row_c[i - 2][board[i][j]] -= 1
+                        col_c[j - 2][board[i][j]] -= 1
+                        result.append((i - 2, j - 2, board[i][j]))
+                    continue
                 if len(poss) >= 2:
                     continue
                 color = random.choice(tuple(poss))
@@ -87,9 +89,8 @@ def _Rule1(n, m, c):
 
 def _Rule2(n, m, c):
     result = list()
-    board = [[(i % c + j % c) % c for j in range(m)] for i in range(n)]
     for i in range(n):
         for j in range(m):
             if not random.randint(0, 2):
-                result.append((i, j, board[i][j]))
+                result.append((i, j, (i % c + j % c) % c))
     return result
