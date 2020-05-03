@@ -3,10 +3,33 @@ import tkinter
 # from PIL import ImageTk, Image
 from solver.unruly_solver import Solver
 from tkinter import messagebox
+"""
+Game Window module
+==================
+"""
 
 
 class GameWindow(tkinter.Frame):
+    """
+    Class that represents frame of the game window
 
+    :param master:  the Frame where game window must be placed in
+    :param controller: the main class
+    :cvar title: the name of the window
+    :cvar colorArray: the array of color names
+    :var colors: the matrix of colors of Grid in the riddled puzzle
+    :type colors: int
+    :var rows: the value of height of Grid
+    :type rows: int
+    :var cols: the value of width of Grid
+    :type cols: int
+    :var colorNumber: the number of different colors of cells
+    :type colorNumber: int
+    :var buttons: the array of cells of Grid
+    :type buttons: tkinter.Button
+    :var solution: the matrix that is returned by Solver
+    :type solution: int
+    """
     title = "Unruly Puzzle"
 
     colorArray = ['white', 'black', 'red', 'green', 'blue', 'cyan',
@@ -20,11 +43,16 @@ class GameWindow(tkinter.Frame):
 
     def __init__(self, master, controller=None):
         tkinter.Frame.__init__(self, master)
+
+        # loading images
+
         resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset.png')
         lockPhoto = tkinter.PhotoImage(file='gui/Assets/images/lock.png')
         hintPhoto = tkinter.PhotoImage(file='gui/Assets/images/light_bulb.png')
         returnPhoto = tkinter.PhotoImage(
             file='gui/Assets/images/back_arrow.png')
+
+        # initializations
 
         self.cols = controller.width
         self.rows = controller.height
@@ -35,6 +63,9 @@ class GameWindow(tkinter.Frame):
         menuFrame = tkinter.Frame(self, relief=tkinter.GROOVE,
                                   bg='#4EB8FF')
         menuFrame.grid(row=1, column=0, sticky="NSEW")
+
+        # generating the game Grid
+
         while True:
             inititallyBlockedCellNumber = round(self.rows*self.cols/6)
             initialBoard = [[1 for j in range(self.cols)]
@@ -98,6 +129,9 @@ class GameWindow(tkinter.Frame):
                                               image=lockPhoto
                                               )
                     self.buttons[i][j].image = lockPhoto
+
+        # control buttons
+
         returnToMenuButton = tkinter.Button(menuFrame, bg='white',
                                             activebackground='white',
                                             image=returnPhoto,
@@ -125,6 +159,16 @@ class GameWindow(tkinter.Frame):
         checkButton.pack(side='left', fill='both', expand=True)
 
     def buttonClicked(self, x, y):
+        """
+        Action for the click on the button of the Grid of the game window
+
+        if you click on the unlocked cells leads to a change of its color
+
+        :param x: the index of the row
+        :type x: int
+        :param y: the index of the column
+        :type y: int
+        """
         self.colors[x][y] = (self.colors[x][y] + 1) % min(self.colorNumber,
                                                           len(self.colorArray))
         self.buttons[x][y]['bg'] = self.colorArray[self.colors[x][y]]
@@ -132,6 +176,11 @@ class GameWindow(tkinter.Frame):
                                   cget('background'))
 
     def checkIfSolved(self):
+        """
+        Action for button "Check"
+
+        The click on it checks if the puzzle is solved
+        """
         for i in range(self.rows):
             colorCount = [0 for j in range(self.colorNumber)]
             for j in range(self.cols):
@@ -158,15 +207,26 @@ class GameWindow(tkinter.Frame):
         return True
 
     def check(self):
+        """
+        Action for button "Check"
+
+        If a user gave an incorrect solution of the puzzle
+        leads to show popup message, else shows congratulations window
+        """
         if self.checkIfSolved():
             self.controller.show_frame("Congratulations")
             self.controller.forget_game()
         else:
-            tkinter.messagebox.showinfo(title='Oops',
-                                        message='Seems like the puzzle' +
-                                                ' is not solved yet!')
+            messagebox.showinfo(title='Oops',
+                                message='Seems like the puzzle' +
+                                        ' is not solved yet!')
 
     def resetCells(self):
+        """
+        Action for button "Reset"
+
+        Click on it leads to resetting the grid to initial state
+        """
         for i in range(self.rows):
             for j in range(self.cols):
                 if self.buttons[i][j]['state'] != tkinter.DISABLED:
@@ -177,6 +237,11 @@ class GameWindow(tkinter.Frame):
                         activebackground=self.buttons[i][j].cget('background'))
 
     def getHint(self):
+        """
+        Action for button "Light"
+
+        Click on it leads to show the right solution of the puzzle
+        """
         for i in range(self.rows):
             for j in range(self.cols):
                 self.colors[i][j] = int(self.solution[i][j])
