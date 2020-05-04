@@ -13,6 +13,7 @@ UnrulyPuzzlePython/gui/game_window.py
 UnrulyPuzzlePython/gui/help.py
 UnrulyPuzzlePython/gui/main_menu.py
 UnrulyPuzzlePython/gui/settings.py
+UnrulyPuzzlePython/gui/Assets/fonts/Roboto-Regular.ttf
 UnrulyPuzzlePython/gui/Assets/images/back_arrow.png
 UnrulyPuzzlePython/gui/Assets/images/home.png
 UnrulyPuzzlePython/gui/Assets/images/home_big.png

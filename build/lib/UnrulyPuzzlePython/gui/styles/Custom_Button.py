@@ -5,9 +5,12 @@ import textwrap
 from time import sleep
 from queue import Queue
 from threading import Thread
+import os
 
 
 class Round_Button(tk.Label):
+
+    pathToFile = os.path.dirname(__file__)
 
     def __init__(self, top, text, size, static_colour, static_t_colour,
                  transformation_colour, transformation_t_colour,
@@ -82,7 +85,8 @@ class Round_Button(tk.Label):
             #   text doesn't go off the screen.
             decrement += 1
             font = ImageFont.truetype(
-                'FreeMono.ttf',
+                os.path.join(Round_Button.pathToFile,
+                             '../Assets/fonts/Roboto-Regular.ttf'),
                 int(4 * self.multi) - decrement,
                 encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(
@@ -177,7 +181,7 @@ class Round_Button(tk.Label):
             # < decrement > : Used for lowering the font size so
             # that the text doesn't go off the screen.
             decrement += 1
-            font = ImageFont.truetype('FreeMono.ttf',
+            font = ImageFont.truetype(os.path.join(Round_Button.pathToFile, '../Assets/fonts/Roboto-Regular.ttf'),
                                       int(4 * multi) - decrement,
                                       encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(

@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
@@ -12,7 +12,6 @@ setup(
     author_email='abbasmm@protonmail.com',
     description='Unruly puzzle with tkinter gui',
     long_description=readme,
-    # packages=find_packages(),
     url="https://github.com/AMMaze/UnrulyPuzzlePython",
     install_requires=requirements,
     classifiers=[
@@ -20,7 +19,10 @@ setup(
     ],
     packages=['UnrulyPuzzlePython'],
     package_dir={'UnrulyPuzzlePython': 'UnrulyPuzzlePython'},
-    package_data={'UnrulyPuzzlePython': ['gui/Assets/images/*.png']},
+    package_data={'UnrulyPuzzlePython':
+                  ['gui/Assets/images/*.png',
+                   'gui/Assets/fonts/Roboto-Regular.ttf']
+                  },
     py_modules=[
         'UnrulyPuzzlePython.gui.game_window',
         'UnrulyPuzzlePython.gui.main_menu',
@@ -31,18 +33,4 @@ setup(
         'UnrulyPuzzlePython.gui.styles.btn_styles',
         'UnrulyPuzzlePython.solver.unruly_solver'
     ]
-    # package_dir={
-    #     'gui': '',
-    #     'solver': ''
-    # },
-    # data_files=[
-    #     ('gui/Assets/images',
-    #      ['UnrulyPuzzlePython/gui/Assets/images/reset.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/reset_big.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/lock.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/light_bulb.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/home.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/home_big.png',
-    #       'UnrulyPuzzlePython/gui/Assets/images/back_arrow.png'])
-    # ]
 )
