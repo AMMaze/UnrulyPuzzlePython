@@ -1,0 +1,98 @@
+# Russian translations for PACKAGE package
+# Английские переводы для пакета PACKAGE.
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-04 17:25+0300\n"
+"PO-Revision-Date: 2020-05-04 15:25+0300\n"
+"Last-Translator: <dracs1996@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1251\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: gui/settings.py:27
+msgid "Width:"
+msgstr "Ширина"
+
+#: gui/settings.py:32
+msgid "Height:"
+msgstr "Высота"
+
+#: gui/settings.py:37
+msgid "Colors:"
+msgstr "Цвета"
+
+#: gui/settings.py:67
+msgid "Ok"
+msgstr "ОК"
+
+#: gui/settings.py:70 gui/help.py:46
+msgid "Back"
+msgstr "Отмена"
+
+#: gui/main_menu.py:26
+msgid "New Game"
+msgstr "Новая игра"
+
+#: gui/main_menu.py:29
+msgid "Continue"
+msgstr "Продолжить"
+
+#: gui/main_menu.py:31 unruly_puzzle.py:90
+msgid "Settings"
+msgstr "Настройки"
+
+#: gui/main_menu.py:34 unruly_puzzle.py:94
+msgid "Help"
+msgstr "Помощь"
+
+#: gui/main_menu.py:37
+msgid "Exit"
+msgstr "Выход"
+
+#: gui/help.py:11
+msgid ""
+"The player is given a grid of cells with size N x M. The color of     the "
+"cell can be changed by clicking on it. Each square can take one     of C "
+"possible colors. The player has to repaint the grid so that it     satisfies "
+"the following rules:\n"
+"\n"
+"    1. Each row and column should contain the same number of\n"
+"     cells of the same color.\n"
+"    2. No row or column may contain three consecutive squares\n"
+"     of the same colour."
+msgstr ""
+"Игроку дается клетчатое поле размерами N x M, каждая клетка которого может "
+"быть раскрашена в один из C цветов. Некоторые из клеток можно перекрашивать " 
+"кликая на них. Для победы игроку необходимо раскрасить поле так, чтобы "
+"выполнялись следующие два условия: \n "
+"\n"
+"    1. В каждой строке и каждом столбце количество покрашенных клеток должно"
+" быть одинаковым для всех цветов.\n"
+"    2. Ни в одной строке или столбце не может быть трех подряд идущих клеток"
+" одного цвета.\n"
+"     "
+
+#: gui/help.py:27
+msgid "Rules"
+msgstr "Правила игры"
+
+#: unruly_puzzle.py:92
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: unruly_puzzle.py:96
+msgid "Unruly Puzzle"
+msgstr "Игра"
+
+#~ msgid "Game_Window"
+#~ msgstr "Игра"

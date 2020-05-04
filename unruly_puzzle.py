@@ -4,7 +4,7 @@ from gui.game_window import GameWindow
 from gui.main_menu import MainMenu
 from gui.help import Help
 from gui.settings import Settings
-from gui.setup_loc import lang_init
+from localization.setup_loc import lang_init
 
 
 class UnrulyPuzzle(tk.Tk):
