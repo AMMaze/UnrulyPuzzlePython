@@ -435,15 +435,15 @@ class Solver:
 
         >>Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
         """
-        if not Solver._validate_args(rows, columns, colors, fixed_cells=[]):
-            raise ValueError("Solver: incorrect arguments")
+        Solver._validate_args(rows, columns, colors, fixed_cells)
         self.rows = rows
         self.columns = columns
         self.colors = colors
         self.grid_inst = Grid(self.rows, self.columns, self.colors)
         self.commands = Commands(self.rows, self.columns, self.colors)
         for cell in fixed_cells:
-            self.commands.c_list.append(Rule(RType.COLOR, *cell))
+            self.commands.c_list.append(
+                Rule(RType.COLOR, cell[1], cell[0], cell[2]))
 
     def solve(self):
         self.grid_inst.rules_to_formulas(self.commands.c_list)
@@ -506,13 +506,14 @@ class Solver:
     @staticmethod
     def _validate_args(rows, columns, colors, fixed_cells=[]):
         if not((rows >= 2) and (columns >= 2) and (colors >= 2)):
-            print('InvalidValue : some arguments are less than 2')
-            return False
+            raise ValueError(
+                'InvalidValue: all arguments should be greater than 2')
         if not (rows % colors == 0) or not (columns % colors == 0):
-            print('InvalidValue : both arguments must divisible by number of colors')
-            return False
-        return all(r in range(rows + 1) and c in range(columns + 1)
-                   and v in range(colors + 1) for (r, c, v) in fixed_cells)
+            raise ValueError(
+                'InvalidValue: both arguments must divisible by the number of colors')
+        if not all(r in range(rows + 1) and c in range(columns + 1)
+                   and v in range(colors + 1) for (r, c, v) in fixed_cells):
+            raise ValueError('InvalidValue: all cells should be within grid')
 
     def _parse_arg(self, argv):
         """
@@ -646,4 +647,4 @@ class Solver:
                 'It seems that there is no solution to this puzzle with such constraints.')
 
 
-# print(Solver(8, 8, 4, [(0, 0, 2)]).solve())
+# print(Solver(8, 6, 2, [(0, 0, 1)]).solve())
