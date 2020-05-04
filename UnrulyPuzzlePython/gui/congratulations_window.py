@@ -1,6 +1,5 @@
 import tkinter
 import os
-from localization.setup_loc import lang_init
 """
 Congratulations window module
 =============================
@@ -20,14 +19,13 @@ class CongratulationsWindow(tkinter.Frame):
     title = "Congratulations"
 
     def __init__(self, master, controller=None):
-        _ = lang_init()
         tkinter.Frame.__init__(self, master)
         self.configure(bg='#4EB8FF')
         for i in range(5):
             self.rowconfigure(i, minsize=100, weight=1)
         congratulationsText = tkinter.Label(self, bg='#4EB8FF',
-                                            text=_('Congratulations!\n') +
-                                            _('You have beaten the puzzle!'),
+                                            text='Congratulations!\n' +
+                                                 'You have beaten the puzzle!',
                                             font='Arial 40')
         congratulationsText.grid(row=1, column=0, columnspan=2, sticky="NSEW")
 
