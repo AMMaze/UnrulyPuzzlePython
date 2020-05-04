@@ -5,6 +5,7 @@ from gui.main_menu import MainMenu
 from gui.help import Help
 from gui.settings import Settings
 from gui.game_window import GameWindow
+from gui.setup_loc import lang_init
 
 
 class UnrulyPuzzle(tk.Tk):
@@ -56,7 +57,7 @@ class UnrulyPuzzle(tk.Tk):
             # but in most cases it won't because of garbage collector
             self._frame.grid_forget()
             # self._frame.destroy()
-        self.title(page_name)
+        self.title(self.loc_page_name(page_name))
 
         # Creating and Configuring New Frame
 
@@ -74,6 +75,27 @@ class UnrulyPuzzle(tk.Tk):
 
     def get_settings(self, getter):
         self.width, self.height, self.colors = getter()
+
+    def loc_page_name(self, page_name):
+        """
+        Localize name of the frame from dictionary self.frames.
+        Typical use::
+            self.title = self.loc_page_name("Settings")
+
+        :param page_name: name from self.frames dictionary
+        :return: A name for title that fits current locale.
+        """
+        _ = lang_init()
+        if (page_name == "Settings"):
+            return _("Settings")
+        elif (page_name == "Main Menu"):
+            return _("Main Menu")
+        elif (page_name == "Help"):
+            return _("Help")
+        elif (page_name == "Unruly Puzzle"):
+            return _("Unruly Puzzle")
+        else:
+            return (page_name)
 
 
 if __name__ == "__main__":
