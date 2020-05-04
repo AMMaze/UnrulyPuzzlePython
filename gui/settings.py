@@ -2,7 +2,8 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from gui.styles.Custom_Button import Round_Button
 from gui.styles.btn_styles import btn_small_style
-from Localization.setup_loc import lang_init
+from localization.setup_loc import lang_init
+from solver.unruly_solver import Solver
 
 # Settings
 
@@ -81,5 +82,12 @@ class Settings(tk.Frame):
         return self.width_str.get(), self.height_str.get(), self.colors_str.get()
 
     def ok_click(self, controller):
+        try:
+            Solver._validate_args(self.width_str.get(),
+                                  self.height_str.get(),
+                                  self.colors_str.get())
+        except ValueError as e:
+            tk.messagebox.showerror("Error", str(e))
+            return
         controller.get_settings(self.get_values)
         controller.show_frame("Main Menu")
