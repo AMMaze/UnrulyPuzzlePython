@@ -21,8 +21,7 @@ setup(
     package_dir={'UnrulyPuzzlePython': 'UnrulyPuzzlePython'},
     package_data={'UnrulyPuzzlePython':
                   ['gui/Assets/images/*.png',
-                   'gui/Assets/fonts/Roboto-Regular.ttf',
-                   'localization/ru.po']
+                   'gui/Assets/fonts/Roboto-Regular.ttf']
                   },
     py_modules=[
         'UnrulyPuzzlePython.gui.game_window',
@@ -32,7 +31,6 @@ setup(
         'UnrulyPuzzlePython.gui.congratulations_window',
         'UnrulyPuzzlePython.gui.styles.Custom_Button',
         'UnrulyPuzzlePython.gui.styles.btn_styles',
-        'UnrulyPuzzlePython.solver.unruly_solver',
-        'UnrulyPuzzlePython.localization.setup_loc'
+        'UnrulyPuzzlePython.solver.unruly_solver'
     ]
 )
