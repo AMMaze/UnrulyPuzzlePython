@@ -85,7 +85,7 @@ class UnrulyPuzzle(tk.Tk):
     def continue_game(self):
         if self._frame is not None:
             self._frame.grid_forget()
-        self.title(self.puzzle_frame.title)
+        self.title(self.loc_page_name(self.puzzle_frame.title))
         self._frame = self.puzzle_frame
         self._frame.grid(row=1, column=1, padx=20, pady=20,
                          sticky=tk.N + tk.E + tk.W + tk.S)
