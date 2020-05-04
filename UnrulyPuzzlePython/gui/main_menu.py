@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.ttk as ttk
 from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
 from UnrulyPuzzlePython.gui.styles.btn_styles import btn_default_style
+from localization.setup_loc import lang_init
 
 
 class MainMenu(tk.Frame):
@@ -10,6 +11,7 @@ class MainMenu(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
+        _ = lang_init()
 
         # Define and Put Label
 
@@ -21,19 +23,19 @@ class MainMenu(tk.Frame):
         # Buttons Definitions
 
         self.btn_new_game = Round_Button(
-            self, **btn_default_style, text="New Game",
+            self, **btn_default_style, text=_("New Game"),
             command=lambda: controller.show_frame("Unruly Puzzle"))
         self.btn_restart = Round_Button(
-            self, **btn_default_style, text="Continue",
+            self, **btn_default_style, text=_("Continue"),
             command=lambda: controller.continue_game())
         self.btn_options = Round_Button(
-            self, **btn_default_style, text="Settings",
+            self, **btn_default_style, text=_("Settings"),
             command=lambda: controller.show_frame("Settings"))
         self.btn_help = Round_Button(
-            self, **btn_default_style, text="Help",
+            self, **btn_default_style, text=_("Help"),
             command=lambda: controller.show_frame("Help"))
         self.btn_exit = Round_Button(
-            self, **btn_default_style, text="Exit",
+            self, **btn_default_style, text=_("Exit"),
             command=master.winfo_toplevel().destroy)
 
         # Style Definitions
