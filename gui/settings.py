@@ -14,6 +14,7 @@ class Settings(tk.Frame):
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
         _ = lang_init()
+
         # Main Frame Configuration
 
         self.grid(row=1, column=1, padx=20,
