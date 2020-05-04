@@ -9,3 +9,7 @@
   2. В сетке не должны встречаться три или более последовательно стоящих клеток одного цвета.
 
 ![UI Example](images/ui.jpg)
+
+## Установка и Запуск
+  1. `pip3 install dist/UnrulyPuzzlePython-0.0.1-py3-none-any.whl`
+  2. `python3 -m UnrulyPuzzlePython`
