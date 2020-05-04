@@ -1,12 +1,11 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from UnrulyPuzzlePython.gui.game_window import GameWindow
 from UnrulyPuzzlePython.gui.main_menu import MainMenu
 from UnrulyPuzzlePython.gui.help import Help
 from UnrulyPuzzlePython.gui.settings import Settings
 from UnrulyPuzzlePython.gui.game_window import GameWindow
 from UnrulyPuzzlePython.gui.congratulations_window import CongratulationsWindow
-from localization.setup_loc import lang_init
+from UnrulyPuzzlePython.localization.setup_loc import lang_init
 
 
 class UnrulyPuzzle(tk.Tk):
