@@ -36,5 +36,7 @@ UnrulyPuzzlePython/gui/styles/__pycache__/CustomButton.cpython-38.pyc
 UnrulyPuzzlePython/gui/styles/__pycache__/Custom_Button.cpython-38.pyc
 UnrulyPuzzlePython/gui/styles/__pycache__/btn_styles.cpython-38.pyc
 UnrulyPuzzlePython/gui/styles/__pycache__/default_btn.cpython-38.pyc
+UnrulyPuzzlePython/localization/ru.po
+UnrulyPuzzlePython/localization/setup_loc.py
 UnrulyPuzzlePython/solver/unruly_solver.py
 UnrulyPuzzlePython/solver/__pycache__/unruly_solver.cpython-38.pyc
