@@ -11,6 +11,6 @@
 ![UI Example](images/ui.jpg)
 
 ## Сборка, Установка и Запуск
-  1. `python3 setup.py clean --all bdist_wheel`
+  1. `python3 setup.py clean -all bdist_wheel`
   2. `pip3 install dist/UnrulyPuzzlePython-0.0.1-py3-none-any.whl`
   3. `python3 -m UnrulyPuzzlePython`
