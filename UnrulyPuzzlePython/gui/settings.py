@@ -3,7 +3,7 @@ import tkinter.ttk as ttk
 from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
 from UnrulyPuzzlePython.gui.styles.btn_styles import btn_small_style
 from UnrulyPuzzlePython.solver.unruly_solver import Solver
-from UnrulyPuzzlePython.localization.setup_loc import lang_init
+from localization.setup_loc import lang_init
 # Settings
 
 

@@ -1,6 +1,6 @@
 import tkinter
 import os
-from UnrulyPuzzlePython.localization.setup_loc import lang_init
+from localization.setup_loc import lang_init
 """
 Congratulations window module
 =============================
