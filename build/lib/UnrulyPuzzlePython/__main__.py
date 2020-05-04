@@ -1,11 +1,11 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from gui.game_window import GameWindow
-from gui.main_menu import MainMenu
-from gui.help import Help
-from gui.settings import Settings
-from gui.game_window import GameWindow
-from gui.congratulations_window import CongratulationsWindow
+from UnrulyPuzzlePython.gui.game_window import GameWindow
+from UnrulyPuzzlePython.gui.main_menu import MainMenu
+from UnrulyPuzzlePython.gui.help import Help
+from UnrulyPuzzlePython.gui.settings import Settings
+from UnrulyPuzzlePython.gui.game_window import GameWindow
+from UnrulyPuzzlePython.gui.congratulations_window import CongratulationsWindow
 
 
 class UnrulyPuzzle(tk.Tk):
@@ -26,7 +26,7 @@ class UnrulyPuzzle(tk.Tk):
         self._frame = None
         self.frames = {}
 
-        #Current puzzle frame
+        # Current puzzle frame
 
         self.puzzle_frame = None
 

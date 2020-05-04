@@ -1,4 +1,5 @@
 import tkinter
+import os
 """
 Congratulations window module
 =============================
@@ -14,7 +15,7 @@ class CongratulationsWindow(tkinter.Frame):
     :param controller: the main class
     :cvar title: the name of the window
     """
-
+    pathToFile = os.path.dirname(__file__)
     title = "Congratulations"
 
     def __init__(self, master, controller=None):
@@ -31,8 +32,15 @@ class CongratulationsWindow(tkinter.Frame):
         # loading images
 
         menuPhoto = tkinter.PhotoImage(
-            file='gui/Assets/images/home_big.png')
-        resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset_big.png')
+            file=os.path.join(
+                CongratulationsWindow.pathToFile,
+                'gui/Assets/images/home_big.png')
+        )
+        resetPhoto = tkinter.PhotoImage(
+            file=os.path.join(
+                CongratulationsWindow.pathToFile,
+                'Assets/images/reset_big.png')
+        )
 
         # control buttons
 

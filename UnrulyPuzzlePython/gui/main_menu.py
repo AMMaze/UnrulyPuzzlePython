@@ -1,7 +1,7 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from gui.styles.Custom_Button import Round_Button
-from gui.styles.btn_styles import btn_default_style
+from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
+from UnrulyPuzzlePython.gui.styles.btn_styles import btn_default_style
 
 
 class MainMenu(tk.Frame):
