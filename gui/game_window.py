@@ -202,7 +202,7 @@ class GameWindow(tkinter.Frame):
                         and self.colors[i][j] == self.colors[i - 2][j]:
                     return False
             for i in range(self.colorNumber):
-                if colorCount[i] != self.cols/self.colorNumber:
+                if colorCount[i] != self.rows/self.colorNumber:
                     return False
         return True
 
