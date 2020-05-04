@@ -1,7 +1,19 @@
 import tkinter
+"""
+Congratulations window module
+=============================
+"""
 
 
 class CongratulationsWindow(tkinter.Frame):
+    """
+    Class that show congratulations window
+    when the user solved the puzzle
+
+    :param master: the Frame where game window must be placed in
+    :param controller: the main class
+    :cvar title: the name of the window
+    """
 
     title = "Congratulations"
 
@@ -15,9 +27,15 @@ class CongratulationsWindow(tkinter.Frame):
                                                  'You have beaten the puzzle!',
                                             font='Arial 40')
         congratulationsText.grid(row=1, column=0, columnspan=2, sticky="NSEW")
+
+        # loading images
+
         menuPhoto = tkinter.PhotoImage(
             file='gui/Assets/images/home_big.png')
         resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset_big.png')
+
+        # control buttons
+
         returnToMenuButton = tkinter.Button(self, bg='#4EB8FF',
                                             activebackground='#4EB8FF',
                                             image=menuPhoto,
