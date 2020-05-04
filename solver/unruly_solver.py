@@ -442,7 +442,8 @@ class Solver:
         self.grid_inst = Grid(self.rows, self.columns, self.colors)
         self.commands = Commands(self.rows, self.columns, self.colors)
         for cell in fixed_cells:
-            self.commands.c_list.append(Rule(RType.COLOR, *cell))
+            self.commands.c_list.append(
+                Rule(RType.COLOR, cell[1], cell[0], cell[2]))
 
     def solve(self):
         self.grid_inst.rules_to_formulas(self.commands.c_list)
@@ -646,4 +647,4 @@ class Solver:
                 'It seems that there is no solution to this puzzle with such constraints.')
 
 
-# print(Solver(8, 8, 4, [(0, 0, 2)]).solve())
+# print(Solver(8, 6, 2, [(0, 0, 1)]).solve())
