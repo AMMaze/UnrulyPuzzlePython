@@ -68,7 +68,8 @@ class Settings(tk.Frame):
             text=_("Ok"), command=lambda: self.ok_click(controller))
         self.btn_back = Round_Button(
             self, **btn_small_style,
-            text=_("Cancel"), command=lambda: controller.show_frame("Main Menu"))
+            text=_("Cancel"),
+            command=lambda: controller.show_frame("Main Menu"))
 
         self.btn_ok.grid(row=4, column=1, padx=5,
                          pady=5, sticky=tk.S+tk.E)
@@ -79,7 +80,9 @@ class Settings(tk.Frame):
             'TFrame', 'background')
 
     def get_values(self):
-        return self.width_str.get(), self.height_str.get(), self.colors_str.get()
+        return self.width_str.get(),\
+            self.height_str.get(),\
+            self.colors_str.get()
 
     def ok_click(self, controller):
         try:
