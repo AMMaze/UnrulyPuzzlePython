@@ -53,6 +53,7 @@ setup(
         'UnrulyPuzzlePython.gui.styles.Custom_Button',
         'UnrulyPuzzlePython.gui.styles.btn_styles',
         'UnrulyPuzzlePython.localization.setup_loc',
-        'UnrulyPuzzlePython.solver.unruly_solver'
+        'UnrulyPuzzlePython.solver.unruly_solver',
+        'UnrulyPuzzlePython.solver.check_solution'
     ]
 )
