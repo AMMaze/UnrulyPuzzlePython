@@ -1,45 +1,20 @@
 import pytest
-from solver.unruly_solver import Solver
+from UnrulyPuzzlePython.solver.unruly_solver import Solver
+from UnrulyPuzzlePython.solver.check_solution import CheckSolution
 
 
 class TestClass_Solver:
-    def CheckSolution(self, board, rows, columns, colors):
-        for i in range(rows):
-            colorCount = [0 for c in range(colors)]
-            for j in range(columns):
-                colorCount[board[i][j]] += 1
-                if j >= 2 \
-                        and board[i][j] == board[i][j - 1] \
-                        and board[i][j] == board[i][j - 2]:
-                    return False
-            for j in range(colors):
-                if colorCount[j] != columns / colors:
-                    return False
-
-        for j in range(columns):
-            colorCount = [0 for c in range(colors)]
-            for i in range(rows):
-                colorCount[board[i][j]] += 1
-                if i >= 2 \
-                        and board[i][j] == board[i - 1][j] \
-                        and board[i][j] == board[i - 2][j]:
-                    return False
-            for i in range(colors):
-                if colorCount[i] != rows / colors:
-                    return False
-        return True
-
     def test_Solver_gen(self, params):
         if params[0]:
             solution = Solver(*params[1:]).solve()
             for i in range(params[1]):
                 for j in range(params[2]):
                     solution[i][j] = int(solution[i][j])
-            assert self.CheckSolution(solution, *params[1:4])
+            assert CheckSolution(solution, *params[1:4])
         else:
             pytest.raises(TypeError, Solver(*params[1:]).solve)
 
-    def test_Solver_simple(self):
+    def test_Solver_sol(self):
         params = list()
 
         lst_for_solver = [(0, 0, 2)]
@@ -66,7 +41,7 @@ class TestClass_Solver:
             for i in range(p[0]):
                 for j in range(p[1]):
                     solution[i][j] = int(solution[i][j])
-            assert self.CheckSolution(solution, *p[:3])
+            assert CheckSolution(solution, *p[:3])
 
     def test_Solver_nsol(self):
         params = list()
@@ -90,7 +65,7 @@ class TestClass_Solver:
         for p in params:
             pytest.raises(TypeError, Solver(*p).solve)
 
-    def test_Solver_init(self):
+    def test_Solver_validate_args(self):
         params = list()
         params.append((1, 10, 2, [0, 0, 0]))
         params.append((8, 6, 4, []))
@@ -102,4 +77,4 @@ class TestClass_Solver:
         params.append((8, 8, 4, lst_for_solver))
         for p in params:
             with pytest.raises(ValueError):
-                Solver(*p)
+                Solver._validate_args(*p)
