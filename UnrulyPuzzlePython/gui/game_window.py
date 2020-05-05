@@ -1,8 +1,9 @@
 import random
 import tkinter
 # from PIL import ImageTk, Image
-from solver.unruly_solver import Solver
+from UnrulyPuzzlePython.solver.unruly_solver import Solver
 from tkinter import messagebox
+import os
 """
 Game Window module
 ==================
@@ -31,6 +32,7 @@ class GameWindow(tkinter.Frame):
     :type solution: int
     """
     title = "Unruly Puzzle"
+    pathToFile = os.path.dirname(__file__)
 
     colorArray = ['white', 'black', 'red', 'green', 'blue', 'cyan',
                   'yellow', 'magenta']
@@ -46,11 +48,14 @@ class GameWindow(tkinter.Frame):
 
         # loading images
 
-        resetPhoto = tkinter.PhotoImage(file='gui/Assets/images/reset.png')
-        lockPhoto = tkinter.PhotoImage(file='gui/Assets/images/lock.png')
-        hintPhoto = tkinter.PhotoImage(file='gui/Assets/images/light_bulb.png')
+        resetPhoto = tkinter.PhotoImage(
+            file=os.path.join(GameWindow.pathToFile, 'Assets/images/reset.png'))
+        lockPhoto = tkinter.PhotoImage(
+            file=os.path.join(GameWindow.pathToFile, 'Assets/images/lock.png'))
+        hintPhoto = tkinter.PhotoImage(
+            file=os.path.join(GameWindow.pathToFile, 'Assets/images/light_bulb.png'))
         returnPhoto = tkinter.PhotoImage(
-            file='gui/Assets/images/back_arrow.png')
+            file=os.path.join(GameWindow.pathToFile, 'Assets/images/back_arrow.png'))
 
         # initializations
 

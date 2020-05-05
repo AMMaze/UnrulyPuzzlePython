@@ -1,9 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from gui.styles.Custom_Button import Round_Button
-from gui.styles.btn_styles import btn_small_style
-from localization.setup_loc import lang_init
-from solver.unruly_solver import Solver
+from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
+from UnrulyPuzzlePython.gui.styles.btn_styles import btn_small_style
+from UnrulyPuzzlePython.solver.unruly_solver import Solver
 
 # Settings
 
@@ -14,7 +13,6 @@ class Settings(tk.Frame):
 
     def __init__(self, master, controller=None):
         tk.Frame.__init__(self, master)
-        _ = lang_init()
 
         # Main Frame Configuration
 
@@ -25,17 +23,17 @@ class Settings(tk.Frame):
         # Define and Put Labels
 
         self.lbl_width = ttk.Label(
-            self, text=_('Width:'), font=("Lucida Grande", 12))
+            self, text='Width:', font=("Lucida Grande", 12))
         self.lbl_width.grid(row=0, column=0, padx=5,
                             pady=5, sticky=tk.N+tk.W)
 
         self.lbl_height = ttk.Label(
-            self, text=_('Height:'), font=("Lucida Grande", 12))
+            self, text='Height:', font=("Lucida Grande", 12))
         self.lbl_height.grid(row=1, column=0, padx=5,
                              pady=5, sticky=tk.W)
 
         self.lbl_colors = ttk.Label(
-            self, text=_('Colors:'), font=("Lucida Grande", 12))
+            self, text='Colors:', font=("Lucida Grande", 12))
         self.lbl_colors.grid(row=2, column=0, padx=5,
                              pady=5, sticky=tk.W)
 
@@ -65,10 +63,10 @@ class Settings(tk.Frame):
 
         self.btn_ok = Round_Button(
             self, **btn_small_style,
-            text=_("Ok"), command=lambda: self.ok_click(controller))
+            text="Ok", command=lambda: self.ok_click(controller))
         self.btn_back = Round_Button(
             self, **btn_small_style,
-            text=_("Back"), command=lambda: controller.show_frame("Main Menu"))
+            text="Back", command=lambda: controller.show_frame("Main Menu"))
 
         self.btn_ok.grid(row=4, column=1, padx=5,
                          pady=5, sticky=tk.S+tk.E)
