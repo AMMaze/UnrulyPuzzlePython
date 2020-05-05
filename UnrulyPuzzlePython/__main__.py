@@ -27,11 +27,14 @@ class UnrulyPuzzle(tk.Tk):
         number of rows in grid
     colors: int
         number of possible colors
+    max_colors: int
+        max number of colors
     """
 
     width = 8
     height = 8
     colors = 2
+    max_colors = 8
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -145,6 +148,11 @@ class UnrulyPuzzle(tk.Tk):
             return _("Congratulations")
         else:
             return (page_name)
+
+    def validate_global_constr(self, rows, columns, colors):
+        if colors > self.max_colors:
+            raise ValueError('InvalidValue: maximum number of colors is {}'
+                             .format(self.max_colors))
 
 
 if __name__ == "__main__":

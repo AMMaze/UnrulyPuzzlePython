@@ -101,6 +101,9 @@ class Settings(tk.Frame):
             Solver._validate_args(self.width_str.get(),
                                   self.height_str.get(),
                                   self.colors_str.get())
+            controller.validate_global_constr(self.width_str.get(),
+                                              self.height_str.get(),
+                                              self.colors_str.get())
         except ValueError:
             _ = lang_init()
             tk.messagebox.showerror(_("Error"), _("Invalid parameters!"))
