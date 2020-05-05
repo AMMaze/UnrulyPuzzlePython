@@ -51,13 +51,17 @@ class GameWindow(tkinter.Frame):
         # loading images
 
         resetPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/reset.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/reset.png'))
         lockPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/lock.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/lock.png'))
         hintPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/light_bulb.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/light_bulb.png'))
         returnPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/back_arrow.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/back_arrow.png'))
 
         # initializations
 
