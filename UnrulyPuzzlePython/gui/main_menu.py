@@ -60,7 +60,7 @@ class MainMenu(tk.Frame):
         # Buttons Placement
 
         self.btn_new_game.grid(row=1, column=0, pady=10, sticky=tk.W+tk.E)
-        if controller.puzzle_frame is not None:
+        if controller._puzzle_frame is not None:
             self.btn_restart.grid(row=2, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_options.grid(row=3, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_help.grid(row=4, column=0, pady=10, sticky=tk.W+tk.E)
