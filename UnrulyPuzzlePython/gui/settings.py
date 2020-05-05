@@ -86,9 +86,9 @@ class Settings(tk.Frame):
             Solver._validate_args(self.width_str.get(),
                                   self.height_str.get(),
                                   self.colors_str.get())
-        except ValueError as e:
+        except ValueError:
             _ = lang_init()
-            tk.messagebox.showerror(_("Error"), str(e))
+            tk.messagebox.showerror(_("Error"), _("Invalid parameters!"))
             return
         controller.get_settings(self.get_values)
         controller.show_frame("Main Menu")

@@ -160,7 +160,7 @@ class GameWindow(tkinter.Frame):
         hintButton.pack(side='left', fill='both', expand=False)
         checkButton = tkinter.Button(menuFrame, bg='#4EB8FF',
                                      activebackground='#4EB8FF',
-                                     text='Check',
+                                     text=_('Check'),
                                      font='Arial 20',
                                      command=self.check)
         checkButton.pack(side='left', fill='both', expand=True)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-05 12:32+0300\n"
+"POT-Creation-Date: 2020-05-05 18:02+0300\n"
 "PO-Revision-Date: 2020-05-05 10:14+0300\n"
 "Last-Translator: <dracs1996@gmail.com>\n"
 "Language-Team: Russian\n"
@@ -50,6 +50,10 @@ msgstr "Отмена"
 #: UnrulyPuzzlePython/gui/settings.py:91
 msgid "Error"
 msgstr "Ошибка"
+
+#: UnrulyPuzzlePython/gui/settings.py:91
+msgid "Invalid parameters!"
+msgstr "Параметры игры указаны неверно!"
 
 #: UnrulyPuzzlePython/gui/help.py:13
 msgid ""
@@ -105,6 +109,10 @@ msgstr "Помощь"
 #: UnrulyPuzzlePython/gui/main_menu.py:38
 msgid "Exit"
 msgstr "Выход"
+
+#: UnrulyPuzzlePython/gui/game_window.py:163
+msgid "Check"
+msgstr "Готово"
 
 #: UnrulyPuzzlePython/gui/game_window.py:228
 msgid "Oops"
