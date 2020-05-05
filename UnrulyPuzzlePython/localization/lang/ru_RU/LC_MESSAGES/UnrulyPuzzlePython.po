@@ -1,0 +1,127 @@
+# Russian translations for PACKAGE package
+# Английские переводы для пакета PACKAGE.
+# Copyright (C) 2020 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-05-05 12:32+0300\n"
+"PO-Revision-Date: 2020-05-05 10:14+0300\n"
+"Last-Translator: <dracs1996@gmail.com>\n"
+"Language-Team: Russian\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1251\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: UnrulyPuzzlePython/gui/congratulations_window.py:29
+msgid "Congratulations!\n"
+msgstr "Поздравляем!\n"
+
+#: UnrulyPuzzlePython/gui/congratulations_window.py:30
+msgid "You have beaten the puzzle!"
+msgstr "Игра пройдена!"
+
+#: UnrulyPuzzlePython/gui/settings.py:28
+msgid "Width:"
+msgstr "Ширина:"
+
+#: UnrulyPuzzlePython/gui/settings.py:33
+msgid "Height:"
+msgstr "Высота:"
+
+#: UnrulyPuzzlePython/gui/settings.py:38
+msgid "Colors:"
+msgstr "Цвета:"
+
+#: UnrulyPuzzlePython/gui/settings.py:68
+msgid "Ok"
+msgstr "ОК"
+
+#: UnrulyPuzzlePython/gui/settings.py:71
+msgid "Cancel"
+msgstr "Отмена"
+
+#: UnrulyPuzzlePython/gui/settings.py:91
+msgid "Error"
+msgstr "Ошибка"
+
+#: UnrulyPuzzlePython/gui/help.py:13
+msgid ""
+"The player is given a grid of cells with size N x M. The color of     the "
+"cell can be changed by clicking on it. Each square can take one     of C "
+"possible colors. The player has to repaint the grid so that it     satisfies "
+"the following rules:\n"
+"\n"
+"    1. Each row and column should contain the same number of\n"
+"     cells of the same color.\n"
+"    2. No row or column may contain three consecutive squares\n"
+"     of the same colour."
+msgstr ""
+"Игроку дается клетчатое поле размерами N x M, каждая клетка которого может "
+"быть раскрашена в один из C цветов. Некоторые из клеток можно перекрашивать "
+"кликая на них. Для победы игроку необходимо раскрасить поле так, чтобы "
+"выполнялись следующие два условия: \n"
+" \n"
+"    1. В каждой строке и каждом столбце количество покрашенных клеток должно "
+"быть одинаковым для всех цветов.\n"
+"    2. Ни в одной строке или столбце не может быть трех подряд идущих клеток "
+"одного цвета.\n"
+"     "
+
+#: UnrulyPuzzlePython/gui/help.py:30
+msgid "Rules"
+msgstr "Правила игры"
+
+#: UnrulyPuzzlePython/gui/help.py:49
+msgid "Back"
+msgstr "Назад"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:19 UnrulyPuzzlePython/__main__.py:123
+msgid "Unruly Puzzle"
+msgstr "Непослушная головоломка"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:26
+msgid "New Game"
+msgstr "Новая игра"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:29
+msgid "Continue"
+msgstr "Продолжить"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:32 UnrulyPuzzlePython/__main__.py:117
+msgid "Settings"
+msgstr "Настройки"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:35 UnrulyPuzzlePython/__main__.py:121
+msgid "Help"
+msgstr "Помощь"
+
+#: UnrulyPuzzlePython/gui/main_menu.py:38
+msgid "Exit"
+msgstr "Выход"
+
+#: UnrulyPuzzlePython/gui/game_window.py:228
+msgid "Oops"
+msgstr "Упс"
+
+#: UnrulyPuzzlePython/gui/game_window.py:229
+msgid "Seems like the puzzle"
+msgstr "Похоже решение"
+
+#: UnrulyPuzzlePython/gui/game_window.py:230
+msgid " is not solved yet!"
+msgstr " не верно!"
+
+#: UnrulyPuzzlePython/__main__.py:119
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: UnrulyPuzzlePython/__main__.py:125
+msgid "Congratulations"
+msgstr "Победа"

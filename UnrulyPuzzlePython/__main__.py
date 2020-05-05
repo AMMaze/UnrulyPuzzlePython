@@ -4,8 +4,8 @@ from UnrulyPuzzlePython.gui.game_window import GameWindow
 from UnrulyPuzzlePython.gui.main_menu import MainMenu
 from UnrulyPuzzlePython.gui.help import Help
 from UnrulyPuzzlePython.gui.settings import Settings
-from UnrulyPuzzlePython.gui.game_window import GameWindow
 from UnrulyPuzzlePython.gui.congratulations_window import CongratulationsWindow
+from UnrulyPuzzlePython.localization.setup_loc import lang_init
 
 
 class UnrulyPuzzle(tk.Tk):
@@ -62,7 +62,7 @@ class UnrulyPuzzle(tk.Tk):
             # but in most cases it won't because of garbage collector
             self._frame.grid_forget()
             # self._frame.destroy()
-        self.title(page_name)
+        self.title(self.loc_page_name(page_name))
 
         # Creating and Configuring New Frame
 
@@ -85,7 +85,7 @@ class UnrulyPuzzle(tk.Tk):
     def continue_game(self):
         if self._frame is not None:
             self._frame.grid_forget()
-        self.title(self.puzzle_frame.title)
+        self.title(self.loc_page_name(self.puzzle_frame.title))
         self._frame = self.puzzle_frame
         self._frame.grid(row=1, column=1, padx=20, pady=20,
                          sticky=tk.N + tk.E + tk.W + tk.S)
@@ -103,6 +103,28 @@ class UnrulyPuzzle(tk.Tk):
 
     def get_settings(self, getter):
         self.width, self.height, self.colors = getter()
+
+    def loc_page_name(self, page_name):
+        """
+        Localize name of the frame from dictionary self.frames.
+        Typical use::
+            self.title = self.loc_page_name("Settings")
+        :param page_name: name from self.frames dictionary
+        :return: A name for title that fits current locale.
+        """
+        _ = lang_init()
+        if (page_name == "Settings"):
+            return _("Settings")
+        elif (page_name == "Main Menu"):
+            return _("Main Menu")
+        elif (page_name == "Help"):
+            return _("Help")
+        elif (page_name == "Unruly Puzzle"):
+            return _("Unruly Puzzle")
+        elif (page_name == "Congratulations"):
+            return _("Congratulations")
+        else:
+            return (page_name)
 
 
 if __name__ == "__main__":
