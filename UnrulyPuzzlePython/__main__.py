@@ -6,12 +6,29 @@ from UnrulyPuzzlePython.gui.settings import Settings
 from UnrulyPuzzlePython.gui.congratulations_window import CongratulationsWindow
 from UnrulyPuzzlePython.localization.setup_loc import lang_init
 """
-UnrulyPuzzle window module
+UnrulyPuzzle module
 =============================
 """
 
 
 class UnrulyPuzzle(tk.Tk):
+    """
+    Main class that initiates app and switches frames
+
+    Attributes
+    ----------
+    args : list
+        Tk() parameter
+    kwargs : dict
+        Tk() parameter
+    width: int
+        number of columns in grid
+    height: int
+        number of rows in grid
+    colors: int
+        number of possible colors
+    """
+
     width = 8
     height = 8
     colors = 2
@@ -27,38 +44,38 @@ class UnrulyPuzzle(tk.Tk):
         # Current Frame and Dict for Frames
 
         self._frame = None
-        self.frames = {}
+        self._frames = {}
 
         # Current puzzle frame
 
-        self.puzzle_frame = None
+        self._puzzle_frame = None
 
         # Root Frame Configuration and Placement
 
-        self.container = tk.Frame(self)
-        self.container.rowconfigure((0, 2), weight=1)
-        self.container.columnconfigure((0, 2),  weight=1)
-        self.container.grid(row=0, column=0, sticky=tk.N+tk.E+tk.W+tk.S)
+        self._container = tk.Frame(self)
+        self._container.rowconfigure((0, 2), weight=1)
+        self._container.columnconfigure((0, 2),  weight=1)
+        self._container.grid(row=0, column=0, sticky=tk.N+tk.E+tk.W+tk.S)
 
         # Frames Dictionary Initialization
 
-        self.frames[MainMenu.title] = MainMenu
-        self.frames[Help.title] = Help
-        self.frames[Settings.title] = Settings
-        self.frames[GameWindow.title] = GameWindow
-        self.frames[CongratulationsWindow.title] = CongratulationsWindow
+        self._frames[MainMenu.title] = MainMenu
+        self._frames[Help.title] = Help
+        self._frames[Settings.title] = Settings
+        self._frames[GameWindow.title] = GameWindow
+        self._frames[CongratulationsWindow.title] = CongratulationsWindow
 
         self.show_frame("Main Menu")
 
     def show_frame(self, page_name):
         """
-        Shows frame specified by name from dictionary self.frames
+        Shows frame specified by name from dictionary self._frames
 
         Destroys current frame if present, resizes root window to fit new frame
 
-        :param page_name: name from self.frames dictionary
+        :param page_name: name from self._frames dictionary
         """
-        frame_class = self.frames[page_name]
+        frame_class = self._frames[page_name]
         if self._frame is not None:
             # Using destroy causes freezes, so I replaced it with grid_forget
             # It may cause memory leaks,
@@ -69,7 +86,7 @@ class UnrulyPuzzle(tk.Tk):
 
         # Creating and Configuring New Frame
 
-        self._frame = frame_class(self.container, self)
+        self._frame = frame_class(self._container, self)
         self._frame.grid(row=1, column=1, padx=20, pady=20,
                          sticky=tk.N+tk.E+tk.W+tk.S)
         self._frame.update()
@@ -83,13 +100,13 @@ class UnrulyPuzzle(tk.Tk):
 
         # Saving puzzle frame
         if page_name == GameWindow.title:
-            self.puzzle_frame = self._frame
+            self._puzzle_frame = self._frame
 
     def continue_game(self):
         if self._frame is not None:
             self._frame.grid_forget()
-        self.title(self.loc_page_name(self.puzzle_frame.title))
-        self._frame = self.puzzle_frame
+        self.title(self.loc_page_name(self._puzzle_frame.title))
+        self._frame = self._puzzle_frame
         self._frame.grid(row=1, column=1, padx=20, pady=20,
                          sticky=tk.N + tk.E + tk.W + tk.S)
         self._frame.update()
@@ -102,17 +119,17 @@ class UnrulyPuzzle(tk.Tk):
                      self._frame.winfo_height() + 50)
 
     def forget_game(self):
-        self.puzzle_frame = None
+        self._puzzle_frame = None
 
     def get_settings(self, getter):
         self.width, self.height, self.colors = getter()
 
     def loc_page_name(self, page_name):
         """
-        Localize name of the frame from dictionary self.frames.
+        Localize name of the frame from dictionary self._frames.
         Typical use::
             self.title = self.loc_page_name("Settings")
-        :param page_name: name from self.frames dictionary
+        :param page_name: name from self._frames dictionary
         :return: A name for title that fits current locale.
         """
         _ = lang_init()

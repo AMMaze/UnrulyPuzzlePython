@@ -18,6 +18,7 @@ class GameWindow(tkinter.Frame):
     :param master:  the Frame where game window must be placed in
     :param controller: the main class
     :cvar title: the name of the window
+    :cvar pathToFile: path to directory where module is located
     :cvar colorArray: the array of color names
     :var colors: the matrix of colors of Grid in the riddled puzzle
     :type colors: int
