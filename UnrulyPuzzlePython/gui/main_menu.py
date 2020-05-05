@@ -3,9 +3,23 @@ import tkinter.ttk as ttk
 from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
 from UnrulyPuzzlePython.gui.styles.btn_styles import btn_default_style
 from UnrulyPuzzlePython.localization.setup_loc import lang_init
+"""
+MainMenu module
+=============================
+"""
 
 
 class MainMenu(tk.Frame):
+    """
+    MainMenu frame
+
+    Attributes
+    ----------
+    master : tk.Widget
+        parent widget
+    controller : class
+        the main class
+    """
 
     title = "Main Menu"
 
