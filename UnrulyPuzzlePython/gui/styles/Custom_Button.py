@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import ttk
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 import textwrap
 from time import sleep
@@ -181,9 +180,11 @@ class Round_Button(tk.Label):
             # < decrement > : Used for lowering the font size so
             # that the text doesn't go off the screen.
             decrement += 1
-            font = ImageFont.truetype(os.path.join(Round_Button.pathToFile, '../Assets/fonts/Roboto-Regular.ttf'),
-                                      int(4 * multi) - decrement,
-                                      encoding="unic")
+            font = ImageFont.truetype(
+                os.path.join(Round_Button.pathToFile,
+                             '../Assets/fonts/Roboto-Regular.ttf'),
+                int(4 * multi) - decrement,
+                encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(
                 self.text, font, int(36 * multi), int(2.2 * multi), 12)
             if coords[-1][1]+line_height + 5 > self.resolution[1]-(10*multi_d):

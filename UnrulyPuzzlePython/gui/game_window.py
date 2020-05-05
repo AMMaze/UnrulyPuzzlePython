@@ -18,6 +18,7 @@ class GameWindow(tkinter.Frame):
     :param master:  the Frame where game window must be placed in
     :param controller: the main class
     :cvar title: the name of the window
+    :cvar pathToFile: path to directory where module is located
     :cvar colorArray: the array of color names
     :var colors: the matrix of colors of Grid in the riddled puzzle
     :type colors: int
@@ -51,13 +52,17 @@ class GameWindow(tkinter.Frame):
         # loading images
 
         resetPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/reset.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/reset.png'))
         lockPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/lock.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/lock.png'))
         hintPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/light_bulb.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/light_bulb.png'))
         returnPhoto = tkinter.PhotoImage(
-            file=os.path.join(GameWindow.pathToFile, 'Assets/images/back_arrow.png'))
+            file=os.path.join(GameWindow.pathToFile,
+                              'Assets/images/back_arrow.png'))
 
         # initializations
 

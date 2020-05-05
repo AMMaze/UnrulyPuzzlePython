@@ -3,9 +3,23 @@ import tkinter.ttk as ttk
 from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
 from UnrulyPuzzlePython.gui.styles.btn_styles import btn_default_style
 from UnrulyPuzzlePython.localization.setup_loc import lang_init
+"""
+MainMenu module
+=============================
+"""
 
 
 class MainMenu(tk.Frame):
+    """
+    MainMenu frame
+
+    Attributes
+    ----------
+    master : tk.Widget
+        parent widget
+    controller : class
+        the main class
+    """
 
     title = "Main Menu"
 
@@ -46,7 +60,7 @@ class MainMenu(tk.Frame):
         # Buttons Placement
 
         self.btn_new_game.grid(row=1, column=0, pady=10, sticky=tk.W+tk.E)
-        if controller.puzzle_frame is not None:
+        if controller._puzzle_frame is not None:
             self.btn_restart.grid(row=2, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_options.grid(row=3, column=0, pady=10, sticky=tk.W+tk.E)
         self.btn_help.grid(row=4, column=0, pady=10, sticky=tk.W+tk.E)

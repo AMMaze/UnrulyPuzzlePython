@@ -4,11 +4,23 @@ from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
 from UnrulyPuzzlePython.gui.styles.btn_styles import btn_small_style
 from UnrulyPuzzlePython.solver.unruly_solver import Solver
 from UnrulyPuzzlePython.localization.setup_loc import lang_init
-
-# Settings
+"""
+Settings module
+=============================
+"""
 
 
 class Settings(tk.Frame):
+    """
+    Settings frame
+
+    Attributes
+    ----------
+    master : tk.Widget
+        parent widget
+    controller : class
+        the main class
+    """
 
     title = "Settings"
 
@@ -68,7 +80,8 @@ class Settings(tk.Frame):
             text=_("Ok"), command=lambda: self.ok_click(controller))
         self.btn_back = Round_Button(
             self, **btn_small_style,
-            text=_("Cancel"), command=lambda: controller.show_frame("Main Menu"))
+            text=_("Cancel"),
+            command=lambda: controller.show_frame("Main Menu"))
 
         self.btn_ok.grid(row=4, column=1, padx=5,
                          pady=5, sticky=tk.S+tk.E)
@@ -79,13 +92,18 @@ class Settings(tk.Frame):
             'TFrame', 'background')
 
     def get_values(self):
-        return self.width_str.get(), self.height_str.get(), self.colors_str.get()
+        return self.width_str.get(),\
+            self.height_str.get(),\
+            self.colors_str.get()
 
     def ok_click(self, controller):
         try:
             Solver._validate_args(self.width_str.get(),
                                   self.height_str.get(),
                                   self.colors_str.get())
+            controller.validate_global_constr(self.width_str.get(),
+                                              self.height_str.get(),
+                                              self.colors_str.get())
         except ValueError:
             _ = lang_init()
             tk.messagebox.showerror(_("Error"), _("Invalid parameters!"))
