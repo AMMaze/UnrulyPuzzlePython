@@ -20,6 +20,15 @@ class ErrorMsg(Error):
 class Grid:
     """
     Class for grid of cells.
+
+    Attributes
+    ----------
+    rows: int
+        number of rows
+    columns: int
+        number of columns
+    colors: int
+        number of colors
     """
 
     def __init__(self, rows, columns, colors):
@@ -430,20 +439,26 @@ class Solver:
     Main class in unruly solver. It uses pyeda to transform
     grid of colored cells into boolean equation and solves it with
     PicoSAT solver
+
+    Attributes
+    ----------
+    rows: int
+        number of rows
+    columns: int
+        number of columns
+    colors: int
+        number of colors
+    fixed_cells: list
+        list of cells with fixed colors formatted
+        as list of tuples: (row, column, color)
+
+    Example
+    -------
+
+    >>Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
     """
 
     def __init__(self, rows, columns, colors, fixed_cells=[]):
-        """
-        :param rows: number of rows
-        :param columns: number of comlumns
-        :param colors: number of colors
-        :param fixed_cells: list of cells with fixed colors formatted
-            as list of tuples: (row, column, color)
-
-        :Example:
-
-        >>Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
-        """
         Solver._validate_args(rows, columns, colors, fixed_cells)
         self.rows = rows
         self.columns = columns
@@ -455,6 +470,9 @@ class Solver:
                 Rule(RType.COLOR, cell[1], cell[0], cell[2]))
 
     def solve(self):
+        """
+        Seeks for solution for defined grid by means of PicoSAT
+        """
         self.grid_inst.rules_to_formulas(self.commands.c_list)
 
         # Conjunction of all boolean variables representing the grid
