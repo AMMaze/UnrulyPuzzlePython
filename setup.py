@@ -1,10 +1,30 @@
 from setuptools import setup
+import glob
+import pathlib
+import subprocess
+
 
 with open("README.md", "r") as readme_file:
     readme = readme_file.read()
 
 with open("requirements.txt", "r") as req_file:
     requirements = req_file.readlines()
+
+PO_FILES = 'localization/lang/*/LC_MESSAGES/UnrulyPuzzlePython.po'
+
+
+def create_mo_files():
+    mo_files = []
+    prefix = 'UnrulyPuzzlePython'
+
+    for po_path in glob.glob(str(pathlib.Path(prefix) / PO_FILES)):
+        mo = pathlib.Path(po_path.replace('.po', '.mo'))
+
+        subprocess.run(['msgfmt', '-o', str(mo), po_path], check=True)
+        mo_files.append(str(mo.relative_to(prefix)))
+
+    return mo_files
+
 
 setup(
     name="UnrulyPuzzlePython",
@@ -21,7 +41,8 @@ setup(
     package_dir={'UnrulyPuzzlePython': 'UnrulyPuzzlePython'},
     package_data={'UnrulyPuzzlePython':
                   ['gui/Assets/images/*.png',
-                   'gui/Assets/fonts/Roboto-Regular.ttf']
+                   'gui/Assets/fonts/Roboto-Regular.ttf'
+                   ] + create_mo_files(),
                   },
     py_modules=[
         'UnrulyPuzzlePython.gui.game_window',
@@ -31,6 +52,7 @@ setup(
         'UnrulyPuzzlePython.gui.congratulations_window',
         'UnrulyPuzzlePython.gui.styles.Custom_Button',
         'UnrulyPuzzlePython.gui.styles.btn_styles',
+        'UnrulyPuzzlePython.localization.setup_loc',
         'UnrulyPuzzlePython.solver.unruly_solver'
     ]
 )

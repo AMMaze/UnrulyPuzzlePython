@@ -4,6 +4,7 @@ import tkinter
 from UnrulyPuzzlePython.solver.unruly_solver import Solver
 from tkinter import messagebox
 import os
+from UnrulyPuzzlePython.localization.setup_loc import lang_init
 """
 Game Window module
 ==================
@@ -45,6 +46,7 @@ class GameWindow(tkinter.Frame):
 
     def __init__(self, master, controller=None):
         tkinter.Frame.__init__(self, master)
+        _ = lang_init()
 
         # loading images
 
@@ -222,9 +224,10 @@ class GameWindow(tkinter.Frame):
             self.controller.show_frame("Congratulations")
             self.controller.forget_game()
         else:
-            messagebox.showinfo(title='Oops',
-                                message='Seems like the puzzle' +
-                                        ' is not solved yet!')
+            _ = lang_init()
+            messagebox.showinfo(title=_('Oops'),
+                                message=_('Seems like the puzzle') +
+                                _(' is not solved yet!'))
 
     def resetCells(self):
         """
