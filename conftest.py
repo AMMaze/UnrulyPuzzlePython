@@ -37,7 +37,6 @@ def pytest_generate_tests(metafunc):
             if (metafunc.config.getoption("spec")):
                 list_for_solver = _Rule1(n, m, c)
                 params += (True, n, m, c, list_for_solver),
-                
         metafunc.parametrize("params", params)
 
 
@@ -56,8 +55,8 @@ def _Rule1(n, m, c):
                 for a in range(-2, 3):
                     for b in range(-2, 3):
                         if (abs(a * b) == 1 or a * b == 0) and \
-                                board[i+a][j+b] != -1:
-                            poss = poss | {board[i+a][j+b]}
+                                board[i + a][j + b] != -1:
+                            poss = poss | {board[i + a][j + b]}
                 if len(poss) == 0:
                     for color in range(c):
                         if row_c[i - 2][color] > 0 and col_c[j - 2][color] > 0:
@@ -72,12 +71,12 @@ def _Rule1(n, m, c):
                     continue
                 color = random.choice(tuple(poss))
                 if row_c[i - 2][color] > 0 and col_c[j - 2][color] > 0:
-                    poss = poss - ({board[i-2][j]} & {board[i-1][j]}) - \
-                        ({board[i-1][j]} & {board[i+1][j]}) - \
-                        ({board[i+1][j]} & {board[i+2][j]}) - \
-                        ({board[i][j-2]} & {board[i][j-1]}) - \
-                        ({board[i][j-1]} & {board[i][j+1]}) - \
-                        ({board[i][j+1]} & {board[i][j+2]})
+                    poss = poss - ({board[i - 2][j]} & {board[i - 1][j]}) - \
+                           ({board[i - 1][j]} & {board[i + 1][j]}) - \
+                           ({board[i + 1][j]} & {board[i + 2][j]}) - \
+                           ({board[i][j - 2]} & {board[i][j - 1]}) - \
+                           ({board[i][j - 1]} & {board[i][j + 1]}) - \
+                           ({board[i][j + 1]} & {board[i][j + 2]})
                     if len(poss) == 0:
                         continue
                     else:
