@@ -29,6 +29,7 @@ def create_mo_files():
 setup(
     name="UnrulyPuzzlePython",
     version="0.0.1",
+    author="Marat Abbas, Dina Kizhinkeeva, Jaroslav Komarov",
     author_email='abbasmm@protonmail.com',
     description='Unruly puzzle with tkinter gui',
     long_description=readme,
