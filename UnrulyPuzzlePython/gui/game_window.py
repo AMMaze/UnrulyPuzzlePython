@@ -1,10 +1,10 @@
 import random
 import tkinter
 # from PIL import ImageTk, Image
-from UnrulyPuzzlePython.solver.unruly_solver import Solver
+from ..solver import Solver
 from tkinter import messagebox
 import os
-from UnrulyPuzzlePython.localization.setup_loc import lang_init
+from ..localization import lang_init
 """
 Game Window module
 ==================

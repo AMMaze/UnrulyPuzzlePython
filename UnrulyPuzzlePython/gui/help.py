@@ -1,8 +1,8 @@
 import tkinter as tk
 import tkinter.ttk as ttk
-from UnrulyPuzzlePython.gui.styles.Custom_Button import Round_Button
-from UnrulyPuzzlePython.gui.styles.btn_styles import btn_small_style
-from UnrulyPuzzlePython.localization.setup_loc import lang_init
+from .styles import Round_Button
+from .styles import btn_small_style
+from ..localization import lang_init
 """
 Help module
 =============================

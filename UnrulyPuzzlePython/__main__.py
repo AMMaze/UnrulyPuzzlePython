@@ -1,10 +1,10 @@
 import tkinter as tk
-from UnrulyPuzzlePython.gui.game_window import GameWindow
-from UnrulyPuzzlePython.gui.main_menu import MainMenu
-from UnrulyPuzzlePython.gui.help import Help
-from UnrulyPuzzlePython.gui.settings import Settings
-from UnrulyPuzzlePython.gui.congratulations_window import CongratulationsWindow
-from UnrulyPuzzlePython.localization.setup_loc import lang_init
+from .gui import GameWindow
+from .gui import MainMenu
+from .gui import Help
+from .gui import Settings
+from .gui import CongratulationsWindow
+from .localization import lang_init
 """
 UnrulyPuzzle module
 =============================
