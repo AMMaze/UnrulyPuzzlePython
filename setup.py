@@ -35,6 +35,7 @@ setup(
     long_description=readme,
     url="https://github.com/AMMaze/UnrulyPuzzlePython",
     install_requires=requirements,
+    test_requires=["pytest>=2"],
     classifiers=[
         "Programming Language :: Python :: 3.7"
     ],

@@ -2,19 +2,28 @@ import random
 
 
 def pytest_addoption(parser):
+    """
+    Process arguments to run tests with specified options.
+    """
     parser.addoption("--rows", action="store", type=int, default=8,
-                     help="fix number of rows in generated board")
+                     help="Fix number of rows in generated board.")
     parser.addoption("--columns", action="store", type=int, default=8,
-                     help="fix number of columns in generated board")
+                     help="Fix number of columns in generated board.")
     parser.addoption("--colors", action="store", type=int, default=2,
-                     help="fix number of colors in generated board")
+                     help="Fix number of colors in generated board.")
     parser.addoption("--spec", action="store_true", default=False,
-                     help="run tests with special generator")
+                     help="Run tests with special generator. \
+                         Warning! This generator is for development of \
+                             starting grid only and supposed to fail \
+                                 few tests")
     parser.addoption("--runs", action="store", type=int, default=3,
-                     help="number of runs for each generator")
+                     help="Number of runs for each generator")
 
 
 def pytest_generate_tests(metafunc):
+    """
+    Random tests generator for Unruly Solver.
+    """
     if "params" in metafunc.fixturenames:
         n = metafunc.config.getoption("rows")
         m = metafunc.config.getoption("columns")

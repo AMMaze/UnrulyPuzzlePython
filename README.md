@@ -14,4 +14,10 @@
   1. `python3 setup.py clean --all bdist_wheel`
   2. `pip3 install dist/UnrulyPuzzlePython-0.0.1-py3-none-any.whl`
   3. `python3 -m UnrulyPuzzlePython`
-	
+  
+## Документация
+  Для получения документации: `python3 -m pydoc -p 1234`
+
+## Тесты
+  Для запуска тестов: `pytest`
+  Для доступных опций: `pytest --help`
