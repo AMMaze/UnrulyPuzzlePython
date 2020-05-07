@@ -25,10 +25,10 @@ class CongratulationsWindow(tkinter.Frame):
         self.configure(bg='#4EB8FF')
         for i in range(5):
             self.rowconfigure(i, minsize=100, weight=1)
-        congratulationsText = tkinter.Label(self, bg='#4EB8FF',
-                                            text=_('Congratulations!\n') +
-                                            _('You have beaten the puzzle!'),
-                                            font='Arial 40')
+        congratulationsText = tkinter.Label(
+            self, bg='#4EB8FF',
+            text=_('Congratulations!\n') + _('You have beaten the puzzle!'),
+            font='Arial 40')
         congratulationsText.grid(row=1, column=0, columnspan=2, sticky="NSEW")
 
         # loading images

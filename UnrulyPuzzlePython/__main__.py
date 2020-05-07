@@ -57,8 +57,8 @@ class UnrulyPuzzle(tk.Tk):
 
         self._container = tk.Frame(self)
         self._container.rowconfigure((0, 2), weight=1)
-        self._container.columnconfigure((0, 2),  weight=1)
-        self._container.grid(row=0, column=0, sticky=tk.N+tk.E+tk.W+tk.S)
+        self._container.columnconfigure((0, 2), weight=1)
+        self._container.grid(row=0, column=0, sticky='nsew')
 
         # Frames Dictionary Initialization
 
@@ -91,7 +91,7 @@ class UnrulyPuzzle(tk.Tk):
 
         self._frame = frame_class(self._container, self)
         self._frame.grid(row=1, column=1, padx=20, pady=20,
-                         sticky=tk.N+tk.E+tk.W+tk.S)
+                         sticky='nsew')
         self._frame.update()
 
         # Window Resizing
