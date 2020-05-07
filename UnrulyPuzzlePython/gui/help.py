@@ -13,12 +13,8 @@ class Help(tk.Frame):
     """
     Help frame
 
-    Attributes
-    ----------
-    master : tk.Widget
-        parent widget
-    controller : class
-        the main class
+    :param master:  parent widget
+    :param controller: the main class
     """
 
     title = "Help"
