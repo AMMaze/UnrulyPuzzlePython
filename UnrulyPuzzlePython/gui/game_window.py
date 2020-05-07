@@ -79,7 +79,7 @@ class GameWindow(tkinter.Frame):
         # generating the game Grid
 
         while True:
-            inititallyBlockedCellNumber = round(self.rows*self.cols/6)
+            inititallyBlockedCellNumber = round(self.rows * self.cols / 6)
             initialBoard = [[1 for j in range(self.cols)]
                             for i in range(self.rows)]
             while inititallyBlockedCellNumber > 0:
@@ -104,8 +104,8 @@ class GameWindow(tkinter.Frame):
                     for j in range(self.cols):
                         self.solution[i][j] = int(self.solution[i][j])
                 blockedCellNumber = random.randint(
-                    round(self.rows*self.cols/5),
-                    round(self.rows*self.cols/3))
+                    round(self.rows * self.cols / 5),
+                    round(self.rows * self.cols / 3))
                 initialBoard = [[1 for j in range(self.cols)]
                                 for i in range(self.rows)]
                 while blockedCellNumber > 0:
@@ -202,7 +202,7 @@ class GameWindow(tkinter.Frame):
                         and self.colors[i][j] == self.colors[i][j - 2]:
                     return False
             for j in range(self.colorNumber):
-                if colorCount[j] != self.cols/self.colorNumber:
+                if colorCount[j] != self.cols / self.colorNumber:
                     return False
 
         for j in range(self.cols):
@@ -214,7 +214,7 @@ class GameWindow(tkinter.Frame):
                         and self.colors[i][j] == self.colors[i - 2][j]:
                     return False
             for i in range(self.colorNumber):
-                if colorCount[i] != self.rows/self.colorNumber:
+                if colorCount[i] != self.rows / self.colorNumber:
                     return False
         return True
 
@@ -230,9 +230,9 @@ class GameWindow(tkinter.Frame):
             self.controller.forget_game()
         else:
             _ = lang_init()
-            messagebox.showinfo(title=_('Oops'),
-                                message=_('Seems like the puzzle') +
-                                _(' is not solved yet!'))
+            messagebox.showinfo(
+                title=_('Oops'),
+                message=_('Seems like the puzzle') + _(' is not solved yet!'))
 
     def resetCells(self):
         """
