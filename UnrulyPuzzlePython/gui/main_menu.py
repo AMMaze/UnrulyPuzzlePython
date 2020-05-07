@@ -28,7 +28,7 @@ class MainMenu(tk.Frame):
         self.title = ttk.Label(
             self, text=_("Unruly Puzzle"), font=("Lucida Grande", 18))
         self.title.grid(row=0, column=0, padx=5, pady=5,
-                        sticky=tk.N+tk.E+tk.W)
+                        sticky='new')
 
         # Buttons Definitions
 
@@ -55,12 +55,12 @@ class MainMenu(tk.Frame):
 
         # Buttons Placement
 
-        self.btn_new_game.grid(row=1, column=0, pady=10, sticky=tk.W+tk.E)
+        self.btn_new_game.grid(row=1, column=0, pady=10, sticky='we')
         if controller._puzzle_frame is not None:
-            self.btn_restart.grid(row=2, column=0, pady=10, sticky=tk.W+tk.E)
-        self.btn_options.grid(row=3, column=0, pady=10, sticky=tk.W+tk.E)
-        self.btn_help.grid(row=4, column=0, pady=10, sticky=tk.W+tk.E)
-        self.btn_exit.grid(row=5, column=0, pady=10, sticky=tk.W+tk.E)
+            self.btn_restart.grid(row=2, column=0, pady=10, sticky='we')
+        self.btn_options.grid(row=3, column=0, pady=10, sticky='we')
+        self.btn_help.grid(row=4, column=0, pady=10, sticky='we')
+        self.btn_exit.grid(row=5, column=0, pady=10, sticky='we')
 
 
 if __name__ == "__main__":

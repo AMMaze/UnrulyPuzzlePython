@@ -20,7 +20,8 @@ class Help(tk.Frame):
     title = "Help"
 
     _ = lang_init()
-    RULES = _("""The player is given a grid of cells with size N x M. The color of \
+    RULES = _("""The player is given a grid of cells with size N x M.
+    The color of \
     the cell can be changed by clicking on it. Each square can take one \
     of C possible colors. The player has to repaint the grid so that it \
     satisfies the following rules:
@@ -39,7 +40,7 @@ class Help(tk.Frame):
         self.rules_frame = tk.LabelFrame(
             self, text=_("Rules"), font=("Lucida Grande", 18))
         self.rules_frame.grid(row=0, column=0, padx=5,
-                              pady=5, sticky=tk.N+tk.E+tk.W+tk.S)
+                              pady=5, sticky='news')
 
         # Define, Fill and Put Text Widget
 
@@ -61,7 +62,7 @@ class Help(tk.Frame):
         )
 
         self.btn_back.grid(row=1, column=0, padx=5,
-                           pady=5, sticky=tk.S+tk.W+tk.E)
+                           pady=5, sticky='swe')
 
         # Style Configuration
 

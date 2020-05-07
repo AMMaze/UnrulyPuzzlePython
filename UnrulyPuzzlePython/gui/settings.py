@@ -27,7 +27,7 @@ class Settings(tk.Frame):
         # Main Frame Configuration
 
         self.grid(row=1, column=1, padx=20,
-                  pady=20, sticky=tk.N+tk.E+tk.W+tk.S)
+                  pady=20, sticky='news')
         self.grid_rowconfigure(3, minsize=100)
 
         # Define and Put Labels
@@ -35,7 +35,7 @@ class Settings(tk.Frame):
         self.lbl_width = ttk.Label(
             self, text=_('Width:'), font=("Lucida Grande", 12))
         self.lbl_width.grid(row=0, column=0, padx=5,
-                            pady=5, sticky=tk.N+tk.W)
+                            pady=5, sticky='nw')
 
         self.lbl_height = ttk.Label(
             self, text=_('Height:'), font=("Lucida Grande", 12))
@@ -63,7 +63,7 @@ class Settings(tk.Frame):
             self, width=10, textvariable=self.colors_str)
 
         self.tb_width.grid(row=0, column=1, padx=5,
-                           pady=5, sticky=tk.N+tk.E)
+                           pady=5, sticky='ne')
         self.tb_height.grid(row=1, column=1, padx=5,
                             pady=5, sticky=tk.E)
         self.tb_colors.grid(row=2, column=1, padx=5,
@@ -80,9 +80,9 @@ class Settings(tk.Frame):
             command=lambda: controller.show_frame("Main Menu"))
 
         self.btn_ok.grid(row=4, column=1, padx=5,
-                         pady=5, sticky=tk.S+tk.E)
+                         pady=5, sticky='se')
         self.btn_back.grid(row=4, column=0, padx=5,
-                           pady=5, sticky=tk.S+tk.W)
+                           pady=5, sticky='sw')
 
         btn_small_style['background'] = ttk.Style().lookup(
             'TFrame', 'background')
