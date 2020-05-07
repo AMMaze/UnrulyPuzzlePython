@@ -4,17 +4,10 @@ def CheckSolution(board, rows, columns, colors):
     """
     Check if board meets requirements specified in the rules.
 
-    :param board: list of all board cells formatted
-        as list of tuples (row, column, color)
+    :param board: list of all board cells formatted as list of colors in rows
     :param rows: number of rows
     :param columns: number of comlumns
     :param colors: number of colors
-
-    :Example:
-
-        >>CheckSolution([[0, 0, 1, 1], [0, 0, 1, 1],
-                         [1, 1, 0, 0], [1, 1, 0, 0]]
-                         4, 4, 2)
     """
     for i in range(rows):
         colorCount = [0 for c in range(colors)]

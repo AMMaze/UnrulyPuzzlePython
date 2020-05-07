@@ -1,0 +1,21 @@
+gui = UnrulyPuzzlePython.gui UnrulyPuzzlePython.gui.game_window UnrulyPuzzlePython.gui.main_menu UnrulyPuzzlePython.gui.help UnrulyPuzzlePython.gui.settings UnrulyPuzzlePython.gui.congratulations_window 
+localization = UnrulyPuzzlePython.localization UnrulyPuzzlePython.localization.setup_loc 
+solver = UnrulyPuzzlePython.solver UnrulyPuzzlePython.solver.unruly_solver UnrulyPuzzlePython.solver.check_solution
+unruly = UnrulyPuzzlePython UnrulyPuzzlePython.__main__ 
+
+rule make_doc_dir
+  command = mkdir -p documentation
+  
+rule generate
+  command = python -m pydoc -w $unruly $solver $localization $gui
+
+rule move_to_dir
+  command = mv UnrulyPuzzlePython*.html documentation
+
+build dir: make_doc_dir
+
+build gen:  generate || dir
+
+build doc: move_to_dir || gen
+
+

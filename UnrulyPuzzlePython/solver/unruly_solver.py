@@ -21,14 +21,9 @@ class Grid:
     """
     Class for grid of cells.
 
-    Attributes
-    ----------
-    rows: int
-        number of rows
-    columns: int
-        number of columns
-    colors: int
-        number of colors
+    :param rows: number of rows
+    :param columns: number of columns
+    :param colors: number of colors
     """
 
     def __init__(self, rows, columns, colors):
@@ -440,22 +435,15 @@ class Solver:
     grid of colored cells into boolean equation and solves it with
     PicoSAT solver
 
-    Attributes
-    ----------
-    rows: int
-        number of rows
-    columns: int
-        number of columns
-    colors: int
-        number of colors
-    fixed_cells: list
-        list of cells with fixed colors formatted
+    :param rows: number of rows
+    :param columns: number of columns
+    :param colors: number of colors
+    :param fixed_cells: list of cells with fixed colors formatted
         as list of tuples: (row, column, color)
 
-    Example
-    -------
+    Example::
 
-    >>Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
+     Solver(6, 6, 3, [(0, 0, 2), (1, 3, 1)])
     """
 
     def __init__(self, rows, columns, colors, fixed_cells=[]):
@@ -576,22 +564,32 @@ class Solver:
         Possible commands:
 
             colors x y c -- cell x y should be coloured with colour c;
+
             ncolor x y c -- cell x y shouldn't be coloured with colour c;
+
             balanced r c -- every submatrix with dimensions rxc should have
                 same number of cells per colour;
+
             nbalanced r c -- no submatrix with dimensions rxc should have
                 same number of cells per colour;
+
             mixed r c -- every submatrix with dimensions rxc should have cells
                 with at least two colors;
+
             rich r c -- every submatrix with dimensions rxc should have at
                 least one cell per every colour;
+
             ebalanced x1 y1 ... xk yk -- every subset of cells that contains
                 arbitrary cell x y and cells in row xi and yi should have
                 same number of cells per colour;
+
             enbalanced x1 y1 ... xk yk -- same option as ebalanced but
                 for nbalanced;
+
             emixed x1 y1 ... xk yk -- same option as ebalanced but for mixed;
+
             erich x1 y1 ... xk yk -- same option as ebalanced but for rich;
+
             back -- cancel last command.
 
         :param argv: input string

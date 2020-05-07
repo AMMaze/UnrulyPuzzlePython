@@ -11,14 +11,10 @@ MainMenu module
 
 class MainMenu(tk.Frame):
     """
-    MainMenu frame
+    Main Menu frame
 
-    Attributes
-    ----------
-    master : tk.Widget
-        parent widget
-    controller : class
-        the main class
+    :param master:  parent widget
+    :param controller: the main class
     """
 
     title = "Main Menu"

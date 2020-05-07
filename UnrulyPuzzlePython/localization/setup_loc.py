@@ -7,8 +7,11 @@ import gettext
 def lang_init():
     """
     Initialize a translation framework (gettext).
+
     Typical use::
-        _ = lang_init()
+
+    _ = lang_init()
+
     :return: A string translation function.
     :rtype: (str) -> str
     """

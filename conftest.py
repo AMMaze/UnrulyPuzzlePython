@@ -37,6 +37,7 @@ def pytest_generate_tests(metafunc):
             if (metafunc.config.getoption("spec")):
                 list_for_solver = _Rule1(n, m, c)
                 params += (True, n, m, c, list_for_solver),
+
         metafunc.parametrize("params", params)
 
 
