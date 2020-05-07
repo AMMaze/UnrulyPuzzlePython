@@ -199,14 +199,14 @@ class Grid:
         :param v: colour
         :param size: size of rectangle
         """
-        comb = combinations(range(0, y*x), size)
+        comb = combinations(range(0, y * x), size)
         conj = []
         all_conj = []
         if size == 0:
-            return pd.And(*[~self.vars[r0+i, c0+j, v]
+            return pd.And(*[~self.vars[r0 + i, c0 + j, v]
                             for i in range(0, y) for j in range(0, x)])
         for it in comb:
-            for cell in range(0, x*y):
+            for cell in range(0, x * y):
                 if cell in it:
                     conj.append(self.vars[r0 + cell // x, c0 + cell % x, v])
             all_conj.append(pd.And(*conj))
@@ -364,24 +364,24 @@ class Commands:
                 print('InvalidArguments : x in (0, ', self.rows,
                       '], y in (0, ', self.columns, ']')
                 return 1
-            if (not (self.com.c.x * self.com.c.y % self.colors == 0) and
-                    not (self.com.type == RType.MIXED) and
-                    not (self.com.type == RType.RICH)):
+            if (not (self.com.c.x * self.com.c.y % self.colors == 0)
+                    and not (self.com.type == RType.MIXED)
+                    and not (self.com.type == RType.RICH)):
                 print(
                     'InvalidValue:\
                      number of cells must divisible by number of colors')
                 return 1
-        elif ((self.com.type == RType.EBALANCED) or
-              (self.com.type == RType.ENBALANCED) or
-              (self.com.type == RType.EMIXED) or
-              (self.com.type == RType.ERICH)):
+        elif ((self.com.type == RType.EBALANCED)
+              or (self.com.type == RType.ENBALANCED)
+              or (self.com.type == RType.EMIXED)
+              or (self.com.type == RType.ERICH)):
             if ((len(com) - 1) % 2 != 0) or (len(com) < 3):
                 print('InvalidArguments : ',
                       com[0], 'must have even number of arguments')
                 return 1
-            if (((len(com) + 1) % self.colors * 2 != 0) and not (
-                    (self.com.type == RType.EMIXED) or
-                    (self.com.type == RType.ERICH))):
+            if (((len(com) + 1) % self.colors * 2 != 0)
+                    and not ((self.com.type == RType.EMIXED)
+                             or (self.com.type == RType.ERICH))):
                 print(
                     'InvalidArguments:\
                     number of cells plus one\
@@ -650,8 +650,8 @@ class Solver:
         # Conjunctions for every row demanding equal number of cells per colour
         row_eq = pd.And(*[
             pd.And(*[self.grid_inst.in_rows_combinations(
-                r, v, self.grid_inst.columns //
-                self.grid_inst.colors) for r in range(0, self.rows)])
+                r, v, self.grid_inst.columns
+                // self.grid_inst.colors) for r in range(0, self.rows)])
             for v in range(0, self.colors)])
 
         # Conjunctions for every column demanding equal\
