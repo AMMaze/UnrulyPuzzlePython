@@ -16,9 +16,10 @@
   3. `python3 -m UnrulyPuzzlePython`
 
 ## Документация
-  1. `sphinx-apidoc -M -q -f -o docs UnrulyPuzzlePython`
-  2. `make html`
-  3. `open _build/html/index.html`
+  1. `python3 setup.py build_sphinx`
+
+  После выполнения команды в директории `doc/html` будет сгенерирована html
+  документация.
 ## Тесты
   1. Для запуска тестов: `pytest`
   2. Для просмотра доступных опций: `pytest --help`
