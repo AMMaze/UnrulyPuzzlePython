@@ -1,0 +1,462 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>UnrulyPuzzlePython.solver package &#8212; UnrulyPuzzlePython 0.0.1 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-UnrulyPuzzlePython.solver">
+<span id="unrulypuzzlepython-solver-package"></span><h1>UnrulyPuzzlePython.solver package<a class="headerlink" href="#module-UnrulyPuzzlePython.solver" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-UnrulyPuzzlePython.solver.check_solution">
+<span id="unrulypuzzlepython-solver-check-solution-module"></span><h2>UnrulyPuzzlePython.solver.check_solution module<a class="headerlink" href="#module-UnrulyPuzzlePython.solver.check_solution" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="UnrulyPuzzlePython.solver.check_solution.CheckSolution">
+<code class="sig-prename descclassname">UnrulyPuzzlePython.solver.check_solution.</code><code class="sig-name descname">CheckSolution</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">board</span></em>, <em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em>, <em class="sig-param"><span class="n">colors</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.check_solution.CheckSolution" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if board meets requirements specified in the rules.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>board</strong> – list of all board cells formatted as list of colors in rows</p></li>
+<li><p><strong>rows</strong> – number of rows</p></li>
+<li><p><strong>columns</strong> – number of comlumns</p></li>
+<li><p><strong>colors</strong> – number of colors</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-UnrulyPuzzlePython.solver.unruly_solver">
+<span id="unrulypuzzlepython-solver-unruly-solver-module"></span><h2>UnrulyPuzzlePython.solver.unruly_solver module<a class="headerlink" href="#module-UnrulyPuzzlePython.solver.unruly_solver" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Commands</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em>, <em class="sig-param"><span class="n">colors</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands.check_arg">
+<code class="sig-name descname">check_arg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">com</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands.check_arg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands.check_type">
+<code class="sig-name descname">check_type</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rtype</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands.check_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands.parse_str">
+<code class="sig-name descname">parse_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands.parse_str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands.push_rule">
+<code class="sig-name descname">push_rule</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands.push_rule" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Commands.remove_last">
+<code class="sig-name descname">remove_last</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Commands.remove_last" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Coord">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Coord</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Error">
+<em class="property">exception </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Error</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">error_type</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.ErrorMsg">
+<em class="property">exception </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">ErrorMsg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">error_type</span></em>, <em class="sig-param"><span class="n">msg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.ErrorMsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#UnrulyPuzzlePython.solver.unruly_solver.Error" title="UnrulyPuzzlePython.solver.unruly_solver.Error"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnrulyPuzzlePython.solver.unruly_solver.Error</span></code></a></p>
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.ErrorMsg.print_msg">
+<code class="sig-name descname">print_msg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.ErrorMsg.print_msg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Grid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em>, <em class="sig-param"><span class="n">colors</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class for grid of cells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> – number of rows</p></li>
+<li><p><strong>columns</strong> – number of columns</p></li>
+<li><p><strong>colors</strong> – number of colors</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.balanced_form">
+<code class="sig-name descname">balanced_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.balanced_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.color_form">
+<code class="sig-name descname">color_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.color_form" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate constrant for cell’s colour</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.display">
+<code class="sig-name descname">display</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.display" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.ebalanced_form">
+<code class="sig-name descname">ebalanced_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.ebalanced_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.emixed_form">
+<code class="sig-name descname">emixed_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.emixed_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.enbalanced_form">
+<code class="sig-name descname">enbalanced_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.enbalanced_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.erich_form">
+<code class="sig-name descname">erich_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.erich_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.get_val">
+<code class="sig-name descname">get_val</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">point</span></em>, <em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">c</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.get_val" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.in_cols_combinations">
+<code class="sig-name descname">in_cols_combinations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c</span></em>, <em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.in_cols_combinations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.in_figure_combinations">
+<code class="sig-name descname">in_figure_combinations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r0</span></em>, <em class="sig-param"><span class="n">c0</span></em>, <em class="sig-param"><span class="n">coord_list</span></em>, <em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.in_figure_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates DNF from conjunction per every combination from
+cells in coord_list of specified size and colour</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r0</strong> – start row</p></li>
+<li><p><strong>c0</strong> – start column</p></li>
+<li><p><strong>coord_list</strong> – list of cells</p></li>
+<li><p><strong>v</strong> – colour</p></li>
+<li><p><strong>size</strong> – number of cells in subset</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.in_rect_combinations">
+<code class="sig-name descname">in_rect_combinations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r0</span></em>, <em class="sig-param"><span class="n">c0</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.in_rect_combinations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates DNF from conjunction per every combination from
+cells in rectangle defined by top-left cell, length and heigh
+of specified size and colour</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r0</strong> – top row of a rectangle</p></li>
+<li><p><strong>c0</strong> – the leftmost column of a rectangle</p></li>
+<li><p><strong>y</strong> – height</p></li>
+<li><p><strong>x</strong> – length</p></li>
+<li><p><strong>v</strong> – colour</p></li>
+<li><p><strong>size</strong> – size of rectangle</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.in_rows_combinations">
+<code class="sig-name descname">in_rows_combinations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">r</span></em>, <em class="sig-param"><span class="n">v</span></em>, <em class="sig-param"><span class="n">size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.in_rows_combinations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.mixed_form">
+<code class="sig-name descname">mixed_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.mixed_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.nbalanced_form">
+<code class="sig-name descname">nbalanced_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.nbalanced_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.ncolor_form">
+<code class="sig-name descname">ncolor_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.ncolor_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.rich_form">
+<code class="sig-name descname">rich_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rule</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.rich_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Grid.rules_to_formulas">
+<code class="sig-name descname">rules_to_formulas</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">c_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Grid.rules_to_formulas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">RType</code><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.BACK">
+<code class="sig-name descname">BACK</code><em class="property"> = 3</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.BACK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.BAD">
+<code class="sig-name descname">BAD</code><em class="property"> = 0</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.BAD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.BALANCED">
+<code class="sig-name descname">BALANCED</code><em class="property"> = 6</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.BALANCED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.COLOR">
+<code class="sig-name descname">COLOR</code><em class="property"> = 4</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.COLOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.EBALANCED">
+<code class="sig-name descname">EBALANCED</code><em class="property"> = 10</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.EBALANCED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.EMIXED">
+<code class="sig-name descname">EMIXED</code><em class="property"> = 12</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.EMIXED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.ENBALANCED">
+<code class="sig-name descname">ENBALANCED</code><em class="property"> = 11</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.ENBALANCED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.ERICH">
+<code class="sig-name descname">ERICH</code><em class="property"> = 13</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.ERICH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.EXIT">
+<code class="sig-name descname">EXIT</code><em class="property"> = 1</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.EXIT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.MIXED">
+<code class="sig-name descname">MIXED</code><em class="property"> = 8</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.MIXED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.NBALANCED">
+<code class="sig-name descname">NBALANCED</code><em class="property"> = 7</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.NBALANCED" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.NCOLOR">
+<code class="sig-name descname">NCOLOR</code><em class="property"> = 5</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.NCOLOR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.RICH">
+<code class="sig-name descname">RICH</code><em class="property"> = 9</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.RICH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.RType.SOLVE">
+<code class="sig-name descname">SOLVE</code><em class="property"> = 2</em><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.RType.SOLVE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Rule">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Rule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rtype</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">color</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Solver">
+<em class="property">class </em><code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">Solver</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rows</span></em>, <em class="sig-param"><span class="n">columns</span></em>, <em class="sig-param"><span class="n">colors</span></em>, <em class="sig-param"><span class="n">fixed_cells</span><span class="o">=</span><span class="default_value">[]</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Solver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Main class in unruly solver. It uses pyeda to transform
+grid of colored cells into boolean equation and solves it with
+PicoSAT solver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rows</strong> – number of rows</p></li>
+<li><p><strong>columns</strong> – number of columns</p></li>
+<li><p><strong>colors</strong> – number of colors</p></li>
+<li><p><strong>fixed_cells</strong> – list of cells with fixed colors formatted
+as list of tuples: (row, column, color)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Solver</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Solver.main">
+<code class="sig-name descname">main</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">argv</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Solver.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function that parses input and executes solver</p>
+<p>Input format: python3 solver.py $rows $columns $colors
+Script executed in interactive mode.
+Possible commands:</p>
+<blockquote>
+<div><p>colors x y c – cell x y should be coloured with colour c;</p>
+<p>ncolor x y c – cell x y shouldn’t be coloured with colour c;</p>
+<dl class="simple">
+<dt>balanced r c – every submatrix with dimensions rxc should have</dt><dd><p>same number of cells per colour;</p>
+</dd>
+<dt>nbalanced r c – no submatrix with dimensions rxc should have</dt><dd><p>same number of cells per colour;</p>
+</dd>
+<dt>mixed r c – every submatrix with dimensions rxc should have cells</dt><dd><p>with at least two colors;</p>
+</dd>
+<dt>rich r c – every submatrix with dimensions rxc should have at</dt><dd><p>least one cell per every colour;</p>
+</dd>
+<dt>ebalanced x1 y1 … xk yk – every subset of cells that contains</dt><dd><p>arbitrary cell x y and cells in row xi and yi should have
+same number of cells per colour;</p>
+</dd>
+<dt>enbalanced x1 y1 … xk yk – same option as ebalanced but</dt><dd><p>for nbalanced;</p>
+</dd>
+</dl>
+<p>emixed x1 y1 … xk yk – same option as ebalanced but for mixed;</p>
+<p>erich x1 y1 … xk yk – same option as ebalanced but for rich;</p>
+<p>back – cancel last command.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>argv</strong> – input string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.Solver.solve">
+<code class="sig-name descname">solve</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.Solver.solve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seeks for solution for defined grid by means of PicoSAT</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="UnrulyPuzzlePython.solver.unruly_solver.enum">
+<code class="sig-prename descclassname">UnrulyPuzzlePython.solver.unruly_solver.</code><code class="sig-name descname">enum</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">sequential</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">named</span></em><span class="sig-paren">)</span><a class="headerlink" href="#UnrulyPuzzlePython.solver.unruly_solver.enum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">UnrulyPuzzlePython</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Marat, Dina, Iaroslav.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../../_sources/doc/toctree/UnrulyPuzzlePython.solver.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

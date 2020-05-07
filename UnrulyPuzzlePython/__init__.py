@@ -35,11 +35,12 @@ Rules:
     the cell can be changed by clicking on it. Each square can take one \
     of C possible colors. The player has to repaint the grid so that it \
     satisfies the following rules:
+        1. Each row and column should contain the same number of \
+         cells of the same color.
+        2. No row or column may contain three consecutive squares \
+         of the same colour.
 
-    1. Each row and column should contain the same number of
-     cells of the same color.
-    2. No row or column may contain three consecutive squares
-     of the same colour.
+
 """
 
 name = 'UnrulyPuzzlePython'

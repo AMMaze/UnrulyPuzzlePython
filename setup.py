@@ -1,7 +1,35 @@
-from setuptools import setup
+from setuptools import setup, Command
 import glob
 import pathlib
 import subprocess
+
+cmdclasses = dict()
+
+
+class BuildSphinx(Command):
+
+    """Build Sphinx documentation."""
+
+    description = 'Build Sphinx documentation'
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        from sphinx.ext import apidoc
+        from sphinx.cmd.build import build_main
+        apidoc.main(['-M', '-q', '-f', '-o',
+                     'doc/toctree', 'UnrulyPuzzlePython'])
+        build_main(
+            ['-b', 'html', '.', 'doc/html']
+        )
+
+
+cmdclasses['build_sphinx'] = BuildSphinx
 
 
 with open("README.md", "r") as readme_file:
@@ -57,5 +85,6 @@ setup(
         'UnrulyPuzzlePython.localization.setup_loc',
         'UnrulyPuzzlePython.solver.unruly_solver',
         'UnrulyPuzzlePython.solver.check_solution'
-    ]
+    ],
+    cmdclass=cmdclasses
 )

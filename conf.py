@@ -10,12 +10,27 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+# from sphinx.ext.apidoc import main
 import os
+# import re
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 
 
+# import re
+# import sys
+# from sphinx.ext.apidoc import main
+# if __name__ == '__main__':
+#     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+#     sys.exit(main())
+
+
+# def setup(app):
+# main(['-M', '-q', '-f', '-o', 'docs', 'UnrulyPuzzlePython'])
+# sys.exit(main())
+# apidoc.ma(['-M', '-q', '-f', '-o', 'docs', 'UnrulyPuzzlePython'])
 # -- Project information -----------------------------------------------------
+
 
 project = 'UnrulyPuzzlePython'
 copyright = '2020, Marat, Dina, Iaroslav'
@@ -51,4 +66,4 @@ html_theme = 'alabaster'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
