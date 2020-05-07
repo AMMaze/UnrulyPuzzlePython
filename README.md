@@ -16,10 +16,14 @@
   3. `python3 -m UnrulyPuzzlePython`
 
 ## Документация
-  1. `python3 setup.py build_sphinx`
+  `python3 setup.py build_sphinx`
 
   После выполнения команды в директории `doc/html` будет сгенерирована html
   документация.
+
+  Кроме того, при помощи команды `python3 -m pydoc UnrulyPuzzlePython`, можно получить описание установленного
+  модуля UnrulyPuzzlePython. Аналогичным образом можно
+  получить описание подмодулей. Пример: `python3 -m pydoc UnrulyPuzzlePython.gui.main_menu`. 
 ## Тесты
   1. Для запуска тестов: `pytest`
   2. Для просмотра доступных опций: `pytest --help`
