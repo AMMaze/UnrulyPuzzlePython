@@ -13,12 +13,12 @@
 ## Сборка, Установка и Запуск
   1. `python3 setup.py clean --all bdist_wheel`
   2. `pip3 install dist/UnrulyPuzzlePython-0.0.1-py3-none-any.whl`
-  3. `open _build/html/index.html`
+  3. `python3 -m UnrulyPuzzlePython`
 
 ## Документация
   1. `sphinx-apidoc -M -q -f -o docs UnrulyPuzzlePython`
   2. `make html`
-  3. `python3 -m UnrulyPuzzlePython`
+  3. `open _build/html/index.html`
 ## Тесты
   1. Для запуска тестов: `pytest`
   2. Для просмотра доступных опций: `pytest --help`
