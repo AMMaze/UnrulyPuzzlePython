@@ -46,7 +46,7 @@ class Round_Button(tk.Label):
         self.tsc = static_t_colour
         self.ttc = transformation_t_colour
         self.multi = size
-        self.resolution = (int(35*size), int(10*size))  # 3.5 : 1 (W : H)
+        self.resolution = (int(35 * size), int(10 * size))  # 3.5 : 1 (W : H)
         self.text = text
         self.change_to_trans = False
         self.change_to_static = False
@@ -100,11 +100,11 @@ class Round_Button(tk.Label):
         # Initialising the draw the ImageDraw.Draw object
         self.image_drawer = [ImageDraw.Draw(self.images[i]) for i in range(10)]
         self.image_colours = [
-            [self.tc[i] + ((self.sc[i]-self.tc[i])//10)*x for i in range(3)]
-            for x in range(10)]
+            [self.tc[i] + ((self.sc[i] - self.tc[i]) // 10) * x
+             for i in range(3)] for x in range(10)]
         self.text_colours = [
-            [self.ttc[i] + ((self.tsc[i] - self.ttc[i]) // 10)
-             * x for i in range(3)] for x in range(10)]
+            [self.ttc[i] + ((self.tsc[i] - self.ttc[i]) // 10) * x
+             for i in range(3)] for x in range(10)]
         self.outline_colours = [[self.trans_outline[i] + (
             (self.static_outline[i] - self.trans_outline[i]) // 10)
             * x for i in range(3)] for x in range(10)]
@@ -129,7 +129,7 @@ class Round_Button(tk.Label):
             self.image_drawer[i].rectangle(
                 (int(5.5 * self.multi), 0,
                  self.resolution[0] - int(5.5 * self.multi),
-                 self.resolution[1]-1), outline=outline,
+                 self.resolution[1] - 1), outline=outline,
                 width=2, fill=colour
             )
 
@@ -139,28 +139,28 @@ class Round_Button(tk.Label):
 
             self.image_drawer[i].rectangle(
                 (self.resolution[0] - int(5.5 * self.multi), 0,
-                 self.resolution[0], self.resolution[1]-2),
+                 self.resolution[0], self.resolution[1] - 2),
                 fill=(0, 0, 0, 0)
             )
             self.image_drawer[i].ellipse(
                 (self.resolution[0] - int(10 * self.multi), 0,
-                 self.resolution[0]-1, self.resolution[1]-2),
+                 self.resolution[0] - 1, self.resolution[1] - 2),
                 outline=outline, width=2, fill=colour
             )
 
             self.image_drawer[i].rectangle(
-                (0, 0, int(5.5 * self.multi), int(10 * self.multi)-2),
+                (0, 0, int(5.5 * self.multi), int(10 * self.multi) - 2),
                 fill=(0, 0, 0, 0)
             )
             self.image_drawer[i].ellipse(
-                (0, 0, int(10 * self.multi), int(10 * self.multi)-2),
+                (0, 0, int(10 * self.multi), int(10 * self.multi) - 2),
                 outline=outline, width=2, fill=(colour)
             )
 
             self.image_drawer[i].rectangle(
                 (int(5.5 * self.multi), 2,
                  self.resolution[0] - int(5.5 * self.multi),
-                 self.resolution[1]-3), fill=colour
+                 self.resolution[1] - 3), fill=colour
             )
 
             for x in range(len(coords)):
@@ -174,7 +174,7 @@ class Round_Button(tk.Label):
     def create_lower_button(self):
         multi_d = 0.25
         multi = self.multi - multi_d
-        resolution = (int(35 * multi), int(10*multi))
+        resolution = (int(35 * multi), int(10 * multi))
         decrement = -1
         while True:
             # < decrement > : Used for lowering the font size so
@@ -187,7 +187,8 @@ class Round_Button(tk.Label):
                 encoding="unic")
             coords, Lines, line_height = self.draw_multiple_line_text(
                 self.text, font, int(36 * multi), int(2.2 * multi), 12)
-            if coords[-1][1]+line_height + 5 > self.resolution[1]-(10*multi_d):
+            if coords[-1][1] + line_height + 5 > \
+                    self.resolution[1] - (10 * multi_d):
                 continue
             break
 
@@ -216,8 +217,8 @@ class Round_Button(tk.Label):
         # 2 on both sides for 2 images.
 
         self.lower_drawer.rectangle(
-            (0, 0, resolution[0], resolution[1]-1),
-            outline=outline, width=2,  fill=colour
+            (0, 0, resolution[0], resolution[1] - 1),
+            outline=outline, width=2, fill=colour
         )
 
         # Create a rectangle to remove the unwanted areas of colour,
@@ -226,11 +227,11 @@ class Round_Button(tk.Label):
 
         # Right side
         self.lower_drawer.rectangle(
-            (resolution[0] - int(5.5*multi), 0,
+            (resolution[0] - int(5.5 * multi), 0,
              resolution[0], resolution[1]), fill=(0, 0, 0, 0)
         )
         self.lower_drawer.ellipse(
-            (resolution[0] - int(10*multi), 0, resolution[0], resolution[1]),
+            (resolution[0] - int(10 * multi), 0, resolution[0], resolution[1]),
             outline=outline, width=2, fill=colour
         )
 
@@ -241,8 +242,8 @@ class Round_Button(tk.Label):
                                   outline=outline, width=2, fill=(colour))
 
         self.lower_drawer.rectangle(
-            (int(5.5 * multi), 2, resolution[0] - int(5.5*multi),
-             resolution[1]-3), fill=colour
+            (int(5.5 * multi), 2, resolution[0] - int(5.5 * multi),
+             resolution[1] - 3), fill=colour
         )
 
         for x in range(len(coords)):
@@ -251,13 +252,13 @@ class Round_Button(tk.Label):
                 font=font, align='center'
             )
 
-        delta_x = (self.resolution[0] - resolution[0])//2
-        delta_y = (self.resolution[1] - resolution[1])//2
+        delta_x = (self.resolution[0] - resolution[0]) // 2
+        delta_y = (self.resolution[1] - resolution[1]) // 2
 
         # Perfects the size for pasting.
         self.lower_button = self.lower_button.resize(
-            size=(self.resolution[0] - delta_x*2,
-                  self.resolution[1] - delta_y*2))
+            size=(self.resolution[0] - delta_x * 2,
+                  self.resolution[1] - delta_y * 2))
 
         # Pasting Image ontop of transparent image with original resolution.
         self.Button = Image.new('RGBA', (self.resolution))
