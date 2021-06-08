@@ -1,2 +1,2 @@
 pyeda==0.28.0
-Pillow==7.1.2
+Pillow==8.2.0
